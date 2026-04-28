@@ -8,42 +8,53 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest  # GitHub 提供的虚拟机
+    runs-on: ubuntu-latest
 
     steps:
-      # Step 1: 拉取代码到虚拟机
+      # Step 1: 拉取代码（升级到 v4，更稳定）
       - name: Checkout 代码
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      # Step 2: 在虚拟机上构建 Docker 镜像（多阶段构建）
+      # Step 2: 生成唯一的镜像标签（用 commit hash，方便回滚）
+      - name: 生成镜像标签
+        id: meta
+        run: echo "IMAGE_TAG=${{ github.sha }}" >> $GITHUB_OUTPUT
+
+      # Step 3: 构建 Docker 镜像
       - name: 构建 Docker 镜像
-        run: docker build -t security-quiz-game:latest .
+        run: docker build -t security-quiz-game:${{ steps.meta.outputs.IMAGE_TAG }} .
 
-      # Step 3: 登录 Docker Hub，推送镜像
+      # Step 4: 登录 Docker Hub
       - name: 登录 Docker Hub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
+      # Step 5: 推送镜像到 Docker Hub（同时打 latest 和 commit hash 两个标签）
       - name: 推送镜像到 Docker Hub
         run: |
-          docker tag security-quiz-game:latest ${{ secrets.DOCKER_USERNAME }}/security-quiz-game:latest
+          docker tag security-quiz-game:${{ steps.meta.outputs.IMAGE_TAG }} ${{ secrets.DOCKER_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.IMAGE_TAG }}
+          docker tag security-quiz-game:${{ steps.meta.outputs.IMAGE_TAG }} ${{ secrets.DOCKER_USERNAME }}/security-quiz-game:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.IMAGE_TAG }}
           docker push ${{ secrets.DOCKER_USERNAME }}/security-quiz-game:latest
 
-      # Step 4: SSH 登录腾讯云服务器，拉取新镜像并重启容器
+      # Step 6: SSH 登录云服务器部署（升级到 v1.0.3，加 StrictHostKeyChecking=no）
       - name: 部署到云服务器
-        uses: appleboy/ssh-action@v1.0.0
+        uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.SERVER_HOST }}      # 服务器 IP
-          username: ${{ secrets.SERVER_USER }}  # 登录用户名
-          key: ${{ secrets.SERVER_SSH_KEY }}    # SSH 私钥
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script_stop: true  # 部署失败立即停止
           script: |
-            # 拉取最新镜像
-            docker pull ${{ secrets.DOCKER_USERNAME }}/security-quiz-game:latest
-            # 停止并删除旧容器（首次部署时容器不存在，|| true 避免报错退出）
+            # 拉取最新镜像（用 commit hash，确保是刚才构建的版本）
+            docker pull ${{ secrets.DOCKER_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.IMAGE_TAG }}
+            
+            # 停止并删除旧容器
             docker stop security-quiz-game || true
             docker rm security-quiz-game || true
-            # 启动新容器，映射 80 端口
+            
+            # 启动新容器
             docker run -d \
               --name security-quiz-game \
               --restart always \
               -p 80:80 \
-              ${{ secrets.DOCKER_USERNAME }}/security-quiz-game:latest
+              ${{ secrets.DOCKER_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.IMAGE_TAG }}
