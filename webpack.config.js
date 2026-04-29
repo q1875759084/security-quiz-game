@@ -27,8 +27,9 @@ module.exports = {
     }),
   ],
   devServer: {
-    port: 3000,
+    port: 3001,
     historyApiFallback: true, // SPA 刷新 404 兜底
     hot: true,
+    open: true,
   },
 };

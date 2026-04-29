@@ -1,0 +1,246 @@
+[
+  {
+    "id": "chapter1_node2",
+    "title": "固定队队长性别",
+    "content": "让我们先看一下这名未来的固定队队长是一个什么样的人吧？\n性别：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "队长性别判定",
+        "diceRequired": 2,
+        "outcomes": [
+          {
+            "optionText": "男",
+            "match": 1,
+            "resultText": "队长是男生",
+            "nextNode": "chapter1_node3"
+          },
+          {
+            "optionText": "女",
+            "match": 2,
+            "resultText": "队长是女生",
+            "nextNode": "chapter1_node3"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node3",
+    "title": "队长入坑时间",
+    "content": "看来是女生啊，那么她是什么时候入坑的？\n入坑时间：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "队长入坑时间判定",
+        "diceRequired": 5,
+        "outcomes": [
+          {
+            "optionText": "2.0/3.0/4.0入坑的老玩家",
+            "match": [1, 3],
+            "resultText": "2.0/3.0/4.0入坑的老玩家",
+            "nextNode": "chapter1_node4"
+          },
+          {
+            "optionText": "5.0入坑的中期玩家",
+            "match": 4,
+            "resultText": "5.0入坑的中期玩家",
+            "nextNode": "chapter1_node4"
+          },
+          {
+            "optionText": "6.0刚入坑的豆芽",
+            "match": 5,
+            "resultText": "6.0刚入坑的豆芽",
+            "nextNode": "chapter1_node4"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node4",
+    "title": "队长主职判定",
+    "content": "那么5.0入坑后，她的主职是？\n主职类型：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "队长主职判定",
+        "diceRequired": 19,
+        "outcomes": [
+          {
+            "optionText": "坦克或治疗职业",
+            "match": [1, 10],
+            "resultText": "坦克或治疗职业",
+            "nextNode": "chapter1_node5"
+          },
+          {
+            "optionText": "近战或远程物理职业",
+            "match": [11, 18],
+            "resultText": "近战或远程物理职业",
+            "nextNode": "chapter1_node5"
+          },
+          {
+            "optionText": "法系职业",
+            "match": 19,
+            "resultText": "法系职业",
+            "nextNode": "chapter1_node5"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node5",
+    "title": "龙骑水平判定",
+    "content": "那么她玩龙骑的水平如何呢？\n龙骑水平：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "龙骑水平判定",
+        "diceRequired": 100,
+        "outcomes": [
+          {
+            "optionText": "残疾水平，logs灰色",
+            "match": [1, 20],
+            "resultText": "残疾水平，logs灰色",
+            "nextNode": "chapter1_node6"
+          },
+          {
+            "optionText": "普通水平，logs蓝绿",
+            "match": [21, 59],
+            "resultText": "普通水平，logs蓝绿",
+            "nextNode": "chapter1_node6"
+          },
+          {
+            "optionText": "大佬水平，logs紫橙",
+            "match": [60, 90],
+            "resultText": "大佬水平，logs紫橙",
+            "nextNode": "chapter1_node6"
+          },
+          {
+            "optionText": "国一龙骑水平，logs全橙",
+            "match": [91, 100],
+            "resultText": "国一龙骑水平，logs全橙",
+            "nextNode": "chapter1_node6"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node6",
+    "title": "零式经验判定",
+    "content": "那么龙骑有5.0的零式经验吗？\n零式经验：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "零式经验判定",
+        "diceRequired": 2,
+        "outcomes": [
+          {
+            "optionText": "有丰富的零式通关经验",
+            "match": 1,
+            "resultText": "有丰富的零式通关经验",
+            "nextNode": "chapter1_node7"
+          },
+          {
+            "optionText": "完全没有零式经验",
+            "match": 2,
+            "resultText": "完全没有零式经验",
+            "nextNode": "chapter1_node7"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node7",
+    "title": "打零式原因",
+    "content": "那么5.0入坑后完全没有零式经验，为什么6.0突然想去打零式了呢？\n打零式原因：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "打零式原因判定",
+        "diceRequired": 6,
+        "outcomes": [
+          {
+            "optionText": "主动想尝试新内容或提升自己",
+            "match": [1, 3],
+            "resultText": "主动想尝试新内容或提升自己",
+            "nextNode": "chapter1_node8"
+          },
+          {
+            "optionText": "被他人劝说或一时兴起",
+            "match": [4, 6],
+            "resultText": "被他人劝说或一时兴起",
+            "nextNode": "chapter1_node8"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node8",
+    "title": "固定队目标",
+    "content": "好努力啊龙桑！那么努力的龙骑小姐对于固定队的目标是？\n固定队目标：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "固定队目标判定",
+        "diceRequired": 10,
+        "outcomes": [
+          {
+            "optionText": "首周通关目标",
+            "match": 1,
+            "resultText": "首周通关目标",
+            "nextNode": "chapter1_node9"
+          },
+          {
+            "optionText": "次周或三周通关目标",
+            "match": [2, 6],
+            "resultText": "次周或三周通关目标",
+            "nextNode": "chapter1_node9"
+          },
+          {
+            "optionText": "首月休闲通关目标",
+            "match": [7, 9],
+            "resultText": "首月休闲通关目标",
+            "nextNode": "chapter1_node9"
+          },
+          {
+            "optionText": "随缘打到开下一层",
+            "match": 10,
+            "resultText": "随缘打到开下一层",
+            "nextNode": "chapter1_node9"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node9",
+    "title": "是否有亲友CP",
+    "content": "那么龙骑有和她一起打边狱的亲友或cp吗？\n亲友/CP：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "亲友CP判定",
+        "diceRequired": 2,
+        "outcomes": [
+          {
+            "optionText": "有亲友或CP一起打本",
+            "match": 1,
+            "resultText": "有亲友或CP一起打本",
+            "nextNode": "chapter1_node10"
+          },
+          {
+            "optionText": "孤身一人招募队友",
+            "match": 2,
+            "resultText": "孤身一人招募队友",
+            "nextNode": "chapter1_node10"
+          }
+        ]
+      }
+    ]
+  }
+]
