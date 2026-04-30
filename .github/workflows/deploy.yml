@@ -30,21 +30,12 @@ jobs:
           node-version: '20'
 
       # 安装依赖
-      # --maxsockets=1：将 npm 并行下载连接数限制为 1（串行下载）
-      #   根因：ESLint 8 的依赖树会触发 npm 10.x 在 Linux 上的并行安装死锁 bug
-      #   表现：本地（macOS）正常，GitHub Actions Linux runner 上 "Exit handler never called"
-      #   workaround：降低并行度，用串行安装绕开死锁触发条件
       - name: 安装依赖
-        run: npm install --maxsockets=1
-
-      # lint 校验：检查代码规范和潜在问题
-      # 比 build 更早发现问题（未使用变量、规范违反等）
-      # lint 通过后再跑 build，两道门槛
-      - name: Lint 校验
-        run: npm run lint
+        run: npm install
 
       # build 校验：编译级验证，确保代码能正常构建
-      # lint 发现规范问题，build 发现编译错误，职责不同
+      # 暂无 lint：ESLint 8 在 GitHub Actions Linux runner 上存在并行安装死锁 bug
+      # 待 ESLint 安装问题解决后补充 lint 步骤
       - name: 构建校验
         run: npm run build
 
