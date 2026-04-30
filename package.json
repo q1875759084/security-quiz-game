@@ -5,16 +5,20 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack serve --config webpack.config.js",
-    "build": "webpack --config webpack.config.js --mode production"
+    "build": "webpack --config webpack.config.js --mode production",
+    "lint": "eslint src --ext .js,.jsx"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.29.0",
+    "@babel/eslint-parser": "^7.28.6",
     "@babel/preset-env": "^7.29.2",
     "@babel/preset-react": "^7.28.5",
     "babel-loader": "^8.4.1",
+    "eslint": "^8.57.1",
+    "eslint-plugin-react": "^7.37.5",
     "html-webpack-plugin": "^5.6.7",
     "webpack": "^5.106.2",
     "webpack-cli": "^4.10.0",

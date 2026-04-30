@@ -1,0 +1,76 @@
+name: CI/CD 自动部署
+
+# ==================== v1 归档说明 ====================
+#
+# 这是第一版 deploy.yml，单 job 结构，CI/CD 写在一起
+#
+# 存在的问题：
+#   1. 只监听 main 分支，其他开发分支 push 时没有任何校验
+#   2. 单 job 内 step 串行，但没有 CI/CD 职责分离
+#   3. 遇到问题要等到 docker build 阶段才发现，发现时机太晚
+#
+# v2 的改进方向：
+#   - 拆成 ci + deploy 两个 job
+#   - on: 改为监听所有分支（**），ci 提前校验
+#   - deploy job 用 needs + if 做双重收口
+#
+# 参见：.github/workflows/deploy.yml
+
+# 触发条件：push 到 main 分支
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: 拉取代码（升级到 v4，更稳定）
+      - name: Checkout 代码
+        uses: actions/checkout@v4
+
+      # Step 2: 生成唯一的镜像标签（用 commit hash，方便回滚）
+      - name: 生成镜像标签
+        id: meta
+        run: echo "IMAGE_TAG=${{ github.sha }}" >> $GITHUB_OUTPUT
+
+      # Step 3: 构建 Docker 镜像
+      - name: 构建 Docker 镜像
+        run: docker build -t security-quiz-game:${{ steps.meta.outputs.IMAGE_TAG }} .
+
+      # Step 4: 登录 Docker Hub
+      - name: 登录 Docker Hub
+        run: echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
+
+      # Step 5: 推送镜像到 Docker Hub（同时打 latest 和 commit hash 两个标签）
+      - name: 推送镜像到 Docker Hub
+        run: |
+          docker tag security-quiz-game:${{ steps.meta.outputs.IMAGE_TAG }} ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.IMAGE_TAG }}
+          docker tag security-quiz-game:${{ steps.meta.outputs.IMAGE_TAG }} ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:latest
+          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.IMAGE_TAG }}
+          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:latest
+
+      # Step 6: SSH 登录云服务器部署（升级到 v1.0.3，加 StrictHostKeyChecking=no）
+      - name: 部署到云服务器
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script_stop: true  # 部署失败立即停止
+          script: |
+            # 拉取最新镜像（用 commit hash，确保是刚才构建的版本）
+            docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.IMAGE_TAG }}
+            
+            # 停止并删除旧容器
+            docker stop security-quiz-game || true
+            docker rm security-quiz-game || true
+            
+            # 启动新容器
+            docker run -d \
+              --name security-quiz-game \
+              --restart always \
+              -p 80:80 \
+              ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.IMAGE_TAG }}

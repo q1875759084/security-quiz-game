@@ -1,34 +1,90 @@
 name: CI/CD 自动部署
 
-# 触发条件：push 到 main 分支
+# 触发条件：任意分支 push 都触发
+# 为什么用 **：让所有分支都能跑 CI 校验
+# CD 阶段的收口在 deploy job 的 if 条件里，不在这里
 on:
   push:
     branches:
-      - main
+      - '**'
 
 jobs:
-  build-and-deploy:
+  # ==================== CI：代码校验 ====================
+  # 任意分支 push 都跑，目的是尽早发现问题
+  # 失败时 deploy job 不会启动（因为 needs: ci）
+  ci:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: 拉取代码（升级到 v4，更稳定）
       - name: Checkout 代码
         uses: actions/checkout@v4
 
-      # Step 2: 生成唯一的镜像标签（用 commit hash，方便回滚）
+      # 显式指定 Node 版本，与 Dockerfile 的 node:20-alpine 保持一致
+      # 不指定的话用 runner 预装版本，GitHub 随时可能升级导致环境漂移
+      - name: 设置 Node 版本
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # 安装依赖
+      # --legacy-peer-deps：跳过 peer dependency 冲突检查（react 19 与部分插件版本不兼容时需要）
+      - name: 安装依赖
+        run: npm install --legacy-peer-deps
+
+      # lint 校验：检查代码规范和潜在问题
+      # 比 build 更早发现问题（未使用变量、规范违反等）
+      # lint 通过后再跑 build，两道门槛
+      - name: Lint 校验
+        run: npm run lint
+
+      # build 校验：编译级验证，确保代码能正常构建
+      # lint 发现规范问题，build 发现编译错误，职责不同
+      - name: 构建校验
+        run: npm run build
+
+  # ==================== CD：构建镜像 + 部署 ====================
+  # 两个前提：
+  #   1. needs: ci → ci job 必须成功（job 默认并行，needs 强制串行）
+  #   2. if 条件  → 只有 main 分支才执行（收口）
+  #
+  # 为什么要同时用 needs 和 if：
+  #   只用 needs：ci 成功后所有分支都会触发部署（不合理）
+  #   只用 if：ci 和 deploy 并行，ci 还没跑完 deploy 已经在部署了（绕过了校验）
+  #   两者结合：ci 成功 + 是 main 分支，才执行部署
+  deploy:
+    needs: ci
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: 拉取代码
+      - name: Checkout 代码
+        uses: actions/checkout@v4
+
+      # Step 2: 生成唯一镜像标签
+      # 用 commit hash（40位）而非 latest，原因：
+      #   latest 在并行场景会互相覆盖，sha 精确绑定到本次 commit
+      #   sha tag 不可变，是回滚的唯一可靠依据
       - name: 生成镜像标签
         id: meta
         run: echo "IMAGE_TAG=${{ github.sha }}" >> $GITHUB_OUTPUT
 
-      # Step 3: 构建 Docker 镜像
+      # Step 3: 构建 Docker 镜像（在 runner 上，不在服务器上）
+      # 为什么在 runner 构建而不是在服务器上：
+      #   服务器是运行环境，build 是高 CPU 操作，不应占用服务器资源
+      #   runner 是一次性虚拟机，build 失败不影响线上服务
       - name: 构建 Docker 镜像
         run: docker build -t security-quiz-game:${{ steps.meta.outputs.IMAGE_TAG }} .
 
       # Step 4: 登录 Docker Hub
+      # --password-stdin：密码走 stdin，不出现在命令行参数
+      # 对比 -p password：密码会暴露在 ps aux 进程列表里
       - name: 登录 Docker Hub
         run: echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
 
-      # Step 5: 推送镜像到 Docker Hub（同时打 latest 和 commit hash 两个标签）
+      # Step 5: 推送镜像（同时打两个 tag）
+      # sha tag：精确对应本次 commit，用于回滚
+      # latest：永远指向最新，方便手动拉取查看，不能用于回滚
       - name: 推送镜像到 Docker Hub
         run: |
           docker tag security-quiz-game:${{ steps.meta.outputs.IMAGE_TAG }} ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.IMAGE_TAG }}
@@ -36,23 +92,30 @@ jobs:
           docker push ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.IMAGE_TAG }}
           docker push ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:latest
 
-      # Step 6: SSH 登录云服务器部署（升级到 v1.0.3，加 StrictHostKeyChecking=no）
+      # Step 6: SSH 进服务器执行部署
+      # runner 构建好镜像推到 Docker Hub，服务器从 Docker Hub 拉取
+      # Docker Hub 是中间的"中转站"，runner 和服务器不直接通信（除了 SSH）
       - name: 部署到云服务器
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
-          script_stop: true  # 部署失败立即停止
+          script_stop: true
           script: |
-            # 拉取最新镜像（用 commit hash，确保是刚才构建的版本）
+            # 拉取本次构建的镜像（用 sha tag，确保是刚才推上去的版本）
             docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.IMAGE_TAG }}
-            
+
             # 停止并删除旧容器
+            # || true：第一次部署时没有旧容器，stop/rm 会报错
+            # || true 吞掉错误，避免 workflow 中断
             docker stop security-quiz-game || true
             docker rm security-quiz-game || true
-            
+
             # 启动新容器
+            # -d：后台运行
+            # --restart always：服务器重启或容器异常退出时自动恢复
+            # -p 80:80：宿主机 80 端口 → 容器 80 端口（Nginx 监听）
             docker run -d \
               --name security-quiz-game \
               --restart always \
