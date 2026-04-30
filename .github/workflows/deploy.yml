@@ -33,10 +33,12 @@ jobs:
       - name: 安装依赖
         run: npm install
 
-      # 诊断：打印安装失败时的 npm 错误日志（仅 failure 时执行）
-      - name: 打印 npm 错误日志
-        if: failure()
-        run: cat /home/runner/.npm/_logs/*.log 2>/dev/null || echo "no log found"
+      # 诊断：确认环境和安装结果
+      - name: 诊断安装结果
+        run: |
+          echo "=== npm version" && npm --version
+          echo "=== eslint bin" && ls node_modules/.bin/eslint 2>/dev/null && echo "found" || echo "NOT found"
+          echo "=== eslint pkg" && ls node_modules/eslint/ 2>/dev/null | head -3 || echo "missing"
 
       # lint 校验：检查代码规范和潜在问题
       # 比 build 更早发现问题（未使用变量、规范违反等）
