@@ -6,7 +6,7 @@ WORKDIR /app
 # 先复制依赖文件，利用 Docker 层缓存
 # 只有 package.json 变化时才重新 npm install，代码变化时跳过此步骤
 COPY package.json package-lock.json ./
-RUN npm install --legacy-peer-deps
+RUN npm install
 
 # 再复制源码并构建
 COPY . .
