@@ -28,6 +28,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          npm-version: '10.8.0'
+          cache: 'npm'
 
       # 安装依赖
       # 使用 npmmirror 镜像源（.npmrc 已配置）：
