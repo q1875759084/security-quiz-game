@@ -27,13 +27,12 @@ jobs:
           node-version: '20'
 
       # 安装依赖
-      # npm ci 而非 npm install：
-      #   npm ci 严格按照 package-lock.json 安装精确版本，不会自动更新 lockfile
-      #   npm install 在版本不一致时会静默处理，可能装出和本地不同的版本
-      #   CI 环境必须用 npm ci，保证依赖和本地完全一致
+      # 使用 npm install 而非 npm ci：
+      #   npm ci + --legacy-peer-deps 存在已知兼容性问题（npm Exit handler never called）
+      #   lockfile 已提交且版本一致（lockfileVersion 3），npm install 会严格按 lockfile 安装
       # --legacy-peer-deps：跳过 peer dependency 冲突检查（react 19 与部分插件版本不兼容时需要）
       - name: 安装依赖
-        run: npm ci --legacy-peer-deps
+        run: npm install --legacy-peer-deps
 
       # lint 校验：检查代码规范和潜在问题
       # 比 build 更早发现问题（未使用变量、规范违反等）
