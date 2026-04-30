@@ -1,23 +1,27 @@
 name: CI/CD 自动部署
 
-# 触发条件：分支 push 和 tag push 都触发
-# 为什么在 on 层不区分：on 只负责「开门」，区分逻辑交给各 job 的 if 条件
-#   push 分支 → ci job 跑，deploy job 跑（仅 main）
-#   push tag  → ci job 跑，deploy-prod job 跑（仅 v*.*.* 格式）
+# 触发条件说明：
+#   push 任意分支/tag → 只触发 CI（客观校验，代码能不能跑）
+#   workflow_dispatch  → 手动触发，才执行 CD 到测试环境（主观判断，这个版本该不该上）
+#   push tag v*.*.*   → CI + 自动 CD 到生产环境（打 tag = 显式声明发布）
+#
+# 核心原则：CD 不应该随每次 push 自动触发
+#   一个需求可能 push 十几次，不可能每次都重新部署测试环境
+#   测试环境部署 = 开发者主动决定"这个版本可以给 QA 看了"
 on:
   push:
     branches:
       - '**'
     tags:
       - 'v*.*.*'
-  # 手动触发：用于部署开发/测试环境
-  # 在 GitHub Actions 页面选择分支后点击 Run workflow
+  # 手动触发：开发者在 GitHub Actions 页面选择分支后点击 Run workflow
+  # 触发后执行 deploy-dev job，部署到测试环境
   workflow_dispatch:
 
 jobs:
   # ==================== CI：代码校验 ====================
   # 任意分支 push 都跑，目的是尽早发现问题
-  # 失败时 deploy job 不会启动（因为 needs: ci）
+  # 失败时 deploy-prod job 不会启动（因为 needs: ci）
   ci:
     runs-on: ubuntu-latest
 
@@ -46,16 +50,16 @@ jobs:
       - name: 构建校验
         run: npm run build
 
-  # ==================== CD：开发/测试环境部署（手动触发）====================
-  # 触发方式：workflow_dispatch（在 GitHub Actions 页面手动点击触发）
-  # 不自动触发的原因：
-  #   开发/测试环境部署应该是"开发者主动决定"的动作
-  #   push feature 分支不应自动部署（可能只是一个中间提交，还没完成）
-  #   手动触发 = 开发者确认"这个版本可以给 QA 测了"
+  # ==================== CD：测试环境部署 ====================
+  # 触发条件：workflow_dispatch（开发者手动触发）
+  # 和生产环境共用同一台云服务器，用端口区分：
+  #   测试环境：http://ip:8080
+  #   生产环境：http://ip:80
+  # 没有灰度、回滚等保障机制，出问题直接重新触发部署修复版本即可
   #
-  # 注意：workflow_dispatch 不受 needs: ci 控制（不同触发类型，job 间无法跨触发关联）
-  #   在 GitHub Actions 页面手动触发时，ci job 不会自动先跑
-  #   如需保证质量，手动触发前应确认 CI 已通过
+  # 注意：workflow_dispatch 触发时 ci job 不会自动先跑
+  #   needs: ci 只在同一次触发事件内有效
+  #   手动触发前应确认对应分支的 CI 已通过
   deploy-dev:
     if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
@@ -79,21 +83,21 @@ jobs:
           docker tag security-quiz-game:${{ steps.meta.outputs.IMAGE_TAG }} ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.IMAGE_TAG }}
           docker push ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.IMAGE_TAG }}
 
-      - name: 部署到开发/测试服务器
+      - name: 部署到测试环境（8080 端口）
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.DEV_SERVER_HOST }}
-          username: ${{ secrets.DEV_SERVER_USER }}
-          key: ${{ secrets.DEV_SERVER_SSH_KEY }}
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
           script_stop: true
           script: |
             docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.IMAGE_TAG }}
-            docker stop security-quiz-game || true
-            docker rm security-quiz-game || true
+            docker stop security-quiz-game-dev || true
+            docker rm security-quiz-game-dev || true
             docker run -d \
-              --name security-quiz-game \
+              --name security-quiz-game-dev \
               --restart always \
-              -p 80:80 \
+              -p 8080:80 \
               ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.IMAGE_TAG }}
 
   # ==================== CD：生产环境部署 ====================
