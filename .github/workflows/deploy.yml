@@ -26,16 +26,16 @@ jobs:
         with:
           node-version: '20'
 
-      # 降级 npm 到 10.5.x
-      # 根因：runner 预装 npm 10.8.2 在处理 lockfileVersion 3 时存在已知 bug
-      #   表现为安装过程中 "Exit handler never called"，导致 node_modules 写入不完整
-      #   npm 10.5.x 没有此 bug，是该大版本下的稳定版本
-      - name: 固定 npm 版本
-        run: npm install -g npm@10.5.2
-
       # 安装依赖
       - name: 安装依赖
         run: npm install
+
+      # 诊断：install 完成后统计 node_modules 包数量
+      - name: 诊断 node_modules
+        run: |
+          echo "包总数: $(ls node_modules | wc -l)"
+          ls node_modules/webpack 2>/dev/null && echo "webpack: OK" || echo "webpack: MISSING"
+          ls node_modules/react 2>/dev/null && echo "react: OK" || echo "react: MISSING"
 
       # build 校验：编译级验证，确保代码能正常构建
       # 暂无 lint：ESLint 8 在 GitHub Actions Linux runner 上存在并行安装死锁 bug
