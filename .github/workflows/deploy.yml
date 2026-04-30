@@ -30,15 +30,11 @@ jobs:
           node-version: '20'
 
       # 安装依赖
+      # 使用 npmmirror 镜像源（.npmrc 已配置）：
+      #   runner 访问 npm 官方源偶发超时，导致部分包（如 eslint）下载不完整
+      #   npmmirror 是 npm 官方在中国的镜像，同步延迟极低，稳定性更高
       - name: 安装依赖
         run: npm install
-
-      # 诊断：确认环境和安装结果
-      - name: 诊断安装结果
-        run: |
-          echo "=== npm version" && npm --version
-          echo "=== eslint bin" && ls node_modules/.bin/eslint 2>/dev/null && echo "found" || echo "NOT found"
-          echo "=== eslint pkg" && ls node_modules/eslint/ 2>/dev/null | head -3 || echo "missing"
 
       # lint 校验：检查代码规范和潜在问题
       # 比 build 更早发现问题（未使用变量、规范违反等）
