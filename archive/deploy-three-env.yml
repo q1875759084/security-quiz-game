@@ -1,61 +1,71 @@
-name: CI/CD 自动部署
+name: CI/CD 三套环境完整方案（归档参考）
 
-# 触发条件：分支 push 和 tag push 都触发
-# 为什么在 on 层不区分：on 只负责「开门」，区分逻辑交给各 job 的 if 条件
-#   push 分支 → ci job 跑，deploy job 跑（仅 main）
-#   push tag  → ci job 跑，deploy-prod job 跑（仅 v*.*.* 格式）
+# ==================== 三套环境模型说明 ====================
+#
+# 开发/测试环境（dev）：
+#   用途：开发联调 + QA 测试，同一套环境
+#   触发：手动触发（workflow_dispatch），开发者主动决定"这个版本可以给 QA 测了"
+#   服务器：dev 服务器（独立于生产）
+#
+# 生产环境（prod）：
+#   用途：线上用户访问
+#   触发：push tag v*.*.*，人工打 tag = 确认测试通过可以发布
+#   服务器：prod 服务器
+#
+# main 分支的含义：
+#   main = 已通过测试、准备发布或已发布的代码
+#   merge 到 main 不触发任何部署，只是代码的"合并主线"
+#   部署生产用打 tag，不用 push main
+#
+# 完整研发流程：
+#   1. feature 分支开发
+#   2. 手动触发 workflow_dispatch → 部署到 dev 环境 → 联调自测
+#   3. QA 在 dev 环境测试
+#   4. 测试通过 → PR → merge 到 main
+#   5. 打 tag v*.*.* → 自动触发生产部署
+#
+# 所需 Secrets（仓库 Settings → Secrets → Actions）：
+#   DOCKER_HUB_USERNAME / DOCKER_HUB_TOKEN
+#   DEV_SERVER_HOST / DEV_SERVER_USER / DEV_SERVER_SSH_KEY
+#   PROD_SERVER_HOST / PROD_SERVER_USER / PROD_SERVER_SSH_KEY
+
 on:
   push:
     branches:
-      - '**'
+      - '**'        # 任意分支 push → 触发 CI
     tags:
-      - 'v*.*.*'
-  # 手动触发：用于部署开发/测试环境
-  # 在 GitHub Actions 页面选择分支后点击 Run workflow
-  workflow_dispatch:
+      - 'v*.*.*'    # tag push → 触发生产部署
+  workflow_dispatch:  # 手动触发 → 触发开发/测试环境部署
 
 jobs:
   # ==================== CI：代码校验 ====================
-  # 任意分支 push 都跑，目的是尽早发现问题
-  # 失败时 deploy job 不会启动（因为 needs: ci）
+  # 任意 push（分支或 tag）都跑
+  # workflow_dispatch 手动触发时不自动跑（不同触发类型），手动触发前应确认 CI 已通过
   ci:
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout 代码
         uses: actions/checkout@v4
 
-      # 显式指定 Node 版本，与 Dockerfile 的 node:20-alpine 保持一致
-      # node-version：防止 runner 预装版本漂移
       - name: 设置 Node 版本
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      # 安装依赖
       - name: 安装依赖
         run: npm install
 
-      # lint 校验：检查代码规范和潜在问题
-      # 比 build 更早发现问题（未使用变量、规范违反等）
       - name: Lint 校验
         run: npm run lint
 
-      # build 校验：编译级验证，确保代码能正常构建
-      # lint 发现规范问题，build 发现编译错误，职责不同
       - name: 构建校验
         run: npm run build
 
-  # ==================== CD：开发/测试环境部署（手动触发）====================
-  # 触发方式：workflow_dispatch（在 GitHub Actions 页面手动点击触发）
-  # 不自动触发的原因：
-  #   开发/测试环境部署应该是"开发者主动决定"的动作
-  #   push feature 分支不应自动部署（可能只是一个中间提交，还没完成）
-  #   手动触发 = 开发者确认"这个版本可以给 QA 测了"
-  #
-  # 注意：workflow_dispatch 不受 needs: ci 控制（不同触发类型，job 间无法跨触发关联）
-  #   在 GitHub Actions 页面手动触发时，ci job 不会自动先跑
-  #   如需保证质量，手动触发前应确认 CI 已通过
+  # ==================== CD：开发/测试环境部署 ====================
+  # 触发：手动触发（GitHub Actions 页面点击 Run workflow，选择目标分支）
+  # 场景：开发完成自测，准备让 QA 介入；或 QA 发现 bug 修完后重新部署
   deploy-dev:
     if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
@@ -97,15 +107,9 @@ jobs:
               ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.IMAGE_TAG }}
 
   # ==================== CD：生产环境部署 ====================
-  # 触发条件：push 了 v*.*.* 格式的 tag（如 v1.0.0）
-  # 两个前提：
-  #   1. needs: ci → ci job 必须成功（tag 发布前也要校验代码）
-  #   2. if 条件  → 只有 v*.*.* 格式的 tag 才执行
-  #
-  # 为什么打 tag = 发布生产：
-  #   tag 是人工打的，代表「我确认这个版本可以上生产」
-  #   比直接 push main 多了一道人工确认的门槛
-  #   ${{ github.ref_name }} 在 tag 触发时 = tag 名称（如 v1.0.0）
+  # 触发：push tag v*.*.*（如 git tag v1.0.0 && git push origin v1.0.0）
+  # 打 tag = 人工确认"测试通过，可以上生产"
+  # 镜像同时打三个 tag：version（语义）+ sha（精确回滚）+ latest（快速引用）
   deploy-prod:
     needs: ci
     if: startsWith(github.ref, 'refs/tags/v')
@@ -115,10 +119,6 @@ jobs:
       - name: Checkout 代码
         uses: actions/checkout@v4
 
-      # tag 名称即版本号（如 v1.0.0），同时打三个 tag：
-      #   version tag（v1.0.0）：语义清晰，人工可读，生产发布标准用法
-      #   sha tag：精确对应 commit，回滚时用
-      #   latest：永远指向最新生产版本
       - name: 生成镜像标签
         id: meta
         run: |
@@ -140,12 +140,12 @@ jobs:
           docker push ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.SHA_TAG }}
           docker push ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:latest
 
-      - name: 部署到云服务器（生产）
+      - name: 部署到生产服务器
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SERVER_SSH_KEY }}
+          host: ${{ secrets.PROD_SERVER_HOST }}
+          username: ${{ secrets.PROD_SERVER_USER }}
+          key: ${{ secrets.PROD_SERVER_SSH_KEY }}
           script_stop: true
           script: |
             docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.VERSION_TAG }}
