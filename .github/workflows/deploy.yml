@@ -29,16 +29,14 @@ jobs:
         with:
           node-version: '20'
 
-      - name: 固定 npm 版本
-        run: npm install -g npm@10
-
       # 安装依赖
-      # 不使用 --legacy-peer-deps：
-      #   该 flag 是历史遗留，当前依赖（ESLint 8 + React 19）实际上没有 peer dependency 冲突
-      #   --legacy-peer-deps 在某些 npm 版本下会触发 npm 自身 bug（Exit handler never called）
-      #   去掉后直接 npm install，干净安装
       - name: 安装依赖
         run: npm install
+
+      # 诊断：打印安装失败时的 npm 错误日志（仅 failure 时执行）
+      - name: 打印 npm 错误日志
+        if: failure()
+        run: cat /home/runner/.npm/_logs/*.log 2>/dev/null || echo "no log found"
 
       # lint 校验：检查代码规范和潜在问题
       # 比 build 更早发现问题（未使用变量、规范违反等）
