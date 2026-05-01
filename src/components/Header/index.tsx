@@ -21,6 +21,8 @@ export interface HeaderProps {
   isLoggedIn: boolean;
   /** 登录按钮点击事件 */
   onLoginClick?: () => void;
+  /** 登录成功回调 */
+  onLoginSuccess?: () => void;
 }
 
 /**

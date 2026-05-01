@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Header from "./components/Header";
 import LoginModal from "./components/LoginModal";
 import storyNodes from "./assets/capture1.json";
+import { authService } from "./services/authService";
 
 // 全局样式
 const GlobalStyle = () => (
@@ -36,10 +37,11 @@ const GlobalStyle = () => (
 );
 
 function App() {
-  // 用户状态
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState({ name: '张三' });
+  const [user, setUser] = useState({ name: '用户' });
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
   
   // 核心状态
   const [currentNodeId, setCurrentNodeId] = useState("chapter1_node2");
@@ -51,6 +53,22 @@ function App() {
   const scrollRef = useRef(null);
 
   const currentNode = storyNodes.find((node) => node.id === currentNodeId);
+
+  useEffect(() => {
+    const initAuth = async () => {
+      try {
+        const userInfo = await authService.validateToken();
+        setIsLoggedIn(true);
+        setUser({ name: userInfo.username });
+      } catch (error) {
+        console.error('登录状态验证失败:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    initAuth();
+  }, []);
 
   // 自动滚动
   useEffect(() => {
@@ -71,17 +89,10 @@ function App() {
     setShowLoginModal(false);
   };
 
-  // 处理登录
-  const handleLogin = (account:string, password: string) => {
-    // 模拟登录
-    console.log('登录信息:', { account, password });
-    
-    // 登录成功
+  const handleLoginSuccess = (userInfo: { username: string }) => {
     setIsLoggedIn(true);
-    setUser({ name: account });
-    setShowLoginModal(false);
+    setUser({ name: userInfo.username });
   };
-
   // 生成随机数
   const rollDice = (diceRequired) => {
     let min, max;
@@ -202,7 +213,7 @@ function App() {
       <LoginModal
         visible={showLoginModal}
         onClose={handleCloseModal}
-        onLogin={handleLogin}
+        onSuccess={handleLoginSuccess}
       />
       
       {/* 滚动容器 */}

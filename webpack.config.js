@@ -1,5 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+require('dotenv').config({ path: '.env.development' });
 
 module.exports = {
   mode: 'development',
@@ -48,11 +50,25 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),
+    new webpack.DefinePlugin({
+      'import.meta.env.VITE_API_BASE_URL': JSON.stringify(process.env.VITE_API_BASE_URL || 'http://localhost:3000'),
+    }),
   ],
   devServer: {
     port: 3001,
     historyApiFallback: true, // SPA 刷新 404 兜底
     hot: true,
     open: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+        secure: false,
+        // 支持 HttpOnly Cookie 跨域
+        onProxyReq: (proxyReq, req, res) => {
+          proxyReq.setHeader('Origin', 'http://localhost:3000');
+        },
+      },
+    },
   },
 };
