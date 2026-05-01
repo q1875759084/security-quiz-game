@@ -1,7 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
+import Header from "./components/Header";
+import LoginModal from "./components/LoginModal";
 import storyNodes from "./assets/capture1.json";
 
-// 仅保留最必要的全局重置，无任何多余样式
+// 全局样式
 const GlobalStyle = () => (
   <style>
     {`
@@ -12,29 +14,34 @@ const GlobalStyle = () => (
       }
       html, body, #root {
         height: 100%;
-        overflow: hidden; /* 仅禁止根节点滚动，无其他样式 */
         background: #121212;
         color: #e0e0e0;
-        font-family: sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         line-height: 1.8;
         font-size: 18px;
       }
-      /* 仅保留全屏滚动容器，无任何宽度/自定义样式 */
+      .app-container {
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
       .scroll-container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        overflow-y: auto; /* 仅原生滚动条，无任何自定义 */
-        padding: 20px; /* 仅基础内边距，避免内容贴边 */
+        flex: 1;
+        overflow-y: auto;
+        padding: 20px;
+        padding-top: 85px;
       }
     `}
   </style>
 );
 
 function App() {
-  // 核心状态（仅保留功能必需）
+  // 用户状态
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState({ name: '张三' });
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  
+  // 核心状态
   const [currentNodeId, setCurrentNodeId] = useState("chapter1_node2");
   const [history, setHistory] = useState([]);
   const [diceResult, setDiceResult] = useState(null);
@@ -45,7 +52,7 @@ function App() {
 
   const currentNode = storyNodes.find((node) => node.id === currentNodeId);
 
-  // 自动滚动（仅保留核心逻辑）
+  // 自动滚动
   useEffect(() => {
     if (scrollRef.current) {
       setTimeout(() => {
@@ -54,7 +61,28 @@ function App() {
     }
   }, [history, showOutcome]);
 
-  // 生成随机数（核心功能不变）
+  // 打开登录弹窗
+  const handleLoginClick = () => {
+    setShowLoginModal(true);
+  };
+
+  // 关闭登录弹窗
+  const handleCloseModal = () => {
+    setShowLoginModal(false);
+  };
+
+  // 处理登录
+  const handleLogin = (account:string, password: string) => {
+    // 模拟登录
+    console.log('登录信息:', { account, password });
+    
+    // 登录成功
+    setIsLoggedIn(true);
+    setUser({ name: account });
+    setShowLoginModal(false);
+  };
+
+  // 生成随机数
   const rollDice = (diceRequired) => {
     let min, max;
     if (typeof diceRequired === "number") {
@@ -71,7 +99,7 @@ function App() {
     return result;
   };
 
-  // 匹配结果（核心功能不变）
+  // 匹配结果
   const matchOutcome = (result, outcomes) => {
     if (!outcomes || outcomes.length === 0) {
       setCurrentOutcome("无判定结果");
@@ -91,14 +119,14 @@ function App() {
     return resultText;
   };
 
-  // 处理骰子投掷（核心功能不变）
+  // 处理骰子投掷
   const handleDiceRoll = (choice) => {
     const result = rollDice(choice.diceRequired);
     matchOutcome(result, choice.outcomes);
     setShowOutcome(true);
   };
 
-  // 跳转到下一个节点（核心功能不变）
+  // 跳转到下一个节点
   const goToNextNode = () => {
     if (!currentNextNode) {
       alert("🎉 安科剧情演示结束！");
@@ -120,7 +148,7 @@ function App() {
     setCurrentNextNode("");
   };
 
-  // 提取表格标题（核心功能不变）
+  // 提取表格标题
   const extractTableTitle = (content) => {
     if (!content) return "判定";
     const lines = content.split("\n").filter((line) => {
@@ -133,7 +161,7 @@ function App() {
     return titleLine ? titleLine.replace(/[：:]$/, "").trim() : "判定";
   };
 
-  // 格式化骰子显示文本（核心功能不变）
+  // 格式化骰子显示文本
   const formatDiceText = (diceRequired) => {
     if (typeof diceRequired === "number") return `d${diceRequired}`;
     if (Array.isArray(diceRequired))
@@ -141,14 +169,14 @@ function App() {
     return "d2";
   };
 
-  // 解析match为范围文本（核心功能不变）
+  // 解析match为范围文本
   const getRangeText = (match) => {
     if (typeof match === "number") return match.toString();
     if (Array.isArray(match)) return `${match[0]}-${match[1]}`;
     return "";
   };
 
-  // 点击选项选中（核心功能不变）
+  // 点击选项选中
   const handleOptionClick = (outcome) => {
     setCurrentOutcome(outcome.resultText);
     setCurrentNextNode(outcome.nextNode);
@@ -161,9 +189,23 @@ function App() {
   };
 
   return (
-    <>
+    <div className="app-container">
       <GlobalStyle />
-      {/* 仅全屏滚动容器，无title、无多余宽度/样式 */}
+      {/* 顶部导航栏 */}
+      <Header
+        user={user}
+        isLoggedIn={isLoggedIn}
+        onLoginClick={handleLoginClick}
+      />
+      
+      {/* 登录弹窗 */}
+      <LoginModal
+        visible={showLoginModal}
+        onClose={handleCloseModal}
+        onLogin={handleLogin}
+      />
+      
+      {/* 滚动容器 */}
       <div ref={scrollRef} className="scroll-container">
         {/* 历史记录 */}
         {history.map((item, index) => (
@@ -191,7 +233,7 @@ function App() {
           </div>
         ))}
 
-        {/* 当前节点（仅保留基础样式，无多余宽度） */}
+        {/* 当前节点 */}
         {currentNode && (
           <div
             style={{
@@ -204,7 +246,7 @@ function App() {
 
             {currentNode.type === "dice" && !showOutcome && (
               <>
-                {/* 判定表格 - 无max-width，自适应宽度 */}
+                {/* 判定表格 */}
                 <div
                   style={{
                     margin: "20px 0",
@@ -264,7 +306,7 @@ function App() {
                   </div>
                 </div>
 
-                {/* 投掷按钮 - 无多余样式 */}
+                {/* 投掷按钮 */}
                 <div style={{ textAlign: "center", margin: "20px 0" }}>
                   {currentNode.choices.map((choice, index) => (
                     <button
@@ -336,7 +378,7 @@ function App() {
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 }
 
