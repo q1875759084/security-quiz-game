@@ -19,7 +19,7 @@ export interface LoginResponse {
 }
 
 export const login = async (data: LoginParams): Promise<{ data: LoginResponse }> => {
-  const response = await request.post('/api/user/login', {
+  const response = await request.post('/user/login', {
     account: data.username, // 转换参数名匹配后端
     password: data.password,
   });
@@ -40,7 +40,7 @@ export interface RegisterResponse {
 }
 
 export const register = async (data: RegisterParams): Promise<{ data: RegisterResponse }> => {
-  const response = await request.post('/api/user/register', data);
+  const response = await request.post('/user/register', data);
   
   return response;
 };
@@ -50,6 +50,6 @@ export const register = async (data: RegisterParams): Promise<{ data: RegisterRe
  * @returns Promise<{ userInfo: UserInfo }>
  */
 export const getProfile = async (): Promise<{ data: { userInfo: UserInfo } }> => {
-  const response = await request.get('/api/user/profile');
+  const response = await request.get('/user/profile');
   return response;
 };

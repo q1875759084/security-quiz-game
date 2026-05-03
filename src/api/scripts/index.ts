@@ -17,7 +17,7 @@ export interface GetScriptsResponse {
  * keyword 不传或为空时返回全量，后端按标题 SQL LIKE 过滤。
  */
 export const getScripts = async (params?: GetScriptsParams): Promise<GetScriptsResponse> => {
-  const response = await request.get('/api/scripts', { params });
+  const response = await request.get('/scripts', { params });
   return response;
 };
 
@@ -26,6 +26,6 @@ export const getScripts = async (params?: GetScriptsParams): Promise<GetScriptsR
  * GET /api/scripts/:scriptId/nodes/:nodeId
  */
 export const getNode = async (scriptId: string, nodeId: string): Promise<{ data: ScriptNode }> => {
-  const response = await request.get(`/api/scripts/${scriptId}/nodes/${nodeId}`);
+  const response = await request.get(`/scripts/${scriptId}/nodes/${nodeId}`);
   return response;
 };

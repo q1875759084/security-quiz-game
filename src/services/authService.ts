@@ -43,7 +43,7 @@ export const authService = {
   },
 
   async refreshToken(): Promise<string> {
-    const response = await request.post('/api/user/refresh');
+    const response = await request.post('/user/refresh');
     const newAccessToken = response.data.accessToken;
     setAccessToken(newAccessToken);
     return newAccessToken;

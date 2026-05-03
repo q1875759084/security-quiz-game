@@ -34,7 +34,7 @@ const refreshTokenRequest = async (): Promise<{ accessToken: string }> => {
   try {
     // 直接用axios原生实例，不使用封装后的service，避免触发拦截器
     const res = await axios.post(
-      `${import.meta.env.VITE_API_BASE_URL || '/api'}/api/user/refresh`, // 后端刷新Token接口
+      `${import.meta.env.VITE_API_BASE_URL || '/api'}/user/refresh`, // 后端刷新Token接口
       {}, // RefreshToken通过Cookie自动携带
       { 
         timeout: 5000,
