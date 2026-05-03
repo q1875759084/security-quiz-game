@@ -143,11 +143,14 @@ null
 |------|------|------|------|------|
 | GET | `/api/scripts` | 否 | 剧本列表 | 待开发 |
 | GET | `/api/scripts/:scriptId/nodes/:nodeId` | 否 | 单节点详情 | 待开发 |
-| GET | `/api/scripts/:scriptId/nodes/:nodeId/prefetch` | 否 | 批量预取子节点 | 待开发 |
 
 ## GET /api/scripts
 
-**Query 参数**：无
+**Query 参数**
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| keyword | string | 否 | 搜索关键词，后端按标题匹配（SQL LIKE），不传或为空时返回全量 |
 
 **响应 data**
 
@@ -210,39 +213,6 @@ null
 
 ---
 
-## GET /api/scripts/:scriptId/nodes/:nodeId/prefetch
-
-> 返回指定节点下所有有效子节点（`nextNode !== null`）的详情，供前端并行预取缓存，避免跳转时的加载等待。
-
-**Path 参数**
-
-| 参数 | 说明 |
-|------|------|
-| scriptId | 剧本 ID |
-| nodeId | 当前节点 ID |
-
-**响应 data**
-
-```json
-[
-  {
-    "id": "chapter1_node3",
-    "title": "队长入坑时间",
-    "content": "...",
-    "type": "dice",
-    "choices": [...]
-  },
-  {
-    "id": "chapter1_node4",
-    ...
-  }
-]
-```
-
-> 若当前节点所有分支均为 `null`，返回空数组 `[]`。
-
----
-
 # 存档模块
 
 | 方法 | 路径 | 鉴权 | 说明 | 状态 |
@@ -270,7 +240,8 @@ null
       "nodeId": "chapter1_node2",
       "content": "让我们先看一下……",
       "resultText": "队长是女生",
-      "rollLabel": "d2 = 2 ： 队长是女生"
+      "rollLabel": "d2 = 2 ： 队长是女生",
+      "timestamp": "2026-05-03T10:23:00.000Z"
     }
   ],
   "status": 1,
@@ -290,7 +261,7 @@ null
 |------|------|------|------|
 | scriptId | string | ✅ | 剧本 ID |
 | currentNodeId | string | ✅ | 当前节点 ID |
-| history | array | ✅ | 历史记录快照 |
+| history | array | ✅ | 历史记录快照，每条包含 nodeId / content / resultText / rollLabel / timestamp |
 | status | number | | 1进行中 2已完成，默认 1 |
 
 **响应 data**

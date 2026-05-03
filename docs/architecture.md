@@ -251,7 +251,6 @@ JWT Token 存储于 `localStorage`，通过 `authService` 统一管理。
 - [ ] `scripts` 表 + `script_nodes` 表建表及初始数据导入
 - [ ] `GET /api/scripts` 剧本列表接口
 - [ ] `GET /api/scripts/:id/nodes/:nodeId` 单节点接口
-- [ ] `GET /api/scripts/:id/nodes/:nodeId/prefetch` 批量预取接口
 - [ ] `useScriptNode` Hook 实现（单节点 + 预取缓存）
 - [ ] `game_records` 表建表
 - [ ] 游戏存档接口（创建/更新/查询）

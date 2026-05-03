@@ -1,17 +1,21 @@
-import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { GameHeader } from '../../components/Header';
-import { useScriptNodes, useScriptList } from '../../hooks/useScripts';
-import type { ScriptNode, Outcome } from '../../types/script';
+import { useScriptNode } from '../../hooks/useScripts';
+import type { ScriptNode, Outcome, ScriptMeta } from '../../types/script'; // ScriptMeta 供 GamePageProps 使用
 import styles from './index.module.scss';
 
 interface GamePageProps {
   scriptId: string;
+  /** 剧本元数据（含 entryNodeId、title），由首页传入，避免 Game 页重复请求列表 */
+  scriptMeta: ScriptMeta;
   onBack: () => void;
 }
 
 // ─── 历史记录条目 ─────────────────────────────────────────────────────────────
 interface HistoryEntry {
   node: ScriptNode;
+  /** 命中的选项文案，如"女"，显示在 nodeContent 末尾 */
+  optionText: string;
   /** 判定结果文案，如"大佬水平"，所有历史节点均显示 */
   resultText: string;
   /** 完整 roll 标签，格式如 "d100 = 67 ： 大佬水平"，仅最新节点显示 */
@@ -87,7 +91,10 @@ function matchOutcome(result: number, outcomes: Outcome[]): Outcome | null {
 // ─── 历史节点展示 ─────────────────────────────────────────────────────────────
 const HistoryItem: React.FC<{ entry: HistoryEntry; isLatest: boolean }> = ({ entry, isLatest }) => (
   <div className={styles.historyItem}>
-    <div className={styles.nodeContent}>{entry.node.content}</div>
+    <div className={styles.nodeContent}>
+      {entry.node.content}
+      {entry.optionText && <span className={styles.optionText}>{entry.optionText}</span>}
+    </div>
     {isLatest
       ? <div className={styles.rollLabel}>{entry.rollLabel}</div>
       : <div className={styles.resultText}>{entry.resultText}</div>
@@ -162,63 +169,50 @@ const CurrentNode: React.FC<CurrentNodeProps> = ({
 };
 
 // ─── Game Page ────────────────────────────────────────────────────────────────
-const GamePage: React.FC<GamePageProps> = ({ scriptId, onBack }) => {
-  const { nodes, isLoading, error } = useScriptNodes(scriptId);
-  const { scripts } = useScriptList('');
+const GamePage: React.FC<GamePageProps> = ({ scriptId, scriptMeta, onBack }) => {
+  const { currentNode, isLoading, error, loadNode, prefetchNextNodes } = useScriptNode(scriptId);
 
-  const [currentNodeId, setCurrentNodeId] = useState<string | null>(null);
   const [history, setHistory] = useState<HistoryEntry[]>([]);
   const [isFinished, setIsFinished] = useState(false);
 
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // 节点加载完成后，初始化起始节点
+  // 进入游戏：加载入口节点
   useEffect(() => {
-    if (nodes.length > 0 && !currentNodeId) {
-      setCurrentNodeId(nodes[0].id);
+    if (scriptMeta.entryNodeId) {
+      loadNode(scriptMeta.entryNodeId);
     }
-  }, [nodes, currentNodeId]);
+  }, [scriptMeta.entryNodeId, loadNode]);
+
+  // 节点加载完成后，预请求所有 nextNode（深度为 1）
+  useEffect(() => {
+    if (currentNode) {
+      prefetchNextNodes(currentNode);
+    }
+  }, [currentNode, prefetchNextNodes]);
 
   // 自动滚动到底部
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
-  }, [history, currentNodeId]);
-
-  const currentNode = useMemo(
-    () => nodes.find((n) => n.id === currentNodeId) ?? null,
-    [nodes, currentNodeId],
-  );
-
-  // 从 meta 列表中取剧本标题，找不到时回退到 scriptId
-  const scriptTitle = useMemo(
-    () => scripts.find((s) => s.id === scriptId)?.title ?? scriptId,
-    [scripts, scriptId],
-  );
+  }, [history, currentNode]);
 
   /** 投骰/选择后立即跳转，无需二次确认 */
   const advance = useCallback((outcome: Outcome, rollLabel: string) => {
     if (!currentNode) return;
 
     // 当前节点连同 roll 结果一起存入历史
-    setHistory((prev) => [...prev, { node: currentNode, resultText: outcome.resultText, rollLabel }]);
+    setHistory((prev) => [...prev, { node: currentNode, optionText: outcome.optionText, resultText: outcome.resultText, rollLabel }]);
 
     const next = outcome.nextNode;
-
     if (!next) {
       setIsFinished(true);
       return;
     }
 
-    const nextNode = nodes.find((n) => n.id === next);
-    if (!nextNode) {
-      setIsFinished(true);
-      return;
-    }
-
-    setCurrentNodeId(next);
-  }, [currentNode, nodes]);
+    loadNode(next);
+  }, [currentNode, loadNode]);
 
   // 投骰子后立即跳转
   const handleDiceRoll = useCallback((outcome: Outcome, diceResult: number) => {
@@ -238,19 +232,19 @@ const GamePage: React.FC<GamePageProps> = ({ scriptId, onBack }) => {
   if (isLoading) {
     return (
       <div className={styles.page}>
-        <GameHeader scriptTitle={scriptTitle} onBack={onBack} />
+        <GameHeader scriptTitle={scriptMeta.title} onBack={onBack} />
         <div className={styles.statusWrap}>
           <div className={styles.loadingSpinner} />
-          <span>剧本加载中…</span>
+          <span>加载中…</span>
         </div>
       </div>
     );
   }
 
-  if (error || nodes.length === 0) {
+  if (error || (!isLoading && !currentNode)) {
     return (
       <div className={styles.page}>
-        <GameHeader scriptTitle={scriptTitle} onBack={onBack} />
+        <GameHeader scriptTitle={scriptMeta.title} onBack={onBack} />
         <div className={styles.statusWrap}>
           <span className={styles.errorIcon}>⚠️</span>
           <span>{error ?? '暂无剧本内容'}</span>
@@ -262,7 +256,7 @@ const GamePage: React.FC<GamePageProps> = ({ scriptId, onBack }) => {
 
   return (
     <div className={styles.page}>
-      <GameHeader scriptTitle={scriptTitle} onBack={onBack} />
+      <GameHeader scriptTitle={scriptMeta.title} onBack={onBack} />
 
       <div ref={scrollRef} className={styles.scroll}>
         <div className={styles.content}>

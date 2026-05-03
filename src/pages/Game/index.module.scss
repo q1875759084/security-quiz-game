@@ -33,6 +33,12 @@
   font-size: 18px;
 }
 
+/** 历史节点：命中的选项文案，内联显示在 nodeContent 末尾 */
+.optionText {
+  margin-left: 8px;
+  color: #e0e0e0;
+}
+
 // ─── 当前节点 ─────────────────────────────────────────────────────────────────
 .currentNode {
   margin-bottom: 24px;

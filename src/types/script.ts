@@ -45,4 +45,6 @@ export interface ScriptMeta {
   tags: string[];
   /** 章节数 */
   chapterCount: number;
+  /** 入口节点 ID，进入游戏时加载的第一个节点 */
+  entryNodeId: string | null;
 }

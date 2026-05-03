@@ -1,6 +1,7 @@
 import React, { useState, useEffect, createContext, useContext, useCallback } from 'react';
 import { authService } from './services/authService';
 import type { UserInfo } from './services/authService';
+import type { ScriptMeta } from './types/script';
 import LoginModal from './components/LoginModal';
 import HomePage from './pages/Home';
 import GamePage from './pages/Game';
@@ -72,6 +73,8 @@ function App() {
   const [showLoginModal, setShowLoginModal] = useState(false);
 
   const [path, navigate] = useHashRouter();
+  // 点击剧本时暂存 meta，进入 GamePage 后直接使用，避免 GamePage 重复请求列表
+  const [currentScriptMeta, setCurrentScriptMeta] = useState<ScriptMeta | null>(null);
 
   // 初始化：校验本地 Token
   useEffect(() => {
@@ -110,10 +113,19 @@ function App() {
   return (
     <AuthContext.Provider value={{ isLoggedIn, user, isAuthLoading, openLoginModal, handleLoginSuccess, handleLogout }}>
       <GlobalStyle />
-      {isGamePage && scriptId ? (
-        <GamePage scriptId={scriptId} onBack={() => navigate('/')} />
+      {isGamePage && scriptId && currentScriptMeta ? (
+        <GamePage
+          scriptId={scriptId}
+          scriptMeta={currentScriptMeta}
+          onBack={() => navigate('/')}
+        />
       ) : (
-        <HomePage onEnterGame={(id) => navigate(`/game/${id}`)} />
+        <HomePage
+          onEnterGame={(id, meta) => {
+            setCurrentScriptMeta(meta);
+            navigate(`/game/${id}`);
+          }}
+        />
       )}
       <LoginModal
         visible={showLoginModal}

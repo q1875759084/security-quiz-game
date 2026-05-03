@@ -5,7 +5,8 @@ import type { ScriptMeta } from '../../types/script';
 import styles from './index.module.scss';
 
 interface HomePageProps {
-  onEnterGame: (scriptId: string) => void;
+  /** 点击剧本进入游戏，同时传递完整 meta 供 GamePage 使用 */
+  onEnterGame: (scriptId: string, meta: ScriptMeta) => void;
 }
 
 const ScriptCard: React.FC<{ script: ScriptMeta; onEnter: () => void }> = ({
@@ -30,7 +31,7 @@ const ScriptCard: React.FC<{ script: ScriptMeta; onEnter: () => void }> = ({
 
 const HomePage: React.FC<HomePageProps> = ({ onEnterGame }) => {
   const [searchValue, setSearchValue] = useState('');
-  const { scripts, isLoading } = useScriptList(searchValue);
+  const { scripts, isLoading, error } = useScriptList(searchValue);
 
   const handleSearchChange = useCallback((val: string) => setSearchValue(val), []);
 
@@ -55,6 +56,11 @@ const HomePage: React.FC<HomePageProps> = ({ onEnterGame }) => {
         {/* 内容区 */}
         {isLoading ? (
           <div className={styles.empty}>加载中…</div>
+        ) : error ? (
+          <div className={styles.empty}>
+            <span className={styles.emptyIcon}>⚠️</span>
+            <span>{error}</span>
+          </div>
         ) : scripts.length === 0 ? (
           <div className={styles.empty}>
             <span className={styles.emptyIcon}>📭</span>
@@ -63,7 +69,7 @@ const HomePage: React.FC<HomePageProps> = ({ onEnterGame }) => {
         ) : (
           <div className={styles.grid}>
             {scripts.map((s) => (
-              <ScriptCard key={s.id} script={s} onEnter={() => onEnterGame(s.id)} />
+              <ScriptCard key={s.id} script={s} onEnter={() => onEnterGame(s.id, s)} />
             ))}
           </div>
         )}
