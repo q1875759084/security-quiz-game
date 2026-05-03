@@ -13,7 +13,7 @@
             "optionText": "男",
             "match": 1,
             "resultText": "队长是男生",
-            "nextNode": "chapter1_node3"
+            "nextNode": null
           },
           {
             "optionText": "女",
@@ -35,11 +35,23 @@
         "text": "队长入坑时间判定",
         "diceRequired": 5,
         "outcomes": [
+                    {
+            "optionText": "2.0入坑的化石玩家",
+            "match": 1,
+            "resultText": "2.0入坑的化石玩家",
+            "nextNode": null
+          },
+                    {
+            "optionText": "3.0入坑的老登玩家",
+            "match": 2,
+            "resultText": "3.0入坑的老登玩家",
+            "nextNode": null
+          },
           {
-            "optionText": "2.0/3.0/4.0入坑的老玩家",
-            "match": [1, 3],
-            "resultText": "2.0/3.0/4.0入坑的老玩家",
-            "nextNode": "chapter1_node4"
+            "optionText": "4.0入坑的中期玩家",
+            "match": 3,
+            "resultText": "4.0入坑的中期玩家",
+            "nextNode": null
           },
           {
             "optionText": "5.0入坑的中期玩家",
@@ -51,7 +63,7 @@
             "optionText": "6.0刚入坑的豆芽",
             "match": 5,
             "resultText": "6.0刚入坑的豆芽",
-            "nextNode": "chapter1_node4"
+            "nextNode": null
           }
         ]
       }

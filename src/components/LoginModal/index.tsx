@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./index.module.scss";
-import { authService, UserInfo } from "../../services/authService";
+import { authService } from "../../services/authService";
+import type { UserInfo } from "../../services/authService";
 
 export interface LoginModalProps {
   visible: boolean;
@@ -22,6 +23,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
   const [email, setEmail] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   React.useEffect(() => {
     if (!visible) {
@@ -88,9 +90,11 @@ const LoginModal: React.FC<LoginModalProps> = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
 
     if (mode === "login") {
       if (!validateLogin()) return;
+      setIsSubmitting(true);
       try {
         const data = await authService.login({ username: account.trim(), password });
         onSuccess(data.userInfo);
@@ -98,9 +102,12 @@ const LoginModal: React.FC<LoginModalProps> = ({
       } catch (error) {
         console.error('登录失败:', error);
         alert((error as Error).message || '登录失败');
+      } finally {
+        setIsSubmitting(false);
       }
     } else {
       if (!validateRegister()) return;
+      setIsSubmitting(true);
       try {
         const data = await authService.register({
           username: username.trim(),
@@ -113,6 +120,8 @@ const LoginModal: React.FC<LoginModalProps> = ({
       } catch (error) {
         console.error('注册失败:', error);
         alert((error as Error).message || '注册失败');
+      } finally {
+        setIsSubmitting(false);
       }
     }
   };
@@ -243,8 +252,8 @@ const LoginModal: React.FC<LoginModalProps> = ({
             </>
           )}
 
-          <button type="submit" className={styles.loginBtn}>
-            {mode === "login" ? "登录" : "注册"}
+          <button type="submit" className={styles.loginBtn} disabled={isSubmitting}>
+            {isSubmitting ? '处理中…' : mode === "login" ? "登录" : "注册"}
           </button>
 
           <div className={styles.switchLink}>

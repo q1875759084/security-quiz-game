@@ -1,0 +1,6049 @@
+[
+  {
+    "id": "chapter1_node2",
+    "title": "固定队队长性别",
+    "content": "让我们先看一下这名未来的固定队队长是一个什么样的人吧？\n性别：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "队长性别判定",
+        "diceRequired": 2,
+        "outcomes": [
+          {
+            "optionText": "男",
+            "match": 1,
+            "resultText": "队长是男生",
+            "nextNode": null
+          },
+          {
+            "optionText": "女",
+            "match": 2,
+            "resultText": "队长是女生",
+            "nextNode": "chapter1_node3"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node3",
+    "title": "队长入坑时间",
+    "content": "看来是女生啊，那么她是什么时候入坑的？\n入坑时间：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "队长入坑时间判定",
+        "diceRequired": 5,
+        "outcomes": [
+          {
+            "optionText": "2.0入坑的化石玩家",
+            "match": 1,
+            "resultText": "2.0入坑的化石玩家",
+            "nextNode": null
+          },
+          {
+            "optionText": "3.0入坑的老登玩家",
+            "match": 2,
+            "resultText": "3.0入坑的老登玩家",
+            "nextNode": null
+          },
+          {
+            "optionText": "4.0入坑的中期玩家",
+            "match": 3,
+            "resultText": "4.0入坑的中期玩家",
+            "nextNode": null
+          },
+          {
+            "optionText": "5.0入坑的中期玩家",
+            "match": 4,
+            "resultText": "5.0入坑的中期玩家",
+            "nextNode": "chapter1_node4"
+          },
+          {
+            "optionText": "6.0刚入坑的豆芽",
+            "match": 5,
+            "resultText": "6.0刚入坑的豆芽",
+            "nextNode": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node4",
+    "title": "队长主职判定",
+    "content": "那么5.0入坑后，她的主职是？\n主职类型：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "队长主职判定",
+        "diceRequired": 19,
+        "outcomes": [
+          {
+            "optionText": "骑士",
+            "match": 1,
+            "resultText": "主职是骑士",
+            "nextNode": null
+          },
+          {
+            "optionText": "战士",
+            "match": 2,
+            "resultText": "主职是战士",
+            "nextNode": null
+          },
+          {
+            "optionText": "暗黑骑士",
+            "match": 3,
+            "resultText": "主职是暗黑骑士",
+            "nextNode": null
+          },
+          {
+            "optionText": "绝枪战士",
+            "match": 4,
+            "resultText": "主职是绝枪战士",
+            "nextNode": null
+          },
+          {
+            "optionText": "武僧",
+            "match": 5,
+            "resultText": "主职是武僧",
+            "nextNode": null
+          },
+          {
+            "optionText": "龙骑士",
+            "match": 6,
+            "resultText": "主职是龙骑士",
+            "nextNode": "chapter1_node5"
+          },
+          {
+            "optionText": "忍者",
+            "match": 7,
+            "resultText": "主职是忍者",
+            "nextNode": null
+          },
+          {
+            "optionText": "武士",
+            "match": 8,
+            "resultText": "主职是武士",
+            "nextNode": null
+          },
+          {
+            "optionText": "钐镰客",
+            "match": 9,
+            "resultText": "主职是钐镰客",
+            "nextNode": null
+          },
+          {
+            "optionText": "吟游诗人",
+            "match": 10,
+            "resultText": "主职是吟游诗人",
+            "nextNode": null
+          },
+          {
+            "optionText": "机工士",
+            "match": 11,
+            "resultText": "主职是机工士",
+            "nextNode": null
+          },
+          {
+            "optionText": "舞者",
+            "match": 12,
+            "resultText": "主职是舞者",
+            "nextNode": null
+          },
+          {
+            "optionText": "黑魔法师",
+            "match": 13,
+            "resultText": "主职是黑魔法师",
+            "nextNode": null
+          },
+          {
+            "optionText": "召唤师",
+            "match": 14,
+            "resultText": "主职是召唤师",
+            "nextNode": null
+          },
+          {
+            "optionText": "赤魔法师",
+            "match": 15,
+            "resultText": "主职是赤魔法师",
+            "nextNode": null
+          },
+          {
+            "optionText": "白魔法师",
+            "match": 16,
+            "resultText": "主职是白魔法师",
+            "nextNode": null
+          },
+          {
+            "optionText": "学者",
+            "match": 17,
+            "resultText": "主职是学者",
+            "nextNode": null
+          },
+          {
+            "optionText": "占星术士",
+            "match": 18,
+            "resultText": "主职是占星术士",
+            "nextNode": null
+          },
+          {
+            "optionText": "贤者",
+            "match": 19,
+            "resultText": "主职是贤者",
+            "nextNode": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node5",
+    "title": "龙骑水平判定",
+    "content": "那么她玩龙骑的水平如何呢？\n龙骑水平：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "龙骑水平判定",
+        "diceRequired": 100,
+        "outcomes": [
+          {
+            "optionText": "残疾水平，logs灰色",
+            "match": [
+              1,
+              20
+            ],
+            "resultText": "残疾水平，logs灰色",
+            "nextNode": "chapter1_node6"
+          },
+          {
+            "optionText": "普通水平，logs蓝绿",
+            "match": [
+              21,
+              59
+            ],
+            "resultText": "普通水平，logs蓝绿",
+            "nextNode": "chapter1_node6"
+          },
+          {
+            "optionText": "大佬水平，logs紫橙",
+            "match": [
+              60,
+              90
+            ],
+            "resultText": "大佬水平，logs紫橙",
+            "nextNode": "chapter1_node6"
+          },
+          {
+            "optionText": "国一龙骑，logs全橙",
+            "match": [
+              91,
+              100
+            ],
+            "resultText": "国一龙骑水平，logs全橙",
+            "nextNode": "chapter1_node6"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node6",
+    "title": "零式经验判定",
+    "content": "那么龙骑有5.0的零式经验吗？\n零式经验：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "零式经验判定",
+        "diceRequired": 2,
+        "outcomes": [
+          {
+            "optionText": "有丰富的零式通关经验",
+            "match": 1,
+            "resultText": "有丰富的零式通关经验",
+            "nextNode": "chapter1_node7"
+          },
+          {
+            "optionText": "完全没有零式经验",
+            "match": 2,
+            "resultText": "完全没有零式经验",
+            "nextNode": "chapter1_node7"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node7",
+    "title": "打零式原因",
+    "content": "那么5.0入坑后完全没有零式经验，为什么6.0突然想去打零式了呢？\n打零式原因：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "打零式原因判定",
+        "diceRequired": 6,
+        "outcomes": [
+          {
+            "optionText": "只是想尝试新内容",
+            "match": 1,
+            "resultText": "主动想尝试新内容",
+            "nextNode": "chapter1_node8"
+          },
+          {
+            "optionText": "为了提升自己水平",
+            "match": 2,
+            "resultText": "为了提升自己的水平",
+            "nextNode": "chapter1_node8"
+          },
+          {
+            "optionText": "被人说不打零式就是菜",
+            "match": 3,
+            "resultText": "被人嘲讽激将，奋发图强",
+            "nextNode": "chapter1_node8"
+          },
+          {
+            "optionText": "亲友喊去的",
+            "match": 4,
+            "resultText": "被亲友拉着去打零式",
+            "nextNode": "chapter1_node8"
+          },
+          {
+            "optionText": "CP喊去的",
+            "match": 5,
+            "resultText": "被CP拉着去打零式",
+            "nextNode": "chapter1_node8"
+          },
+          {
+            "optionText": "打游戏问那么多为什么！",
+            "match": 6,
+            "resultText": "就是想打，不需要理由",
+            "nextNode": "chapter1_node8"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node8",
+    "title": "固定队目标",
+    "content": "好努力啊龙桑！那么努力的龙骑小姐对于固定队的目标是？\n固定队目标：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "固定队目标判定",
+        "diceRequired": 10,
+        "outcomes": [
+          {
+            "optionText": "首周通关目标",
+            "match": 1,
+            "resultText": "目标首周通关",
+            "nextNode": "chapter1_node9"
+          },
+          {
+            "optionText": "次周通关目标",
+            "match": 2,
+            "resultText": "目标次周通关",
+            "nextNode": "chapter1_node9"
+          },
+          {
+            "optionText": "三周通关目标",
+            "match": [
+              3,
+              6
+            ],
+            "resultText": "目标三周通关",
+            "nextNode": "chapter1_node9"
+          },
+          {
+            "optionText": "首月休闲通关",
+            "match": [
+              7,
+              9
+            ],
+            "resultText": "目标首月休闲通关",
+            "nextNode": "chapter1_node9"
+          },
+          {
+            "optionText": "随缘打到开下一层",
+            "match": 10,
+            "resultText": "随缘，打到开p5-8就行",
+            "nextNode": "chapter1_node9"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node9",
+    "title": "是否有亲友CP",
+    "content": "那么龙骑有和她一起打边狱的亲友或CP吗？\n亲友/CP：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "亲友CP判定",
+        "diceRequired": 2,
+        "outcomes": [
+          {
+            "optionText": "有亲友或CP一起打本",
+            "match": 1,
+            "resultText": "有亲友或CP一起打本",
+            "nextNode": "chapter1_node10"
+          },
+          {
+            "optionText": "孤身一人招募队友",
+            "match": 2,
+            "resultText": "孤身一人招募队友",
+            "nextNode": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node10",
+    "title": "同行者类型",
+    "content": "那么是有：\n同行者类型：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "同行者类型判定",
+        "diceRequired": 3,
+        "outcomes": [
+          {
+            "optionText": "有亲友一起",
+            "match": 1,
+            "resultText": "有亲友一起打本",
+            "nextNode": null
+          },
+          {
+            "optionText": "有CP一起",
+            "match": 2,
+            "resultText": "有CP一起打本",
+            "nextNode": "chapter1_node11"
+          },
+          {
+            "optionText": "亲友和CP都有",
+            "match": 3,
+            "resultText": "亲友和CP都有",
+            "nextNode": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node11",
+    "title": "CP的性别",
+    "content": "那么龙骑的CP是？\nCP性别：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "CP性别判定",
+        "diceRequired": 2,
+        "outcomes": [
+          {
+            "optionText": "男的",
+            "match": 1,
+            "resultText": "CP是男生",
+            "nextNode": "chapter1_node12"
+          },
+          {
+            "optionText": "女的",
+            "match": 2,
+            "resultText": "CP是女生",
+            "nextNode": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node12",
+    "title": "CP的职业",
+    "content": "原来CP是男生！那么他的职业是？\nCP职业：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "CP职业判定",
+        "diceRequired": 18,
+        "outcomes": [
+          {
+            "optionText": "骑士",
+            "match": 1,
+            "resultText": "CP职业是骑士",
+            "nextNode": null
+          },
+          {
+            "optionText": "战士",
+            "match": 2,
+            "resultText": "CP职业是战士",
+            "nextNode": null
+          },
+          {
+            "optionText": "暗黑骑士",
+            "match": 3,
+            "resultText": "CP职业是暗黑骑士",
+            "nextNode": null
+          },
+          {
+            "optionText": "绝枪战士",
+            "match": 4,
+            "resultText": "CP职业是绝枪战士",
+            "nextNode": null
+          },
+          {
+            "optionText": "白魔法师",
+            "match": 5,
+            "resultText": "CP职业是白魔法师",
+            "nextNode": null
+          },
+          {
+            "optionText": "忍者！龙忍组合！",
+            "match": 6,
+            "resultText": "CP职业是忍者，龙忍组合！",
+            "nextNode": "chapter1_node13"
+          },
+          {
+            "optionText": "武士",
+            "match": 7,
+            "resultText": "CP职业是武士",
+            "nextNode": null
+          },
+          {
+            "optionText": "龙骑士",
+            "match": 8,
+            "resultText": "CP职业是龙骑士",
+            "nextNode": null
+          },
+          {
+            "optionText": "武僧",
+            "match": 9,
+            "resultText": "CP职业是武僧",
+            "nextNode": null
+          },
+          {
+            "optionText": "钐镰客",
+            "match": 10,
+            "resultText": "CP职业是钐镰客",
+            "nextNode": null
+          },
+          {
+            "optionText": "吟游诗人",
+            "match": 11,
+            "resultText": "CP职业是吟游诗人",
+            "nextNode": null
+          },
+          {
+            "optionText": "机工士",
+            "match": 12,
+            "resultText": "CP职业是机工士",
+            "nextNode": null
+          },
+          {
+            "optionText": "舞者",
+            "match": 13,
+            "resultText": "CP职业是舞者",
+            "nextNode": null
+          },
+          {
+            "optionText": "黑魔法师",
+            "match": 14,
+            "resultText": "CP职业是黑魔法师",
+            "nextNode": null
+          },
+          {
+            "optionText": "召唤师",
+            "match": 15,
+            "resultText": "CP职业是召唤师",
+            "nextNode": null
+          },
+          {
+            "optionText": "赤魔法师",
+            "match": 16,
+            "resultText": "CP职业是赤魔法师",
+            "nextNode": null
+          },
+          {
+            "optionText": "占星术士",
+            "match": 17,
+            "resultText": "CP职业是占星术士",
+            "nextNode": null
+          },
+          {
+            "optionText": "学者",
+            "match": 18,
+            "resultText": "CP职业是学者",
+            "nextNode": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node13",
+    "title": "忍者CP的水平",
+    "content": "哎呀，原来你们要在6.0打龙忍啊！那么忍者哥的水平如何呢？\n忍者水平：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "忍者水平判定",
+        "diceRequired": 100,
+        "outcomes": [
+          {
+            "optionText": "残疾水平，logs灰色",
+            "match": [
+              1,
+              20
+            ],
+            "resultText": "忍者水平不佳，logs灰色",
+            "nextNode": "chapter1_node14"
+          },
+          {
+            "optionText": "普通水平，logs蓝绿",
+            "match": [
+              21,
+              59
+            ],
+            "resultText": "忍者普通水平，logs蓝绿",
+            "nextNode": "chapter1_node14"
+          },
+          {
+            "optionText": "大佬水平，logs紫橙",
+            "match": [
+              60,
+              90
+            ],
+            "resultText": "忍者大佬水平，logs紫橙",
+            "nextNode": "chapter1_node14"
+          },
+          {
+            "optionText": "顶级水平，logs全橙",
+            "match": [
+              91,
+              100
+            ],
+            "resultText": "忍者顶级水平，logs全橙",
+            "nextNode": "chapter1_node14"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node14",
+    "title": "第一位招募队友的职业",
+    "content": "龙骑把招募发到了泥潭和大眼，忍者顺手给空间板子投稿，游戏里也挂上了招募。\n不久后收到第一个好友申请，第一位队友是什么职业？\n队友职业：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "第一位队友职业判定",
+        "diceRequired": 14,
+        "outcomes": [
+          {
+            "optionText": "骑士",
+            "match": 1,
+            "resultText": "第一位队友是骑士",
+            "nextNode": null
+          },
+          {
+            "optionText": "战士",
+            "match": 2,
+            "resultText": "第一位队友是战士",
+            "nextNode": null
+          },
+          {
+            "optionText": "暗黑骑士",
+            "match": 3,
+            "resultText": "第一位队友是暗黑骑士",
+            "nextNode": null
+          },
+          {
+            "optionText": "绝枪战士",
+            "match": 4,
+            "resultText": "第一位队友是绝枪战士",
+            "nextNode": null
+          },
+          {
+            "optionText": "占星术士",
+            "match": 5,
+            "resultText": "第一位队友是占星术士",
+            "nextNode": null
+          },
+          {
+            "optionText": "贤者",
+            "match": 6,
+            "resultText": "第一位队友是贤者",
+            "nextNode": null
+          },
+          {
+            "optionText": "学者",
+            "match": 7,
+            "resultText": "第一位队友是学者",
+            "nextNode": null
+          },
+          {
+            "optionText": "吟游诗人",
+            "match": 8,
+            "resultText": "第一位队友是吟游诗人",
+            "nextNode": null
+          },
+          {
+            "optionText": "机工士",
+            "match": 9,
+            "resultText": "第一位队友是机工士",
+            "nextNode": null
+          },
+          {
+            "optionText": "舞者",
+            "match": 10,
+            "resultText": "第一位队友是舞者",
+            "nextNode": null
+          },
+          {
+            "optionText": "白魔！群名：偷看吸血鬼洗澡",
+            "match": 11,
+            "resultText": "第一位队友是白魔法师！",
+            "nextNode": "chapter1_node15"
+          },
+          {
+            "optionText": "黑魔法师",
+            "match": 12,
+            "resultText": "第一位队友是黑魔法师",
+            "nextNode": null
+          },
+          {
+            "optionText": "召唤师",
+            "match": 13,
+            "resultText": "第一位队友是召唤师",
+            "nextNode": null
+          },
+          {
+            "optionText": "赤魔法师",
+            "match": 14,
+            "resultText": "第一位队友是赤魔法师",
+            "nextNode": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node15",
+    "title": "白魔法师的水平",
+    "content": "原来是白魔法师！对方把logs截图发给了龙骑。\n龙骑定睛一看，这名白魔的水平是：\n白魔水平：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "白魔水平判定",
+        "diceRequired": 100,
+        "outcomes": [
+          {
+            "optionText": "残疾水平，logs灰色",
+            "match": [
+              1,
+              20
+            ],
+            "resultText": "白魔水平不佳，logs灰色",
+            "nextNode": "chapter1_node16"
+          },
+          {
+            "optionText": "普通水平，logs蓝绿",
+            "match": [
+              21,
+              59
+            ],
+            "resultText": "白魔普通水平，logs蓝绿",
+            "nextNode": "chapter1_node16"
+          },
+          {
+            "optionText": "大佬水平，logs紫橙",
+            "match": [
+              60,
+              90
+            ],
+            "resultText": "白魔大佬水平，logs紫橙",
+            "nextNode": "chapter1_node16"
+          },
+          {
+            "optionText": "顶级水平，logs全橙",
+            "match": [
+              91,
+              100
+            ],
+            "resultText": "白魔顶级水平，logs全橙",
+            "nextNode": "chapter1_node16"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node16",
+    "title": "NGA来的两人关系",
+    "content": "龙骑兴高采烈地三人拉了个群，群名：偷看吸血鬼洗澡！\n过了一段时间，NGA帖子也有了回复，有两名冒险者一起来应聘，这两个人的关系是：\n来者关系：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "来者关系判定",
+        "diceRequired": 2,
+        "outcomes": [
+          {
+            "optionText": "一对亲友",
+            "match": 1,
+            "resultText": "两人是亲友关系",
+            "nextNode": null
+          },
+          {
+            "optionText": "一对CP",
+            "match": 2,
+            "resultText": "两人是CP关系",
+            "nextNode": "chapter1_node17"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node17",
+    "title": "CP组合第一人职业",
+    "content": "竟然是一对CP来应聘！那么第一个人的职业是？\n第一人职业：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "CP第一人职业判定",
+        "diceRequired": 12,
+        "outcomes": [
+          {
+            "optionText": "骑士",
+            "match": 1,
+            "resultText": "第一人职业是骑士",
+            "nextNode": null
+          },
+          {
+            "optionText": "战士",
+            "match": 2,
+            "resultText": "第一人职业是战士",
+            "nextNode": null
+          },
+          {
+            "optionText": "暗黑骑士",
+            "match": 3,
+            "resultText": "第一人职业是暗黑骑士",
+            "nextNode": null
+          },
+          {
+            "optionText": "绝枪战士",
+            "match": 4,
+            "resultText": "第一人职业是绝枪战士",
+            "nextNode": null
+          },
+          {
+            "optionText": "吟游诗人！",
+            "match": 5,
+            "resultText": "第一人职业是吟游诗人！",
+            "nextNode": "chapter1_node18"
+          },
+          {
+            "optionText": "机工士",
+            "match": 6,
+            "resultText": "第一人职业是机工士",
+            "nextNode": null
+          },
+          {
+            "optionText": "舞者",
+            "match": 7,
+            "resultText": "第一人职业是舞者",
+            "nextNode": null
+          },
+          {
+            "optionText": "黑魔法师",
+            "match": 8,
+            "resultText": "第一人职业是黑魔法师",
+            "nextNode": null
+          },
+          {
+            "optionText": "召唤师",
+            "match": 9,
+            "resultText": "第一人职业是召唤师",
+            "nextNode": null
+          },
+          {
+            "optionText": "赤魔法师",
+            "match": 10,
+            "resultText": "第一人职业是赤魔法师",
+            "nextNode": null
+          },
+          {
+            "optionText": "武士",
+            "match": 11,
+            "resultText": "第一人职业是武士",
+            "nextNode": null
+          },
+          {
+            "optionText": "忍者",
+            "match": 12,
+            "resultText": "第一人职业是忍者",
+            "nextNode": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node18",
+    "title": "诗人的水平",
+    "content": "竟然是吟游诗人！那么诗人的水平如何呢？\n诗人水平：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "诗人水平判定",
+        "diceRequired": 100,
+        "outcomes": [
+          {
+            "optionText": "残疾水平，logs灰色",
+            "match": [
+              1,
+              20
+            ],
+            "resultText": "诗人水平不佳，logs灰色",
+            "nextNode": "chapter1_node19"
+          },
+          {
+            "optionText": "普通水平，logs蓝绿",
+            "match": [
+              21,
+              59
+            ],
+            "resultText": "诗人普通水平，logs蓝绿",
+            "nextNode": "chapter1_node19"
+          },
+          {
+            "optionText": "大佬水平，logs紫橙",
+            "match": [
+              60,
+              90
+            ],
+            "resultText": "诗人大佬水平，logs紫橙",
+            "nextNode": "chapter1_node19"
+          },
+          {
+            "optionText": "顶级水平，logs全橙",
+            "match": [
+              91,
+              100
+            ],
+            "resultText": "诗人顶级水平，logs全橙",
+            "nextNode": "chapter1_node19"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node19",
+    "title": "诗人CP的职业",
+    "content": "那么诗人的CP玩的是什么职业？\n诗人CP职业：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "诗人CP职业判定",
+        "diceRequired": 9,
+        "outcomes": [
+          {
+            "optionText": "骑士",
+            "match": 1,
+            "resultText": "诗人CP是骑士",
+            "nextNode": null
+          },
+          {
+            "optionText": "战士",
+            "match": 2,
+            "resultText": "诗人CP是战士",
+            "nextNode": null
+          },
+          {
+            "optionText": "暗黑骑士",
+            "match": 3,
+            "resultText": "诗人CP是暗黑骑士",
+            "nextNode": null
+          },
+          {
+            "optionText": "绝枪战士！龙忍诗机！",
+            "match": 4,
+            "resultText": "诗人CP是绝枪战士，龙忍诗机！",
+            "nextNode": "chapter1_node20"
+          },
+          {
+            "optionText": "武士",
+            "match": 5,
+            "resultText": "诗人CP是武士",
+            "nextNode": null
+          },
+          {
+            "optionText": "龙骑士",
+            "match": 6,
+            "resultText": "诗人CP是龙骑士",
+            "nextNode": null
+          },
+          {
+            "optionText": "武僧",
+            "match": 7,
+            "resultText": "诗人CP是武僧",
+            "nextNode": null
+          },
+          {
+            "optionText": "钐镰客",
+            "match": 8,
+            "resultText": "诗人CP是钐镰客",
+            "nextNode": null
+          },
+          {
+            "optionText": "忍者",
+            "match": 9,
+            "resultText": "诗人CP是忍者",
+            "nextNode": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node20",
+    "title": "绝枪战士的水平",
+    "content": "原来是绝枪战士，龙忍诗机！那么绝枪的水平又如何呢？\n绝枪水平：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "绝枪水平判定",
+        "diceRequired": 100,
+        "outcomes": [
+          {
+            "optionText": "残疾水平，logs灰色",
+            "match": [
+              1,
+              20
+            ],
+            "resultText": "绝枪水平不佳，logs灰色",
+            "nextNode": "chapter1_node21"
+          },
+          {
+            "optionText": "普通水平，logs蓝绿",
+            "match": [
+              21,
+              59
+            ],
+            "resultText": "绝枪普通水平，logs蓝绿",
+            "nextNode": "chapter1_node21"
+          },
+          {
+            "optionText": "大佬水平，logs紫橙",
+            "match": [
+              60,
+              90
+            ],
+            "resultText": "绝枪大佬水平，logs紫橙",
+            "nextNode": "chapter1_node21"
+          },
+          {
+            "optionText": "顶级水平，logs全橙！",
+            "match": [
+              91,
+              100
+            ],
+            "resultText": "绝枪顶级水平，logs全橙！",
+            "nextNode": "chapter1_node21"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node21",
+    "title": "另一名主坦的职业",
+    "content": "乡巴佬龙骑小姐从未见过这么鲜艳的logs，瞠目结舌地同意了二人入队。\n在6.05之前，固定队队员陆续到齐。另一名T是什么职业？\n另一T职业：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "另一T职业判定",
+        "diceRequired": 3,
+        "outcomes": [
+          {
+            "optionText": "骑士",
+            "match": 1,
+            "resultText": "另一T是骑士",
+            "nextNode": null
+          },
+          {
+            "optionText": "战士",
+            "match": 2,
+            "resultText": "另一T是战士",
+            "nextNode": null
+          },
+          {
+            "optionText": "暗黑骑士！",
+            "match": 3,
+            "resultText": "另一T是暗黑骑士！",
+            "nextNode": "chapter1_node22"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node22",
+    "title": "暗黑骑士的水平",
+    "content": "竟然是暗黑骑士！那么DK的水平是？\nDK水平：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "DK水平判定",
+        "diceRequired": 100,
+        "outcomes": [
+          {
+            "optionText": "残疾水平，logs灰色",
+            "match": [
+              1,
+              20
+            ],
+            "resultText": "DK水平不佳，logs灰色",
+            "nextNode": "chapter1_node23"
+          },
+          {
+            "optionText": "普通水平，logs蓝绿",
+            "match": [
+              21,
+              59
+            ],
+            "resultText": "DK普通水平，logs蓝绿",
+            "nextNode": "chapter1_node23"
+          },
+          {
+            "optionText": "大佬水平，logs紫橙",
+            "match": [
+              60,
+              90
+            ],
+            "resultText": "DK大佬水平，logs紫橙",
+            "nextNode": "chapter1_node23"
+          },
+          {
+            "optionText": "卧槽！国一DK！！！",
+            "match": [
+              91,
+              100
+            ],
+            "resultText": "国一DK！logs满橙！恭迎莅临！",
+            "nextNode": "chapter1_node23"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node23",
+    "title": "H2职业",
+    "content": "那么固定队的H2（第二奶妈）是什么职业？\nH2职业：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "H2职业判定",
+        "diceRequired": 2,
+        "outcomes": [
+          {
+            "optionText": "占星术士",
+            "match": 1,
+            "resultText": "H2是占星术士",
+            "nextNode": null
+          },
+          {
+            "optionText": "贤者",
+            "match": 2,
+            "resultText": "H2是贤者",
+            "nextNode": "chapter1_node24"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node24",
+    "title": "贤者的水平",
+    "content": "那么这名贤者的水平如何？\n贤者水平：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "贤者水平判定",
+        "diceRequired": 100,
+        "outcomes": [
+          {
+            "optionText": "残疾水平，logs灰色",
+            "match": [
+              1,
+              20
+            ],
+            "resultText": "贤者水平不佳，logs灰色",
+            "nextNode": "chapter1_node25"
+          },
+          {
+            "optionText": "普通水平，logs蓝绿",
+            "match": [
+              21,
+              59
+            ],
+            "resultText": "贤者普通水平，logs蓝绿",
+            "nextNode": "chapter1_node25"
+          },
+          {
+            "optionText": "大佬水平，logs紫橙",
+            "match": [
+              60,
+              90
+            ],
+            "resultText": "贤者大佬水平，logs紫橙",
+            "nextNode": "chapter1_node25"
+          },
+          {
+            "optionText": "顶级水平，logs全橙",
+            "match": [
+              91,
+              100
+            ],
+            "resultText": "贤者顶级水平，logs全橙",
+            "nextNode": "chapter1_node25"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node25",
+    "title": "法系职业",
+    "content": "那么固定队的法系是什么职业？\n法系职业：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "法系职业判定",
+        "diceRequired": 3,
+        "outcomes": [
+          {
+            "optionText": "黑魔法师",
+            "match": 1,
+            "resultText": "法系是黑魔法师！",
+            "nextNode": "chapter1_node26"
+          },
+          {
+            "optionText": "召唤师",
+            "match": 2,
+            "resultText": "法系是召唤师",
+            "nextNode": null
+          },
+          {
+            "optionText": "赤魔法师",
+            "match": 3,
+            "resultText": "法系是赤魔法师",
+            "nextNode": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node26",
+    "title": "黑魔的水平",
+    "content": "啊哦，队里两位远程的水平不相上下呢！那么这名黑魔的水平是？\n黑魔水平：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "黑魔水平判定",
+        "diceRequired": 100,
+        "outcomes": [
+          {
+            "optionText": "残疾水平，logs灰色",
+            "match": [
+              1,
+              20
+            ],
+            "resultText": "黑魔水平不佳，logs灰色",
+            "nextNode": "chapter1_node27"
+          },
+          {
+            "optionText": "普通水平，logs蓝绿",
+            "match": [
+              21,
+              59
+            ],
+            "resultText": "黑魔普通水平，logs蓝绿",
+            "nextNode": "chapter1_node27"
+          },
+          {
+            "optionText": "大佬水平，logs紫橙",
+            "match": [
+              60,
+              90
+            ],
+            "resultText": "黑魔大佬水平，logs紫橙",
+            "nextNode": "chapter1_node27"
+          },
+          {
+            "optionText": "顶级水平，logs全橙",
+            "match": [
+              91,
+              100
+            ],
+            "resultText": "黑魔顶级水平，logs全橙",
+            "nextNode": "chapter1_node27"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node27",
+    "title": "枪刃是否当MT",
+    "content": "现在队伍配置为：DK、绝枪、白魔、贤者、龙骑、忍者、诗人、黑魔。\n按理说应该是枪刃当MT，那么事实是不是这样呢？\nMT归属：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "枪刃MT判定",
+        "diceRequired": 2,
+        "outcomes": [
+          {
+            "optionText": "是，枪刃当MT",
+            "match": 1,
+            "resultText": "枪刃担任MT",
+            "nextNode": "chapter1_node28"
+          },
+          {
+            "optionText": "不是，另有其人",
+            "match": 2,
+            "resultText": "枪刃未担任MT",
+            "nextNode": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node28",
+    "title": "枪刃对DK是否不满",
+    "content": "虽然很不想子弹连拉怪，但在DK金色logs和6.0技改的威压下，枪刃还是妥协了。\n枪刃有没有觉得不满？\n枪刃态度：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "枪刃不满判定",
+        "diceRequired": 2,
+        "outcomes": [
+          {
+            "optionText": "有，敢怒不敢言",
+            "match": 1,
+            "resultText": "枪刃敢怒不敢言，偷偷跟诗人抱怨",
+            "nextNode": "chapter1_node29"
+          },
+          {
+            "optionText": "没有，以大局为重",
+            "match": 2,
+            "resultText": "枪刃以大局为重，没有不满",
+            "nextNode": "chapter1_node29"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node29",
+    "title": "枪刃对DK的怨气值",
+    "content": "以大局为重，枪刃在群里什么也没说，老老实实接受了子弹连拉怪。\n枪刃内心对DK的怨气到底有多深（1-100）？\n怨气值：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "枪刃怨气值判定",
+        "diceRequired": 100,
+        "outcomes": [
+          {
+            "optionText": "1-30：懒得计较",
+            "match": [
+              1,
+              30
+            ],
+            "resultText": "枪刃怨气不深，以大局为重",
+            "nextNode": "chapter1_node30"
+          },
+          {
+            "optionText": "31-60：有些憋屈",
+            "match": [
+              31,
+              60
+            ],
+            "resultText": "枪刃有些憋屈，但忍下来了",
+            "nextNode": "chapter1_node30"
+          },
+          {
+            "optionText": "61-89：相当不满",
+            "match": [
+              61,
+              89
+            ],
+            "resultText": "枪刃相当不满，只是没说出来",
+            "nextNode": "chapter1_node30"
+          },
+          {
+            "optionText": "90-100：心如死灰",
+            "match": [
+              90,
+              100
+            ],
+            "resultText": "枪刃心如死灰，表面还在笑",
+            "nextNode": "chapter1_node30"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node30",
+    "title": "是否有开打前团建",
+    "content": "那么在6.05开之前，固定队的大家有没有去团建呢？\n开打前团建：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "团建判定",
+        "diceRequired": 2,
+        "outcomes": [
+          {
+            "optionText": "有，成功团建",
+            "match": 1,
+            "resultText": "开打前成功团建",
+            "nextNode": null
+          },
+          {
+            "optionText": "没有，组不齐人",
+            "match": 2,
+            "resultText": "龙骑提过团建但组不齐人，不了了之",
+            "nextNode": "chapter1_node31"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node31",
+    "title": "开打前有无特殊状况",
+    "content": "很快就到了要开打的日子，有没有出什么特殊状况？\n特殊状况：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "特殊状况判定",
+        "diceRequired": 2,
+        "outcomes": [
+          {
+            "optionText": "有特殊状况！",
+            "match": 1,
+            "resultText": "开打前出了特殊状况！",
+            "nextNode": "chapter1_node32"
+          },
+          {
+            "optionText": "没有，一切正常",
+            "match": 2,
+            "resultText": "开打前一切正常",
+            "nextNode": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node32",
+    "title": "特殊状况类型",
+    "content": "发生甚么事了！\n特殊状况类型：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "特殊状况类型判定",
+        "diceRequired": 10,
+        "outcomes": [
+          {
+            "optionText": "鼠标坏了",
+            "match": 1,
+            "resultText": "有人鼠标坏了",
+            "nextNode": null
+          },
+          {
+            "optionText": "停电了",
+            "match": 2,
+            "resultText": "有人停电了",
+            "nextNode": null
+          },
+          {
+            "optionText": "猫尿在电脑上了",
+            "match": 3,
+            "resultText": "有人的猫尿在电脑上了",
+            "nextNode": null
+          },
+          {
+            "optionText": "被家长gank了",
+            "match": 4,
+            "resultText": "有人被家长gank了",
+            "nextNode": null
+          },
+          {
+            "optionText": "被领导抓走加班了",
+            "match": 5,
+            "resultText": "有人被领导抓走加班",
+            "nextNode": null
+          },
+          {
+            "optionText": "没钱买HQ装备",
+            "match": 6,
+            "resultText": "有人没钱买HQ装备",
+            "nextNode": null
+          },
+          {
+            "optionText": "号被盗了",
+            "match": 7,
+            "resultText": "有人的号被盗了",
+            "nextNode": null
+          },
+          {
+            "optionText": "主线没跑完",
+            "match": 8,
+            "resultText": "有人主线没跑完进不去副本",
+            "nextNode": null
+          },
+          {
+            "optionText": "手摔骨折了！",
+            "match": 9,
+            "resultText": "有人手摔骨折了！",
+            "nextNode": "chapter1_node33"
+          },
+          {
+            "optionText": "分手了（固定队CP限定）",
+            "match": 10,
+            "resultText": "有固定队CP分手了",
+            "nextNode": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node33",
+    "title": "谁手骨折了",
+    "content": "是哪个倒霉蛋把自己的手摔断了？\n骨折的人：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "骨折人员判定",
+        "diceRequired": 8,
+        "outcomes": [
+          {
+            "optionText": "黑骑",
+            "match": 1,
+            "resultText": "黑骑手骨折了",
+            "nextNode": null
+          },
+          {
+            "optionText": "枪刃",
+            "match": 2,
+            "resultText": "枪刃手骨折了",
+            "nextNode": null
+          },
+          {
+            "optionText": "白魔",
+            "match": 3,
+            "resultText": "白魔手骨折了",
+            "nextNode": null
+          },
+          {
+            "optionText": "贤者",
+            "match": 4,
+            "resultText": "贤者手骨折了",
+            "nextNode": null
+          },
+          {
+            "optionText": "龙骑",
+            "match": 5,
+            "resultText": "龙骑手骨折了",
+            "nextNode": null
+          },
+          {
+            "optionText": "忍者",
+            "match": 6,
+            "resultText": "忍者手骨折了",
+            "nextNode": null
+          },
+          {
+            "optionText": "诗人",
+            "match": 7,
+            "resultText": "诗人手骨折了",
+            "nextNode": null
+          },
+          {
+            "optionText": "黑魔！手被包成粽子",
+            "match": 8,
+            "resultText": "黑魔手骨折了，发来粽子照片",
+            "nextNode": "chapter1_node34"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node34",
+    "title": "换人花了几天",
+    "content": "黑魔桑！6.05更新当天，黑魔发来了坐在医院手被包成粽子的照片：\n「555兄弟们，我今早出门被一辆自行车给创了，摔了一跤，手骨折了」\n龙骑非常痛心，只能换人。换人花了几天？\n换人天数：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "换人天数判定",
+        "diceRequired": 3,
+        "outcomes": [
+          {
+            "optionText": "第二天就招募到了",
+            "match": 1,
+            "resultText": "零式刚开找队的人很多，第二天就找到了",
+            "nextNode": "chapter1_node35"
+          },
+          {
+            "optionText": "花了两天",
+            "match": 2,
+            "resultText": "花了两天找到新法系",
+            "nextNode": "chapter1_node35"
+          },
+          {
+            "optionText": "花了三天",
+            "match": 3,
+            "resultText": "花了三天才找到新法系",
+            "nextNode": "chapter1_node35"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node35",
+    "title": "新法系的职业",
+    "content": "那么这名顶替的新法系是什么职业？\n新法系职业：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "新法系职业判定",
+        "diceRequired": 3,
+        "outcomes": [
+          {
+            "optionText": "又是黑魔！",
+            "match": 1,
+            "resultText": "顶替的新人又是黑魔！",
+            "nextNode": "chapter1_node36"
+          },
+          {
+            "optionText": "召唤师",
+            "match": 2,
+            "resultText": "顶替的新人是召唤师",
+            "nextNode": null
+          },
+          {
+            "optionText": "赤魔法师",
+            "match": 3,
+            "resultText": "顶替的新人是赤魔法师",
+            "nextNode": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node36",
+    "title": "新黑魔的水平",
+    "content": "新来的黑魔进队瑟瑟发抖：「听说黑魔偷看吸血鬼洗澡手就会摔断，是真的吗？」\n那么这个新来的黑魔水平如何？\n新黑魔水平：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "新黑魔水平判定",
+        "diceRequired": 100,
+        "outcomes": [
+          {
+            "optionText": "还不如上一个！logs灰色",
+            "match": [
+              1,
+              20
+            ],
+            "resultText": "新黑魔水平更差，logs灰色",
+            "nextNode": "chapter1_node37"
+          },
+          {
+            "optionText": "普通水平，logs蓝绿",
+            "match": [
+              21,
+              59
+            ],
+            "resultText": "新黑魔普通水平，logs蓝绿",
+            "nextNode": "chapter1_node37"
+          },
+          {
+            "optionText": "大佬水平，logs紫橙",
+            "match": [
+              60,
+              90
+            ],
+            "resultText": "新黑魔大佬水平，logs紫橙",
+            "nextNode": "chapter1_node37"
+          },
+          {
+            "optionText": "顶级水平，logs全橙",
+            "match": [
+              91,
+              100
+            ],
+            "resultText": "新黑魔顶级水平，logs全橙",
+            "nextNode": "chapter1_node37"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node37",
+    "title": "DK为何来这支队",
+    "content": "说起来，龙骑特别好奇，以堂堂国一DK的水平去打首周不香吗，为什么会来他们这个小破队偷看吸血鬼洗澡？\nDK来这里的原因：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "DK入队原因判定",
+        "diceRequired": 3,
+        "outcomes": [
+          {
+            "optionText": "没时间精力冲首周，想休闲",
+            "match": 1,
+            "resultText": "DK没时间冲首周，想来休闲队打",
+            "nextNode": "chapter1_node38"
+          },
+          {
+            "optionText": "和前队友闹掰了赌气进队",
+            "match": 2,
+            "resultText": "DK和前队友闹掰，赌气来的",
+            "nextNode": null
+          },
+          {
+            "optionText": "暗恋队里的某人",
+            "match": 3,
+            "resultText": "DK暗恋队里的某人",
+            "nextNode": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node38",
+    "title": "DK的身份",
+    "content": "那么DK的现实身份是？\nDK身份：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "DK身份判定",
+        "diceRequired": 3,
+        "outcomes": [
+          {
+            "optionText": "学生（要考研了）",
+            "match": 1,
+            "resultText": "DK是学生，要考研了",
+            "nextNode": "chapter1_node39"
+          },
+          {
+            "optionText": "社畜",
+            "match": 2,
+            "resultText": "DK是社畜",
+            "nextNode": null
+          },
+          {
+            "optionText": "已婚人士",
+            "match": 3,
+            "resultText": "DK是已婚人士",
+            "nextNode": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node39",
+    "title": "p1s温度计：枪刃处理情况",
+    "content": "DK说自己要考研了，没有时间精力去冲首周。龙骑暗自觉得捡了大便宜！\n龙骑找到攻略发到群里，大家决定采用D3MT换位法处理p1s温度计。\n处理温度计的任务落到了枪刃和诗人身上，枪刃能处理好吗？（判定值>100为成功，枪刃基础值为94）\n枪刃温度计判定：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "枪刃温度计判定",
+        "diceRequired": 100,
+        "outcomes": [
+          {
+            "optionText": "失败（94+1~6=95~100）",
+            "match": [
+              1,
+              6
+            ],
+            "resultText": "枪刃处理温度计失败！",
+            "nextNode": "chapter1_node40"
+          },
+          {
+            "optionText": "成功（94+7~100=101~194）",
+            "match": [
+              7,
+              100
+            ],
+            "resultText": "枪刃凭借实力完美处理了温度计！",
+            "nextNode": "chapter1_node40"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node40",
+    "title": "p1s温度计：诗人处理情况",
+    "content": "那么诗人呢？（诗人基础值为24，判定值>100为成功）\n诗人温度计判定：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "诗人温度计判定",
+        "diceRequired": 100,
+        "outcomes": [
+          {
+            "optionText": "失败（24+1~76=25~100）",
+            "match": [
+              1,
+              76
+            ],
+            "resultText": "诗人处理温度计失败！",
+            "nextNode": "chapter1_node41"
+          },
+          {
+            "optionText": "成功（24+77~100=101~124）",
+            "match": [
+              77,
+              100
+            ],
+            "resultText": "诗人凭借CP默契完美处理了温度计！",
+            "nextNode": "chapter1_node41"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node41",
+    "title": "p1s第一天打本有无特殊状况",
+    "content": "虽然二人实力有参差，但凭借自身努力和CP默契，枪刃和诗人都完美处理了温度计！\n那么第一天的打本过程中有没有出现什么特殊状况呢？\n打本特殊状况：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "打本特殊状况判定",
+        "diceRequired": 2,
+        "outcomes": [
+          {
+            "optionText": "有状况",
+            "match": 1,
+            "resultText": "打本过程中出了状况",
+            "nextNode": null
+          },
+          {
+            "optionText": "没有，一切顺利",
+            "match": 2,
+            "resultText": "第一天打本一切顺利",
+            "nextNode": "chapter1_node42"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node42",
+    "title": "p1s治疗奶量是否充足",
+    "content": "看来一切都很顺利！那么治疗们有没有好好奶住大家呢？（二人之和>150为奶住）\n白魔奶量判定（白魔基础值76）：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "白魔奶量判定",
+        "diceRequired": 100,
+        "outcomes": [
+          {
+            "optionText": "白魔奶量不足",
+            "match": [
+              1,
+              74
+            ],
+            "resultText": "白魔奶量不足，险象环生",
+            "nextNode": "chapter1_node43"
+          },
+          {
+            "optionText": "白魔奶量充足",
+            "match": [
+              75,
+              100
+            ],
+            "resultText": "白魔奶量充足，奶住了！",
+            "nextNode": "chapter1_node43"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node43",
+    "title": "p1s贤者奶量",
+    "content": "贤者奶量判定（贤者基础值54，与白魔之和>150即可）：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "贤者奶量判定",
+        "diceRequired": 100,
+        "outcomes": [
+          {
+            "optionText": "贤者奶量不足",
+            "match": [
+              1,
+              20
+            ],
+            "resultText": "贤者奶量不足，但一层压力不大，勉强过关",
+            "nextNode": "chapter1_node44"
+          },
+          {
+            "optionText": "贤者奶量充足",
+            "match": [
+              21,
+              100
+            ],
+            "resultText": "贤者奶量充足，没有人因为吃不到奶死掉！",
+            "nextNode": "chapter1_node44"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node44",
+    "title": "p1s DPS输出是否充足",
+    "content": "一层的治疗压力不高，没有人因为吃不到奶死掉！\n那么DPS的输出够不够呢？（四人之和>300为输出足够）\n龙骑输出判定（基础值59）：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "龙骑输出判定",
+        "diceRequired": 100,
+        "outcomes": [
+          {
+            "optionText": "龙骑输出一般",
+            "match": [
+              1,
+              60
+            ],
+            "resultText": "龙骑输出差强人意",
+            "nextNode": "chapter1_node45"
+          },
+          {
+            "optionText": "龙骑输出不错",
+            "match": [
+              61,
+              100
+            ],
+            "resultText": "龙骑输出表现不错！",
+            "nextNode": "chapter1_node45"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node45",
+    "title": "p1s过本了吗",
+    "content": "虽然除了忍者哥之外其他人的表现都差强人意，但好在一层输出要求不高，总体团伤还是够的！\n那么有没有出别的状况？\n最终结果：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "p1s过本判定",
+        "diceRequired": 2,
+        "outcomes": [
+          {
+            "optionText": "有状况，没过",
+            "match": 1,
+            "resultText": "出了别的状况，p1s没过",
+            "nextNode": null
+          },
+          {
+            "optionText": "顺利过本！",
+            "match": 2,
+            "resultText": "第一天就顺利过掉了p1s！",
+            "nextNode": "chapter1_node46"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node46",
+    "title": "装备分配方案",
+    "content": "第一天就过掉了p1s，大家欢呼雀跃！\n装备要怎么分配呢？大家有不同的看法：\n1.优先分配给DPS，减轻输出压力\n2.优先分配给奶妈，防止高层没法奶\n3.反正不打首周，随便roll就行\n最后采取了哪个方案？\n装备分配方案：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "装备分配方案判定",
+        "diceRequired": 3,
+        "outcomes": [
+          {
+            "optionText": "DPS优先分配装备",
+            "match": 1,
+            "resultText": "采用DPS优先分配方案",
+            "nextNode": "chapter1_node47"
+          },
+          {
+            "optionText": "奶妈优先分配装备",
+            "match": 2,
+            "resultText": "采用奶妈优先分配方案",
+            "nextNode": null
+          },
+          {
+            "optionText": "随便roll，躺平",
+            "match": 3,
+            "resultText": "不做限制，随便roll",
+            "nextNode": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node47",
+    "title": "装备分配方案发起人",
+    "content": "这个DPS优先的方案是谁主张的呢？\n方案发起人：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "方案发起人判定",
+        "diceRequired": 8,
+        "outcomes": [
+          {
+            "optionText": "黑骑",
+            "match": 1,
+            "resultText": "黑骑提议DPS优先分配装备",
+            "nextNode": "chapter1_node48"
+          },
+          {
+            "optionText": "枪刃",
+            "match": 2,
+            "resultText": "枪刃提议DPS优先分配装备",
+            "nextNode": "chapter1_node48"
+          },
+          {
+            "optionText": "白魔",
+            "match": 3,
+            "resultText": "白魔提议DPS优先分配装备",
+            "nextNode": "chapter1_node48"
+          },
+          {
+            "optionText": "贤者",
+            "match": 4,
+            "resultText": "贤者提议DPS优先分配装备",
+            "nextNode": "chapter1_node48"
+          },
+          {
+            "optionText": "龙骑",
+            "match": 5,
+            "resultText": "龙骑提议DPS优先分配装备",
+            "nextNode": "chapter1_node48"
+          },
+          {
+            "optionText": "忍者（输出最高，最有发言权）",
+            "match": 6,
+            "resultText": "忍者提议DPS优先分配装备",
+            "nextNode": "chapter1_node48"
+          },
+          {
+            "optionText": "诗人",
+            "match": 7,
+            "resultText": "诗人提议DPS优先分配装备",
+            "nextNode": "chapter1_node48"
+          },
+          {
+            "optionText": "黑魔",
+            "match": 8,
+            "resultText": "黑魔提议DPS优先分配装备",
+            "nextNode": "chapter1_node48"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node48",
+    "title": "黑骑对装备方案的感受",
+    "content": "因为队伍内其他DPS明显的输出短板，忍者提议将装备优先分配给DPS，最终大家也同意了。\n那么实际上大家对于这个方案感觉如何呢？（DPS+20加成）\n黑骑对方案的态度（1=非常不满，100=非常支持）：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "黑骑态度判定",
+        "diceRequired": 100,
+        "outcomes": [
+          {
+            "optionText": "1-40：黑骑暗自不满",
+            "match": [
+              1,
+              40
+            ],
+            "resultText": "黑骑暗自不满，DNA里的炒股欲望泡汤了",
+            "nextNode": "chapter1_node49"
+          },
+          {
+            "optionText": "41-70：黑骑无所谓",
+            "match": [
+              41,
+              70
+            ],
+            "resultText": "黑骑对方案无所谓",
+            "nextNode": "chapter1_node49"
+          },
+          {
+            "optionText": "71-100：黑骑支持",
+            "match": [
+              71,
+              100
+            ],
+            "resultText": "黑骑支持这个方案",
+            "nextNode": "chapter1_node49"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node49",
+    "title": "白魔对装备方案的感受",
+    "content": "白魔因为不能优先拿装备非常不安，担心3层没有占星的宏观宇宙，自己奶不起来……\n白魔对方案的态度（1=非常不满，100=非常支持）：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "白魔态度判定",
+        "diceRequired": 100,
+        "outcomes": [
+          {
+            "optionText": "1-40：白魔非常不安",
+            "match": [
+              1,
+              40
+            ],
+            "resultText": "白魔非常不安，担心高层奶不住",
+            "nextNode": "chapter1_node50"
+          },
+          {
+            "optionText": "41-70：白魔勉强接受",
+            "match": [
+              41,
+              70
+            ],
+            "resultText": "白魔勉强接受了这个方案",
+            "nextNode": "chapter1_node50"
+          },
+          {
+            "optionText": "71-100：白魔支持",
+            "match": [
+              71,
+              100
+            ],
+            "resultText": "白魔支持这个方案",
+            "nextNode": "chapter1_node50"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node50",
+    "title": "诗人对装备方案的感受",
+    "content": "枪刃虽然自己拿不到装备，但因为CP能优先分配而非常开心！\n那么诗人呢？（诗人DPS+20加成）\n诗人对方案的态度（1=非常不满，100=非常支持）：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "诗人态度判定",
+        "diceRequired": 100,
+        "outcomes": [
+          {
+            "optionText": "1-40：诗人有些不满",
+            "match": [
+              1,
+              40
+            ],
+            "resultText": "诗人有些不满，觉得CP那么牛却拿不到装备",
+            "nextNode": "chapter1_node51"
+          },
+          {
+            "optionText": "41-70：诗人无所谓",
+            "match": [
+              41,
+              70
+            ],
+            "resultText": "诗人对方案无所谓",
+            "nextNode": "chapter1_node51"
+          },
+          {
+            "optionText": "71-100：诗人很开心",
+            "match": [
+              71,
+              100
+            ],
+            "resultText": "诗人很开心，能优先拿到装备",
+            "nextNode": "chapter1_node51"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node51",
+    "title": "黑魔对装备方案的感受",
+    "content": "黑魔：啊？装备，太好了！\n黑魔对方案的态度（DPS+20加成，1=非常不满，100=非常支持）：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "黑魔态度判定",
+        "diceRequired": 100,
+        "outcomes": [
+          {
+            "optionText": "1-40：黑魔不满",
+            "match": [
+              1,
+              40
+            ],
+            "resultText": "黑魔对方案有些不满",
+            "nextNode": "chapter1_node52"
+          },
+          {
+            "optionText": "41-70：黑魔开心",
+            "match": [
+              41,
+              70
+            ],
+            "resultText": "黑魔因能优先拿装备很开心，没有多余想法",
+            "nextNode": "chapter1_node52"
+          },
+          {
+            "optionText": "71-100：黑魔非常开心",
+            "match": [
+              71,
+              100
+            ],
+            "resultText": "黑魔非常开心，单纯地为能拿装备高兴",
+            "nextNode": "chapter1_node52"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node52",
+    "title": "p1s后是否去日随",
+    "content": "p1s下班后他们去打日随了吗？\n打日随：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "日随判定",
+        "diceRequired": 2,
+        "outcomes": [
+          {
+            "optionText": "去了",
+            "match": 1,
+            "resultText": "下班后一起去打日随",
+            "nextNode": null
+          },
+          {
+            "optionText": "没去，其他人要么打过了要么没时间",
+            "match": 2,
+            "resultText": "龙骑提了日随但其他人要么打过了要么没时间",
+            "nextNode": "chapter1_node53"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node53",
+    "title": "p1s后是否去RP店",
+    "content": "打日随没时间，那么下班后他们去RP店了吗？\nRP店团建：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "RP店判定",
+        "diceRequired": 2,
+        "outcomes": [
+          {
+            "optionText": "去了！打日随没时间，去嫖就有时间了",
+            "match": 1,
+            "resultText": "下班后去了RP店！",
+            "nextNode": "chapter1_node54"
+          },
+          {
+            "optionText": "没去",
+            "match": 2,
+            "resultText": "下班后没去RP店",
+            "nextNode": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node54",
+    "title": "谁提议去RP店",
+    "content": "好小子，打日随没时间，去嫖就有时间了是吧！\n那么是谁提出要去RP店玩的？\n提议人：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "RP店提议人判定",
+        "diceRequired": 8,
+        "outcomes": [
+          {
+            "optionText": "黑骑",
+            "match": 1,
+            "resultText": "黑骑提议去RP店",
+            "nextNode": "chapter1_node55"
+          },
+          {
+            "optionText": "枪刃",
+            "match": 2,
+            "resultText": "枪刃提议去RP店",
+            "nextNode": null
+          },
+          {
+            "optionText": "白魔",
+            "match": 3,
+            "resultText": "白魔提议去RP店",
+            "nextNode": null
+          },
+          {
+            "optionText": "贤者",
+            "match": 4,
+            "resultText": "贤者提议去RP店",
+            "nextNode": null
+          },
+          {
+            "optionText": "龙骑",
+            "match": 5,
+            "resultText": "龙骑提议去RP店",
+            "nextNode": null
+          },
+          {
+            "optionText": "忍者",
+            "match": 6,
+            "resultText": "忍者提议去RP店",
+            "nextNode": null
+          },
+          {
+            "optionText": "诗人",
+            "match": 7,
+            "resultText": "诗人提议去RP店",
+            "nextNode": null
+          },
+          {
+            "optionText": "黑魔",
+            "match": 8,
+            "resultText": "黑魔提议去RP店",
+            "nextNode": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node55",
+    "title": "DK为何组织去RP店",
+    "content": "好小子，考研可以阻止你打首周，但不能阻止你去嫖是吧！\n那么明明没什么时间和精力的黑骑，为什么会组织大家去RP店玩呢？\nDK真实目的：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "DK目的判定",
+        "diceRequired": 5,
+        "outcomes": [
+          {
+            "optionText": "想和大家搞好关系",
+            "match": 1,
+            "resultText": "DK想借此机会和大家搞好关系",
+            "nextNode": "chapter1_node56"
+          },
+          {
+            "optionText": "考研的说法是假的",
+            "match": 2,
+            "resultText": "考研只是借口，DK根本就没在考研",
+            "nextNode": null
+          },
+          {
+            "optionText": "他其实是那个RP店的店长",
+            "match": 3,
+            "resultText": "DK其实是那个RP店的店长！",
+            "nextNode": null
+          },
+          {
+            "optionText": "他其实是那个RP店的店员",
+            "match": 4,
+            "resultText": "DK其实是那个RP店的店员！",
+            "nextNode": null
+          },
+          {
+            "optionText": "答应支持朋友生意，把全队都骗了过去",
+            "match": 5,
+            "resultText": "DK答应支持朋友生意，把全队都骗过去了",
+            "nextNode": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node56",
+    "title": "谁去了RP店",
+    "content": "（枪刃和诗人不参与本次骰点，他们俩已经快速进入二人世界了）\n那么都有谁去了RP店呢？（1去，2不去）\n白魔是否去：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "白魔是否去RP店",
+        "diceRequired": 2,
+        "outcomes": [
+          {
+            "optionText": "白魔去了",
+            "match": 1,
+            "resultText": "白魔跟着DK一块去了RP店",
+            "nextNode": "chapter1_node57"
+          },
+          {
+            "optionText": "白魔没去",
+            "match": 2,
+            "resultText": "白魔对RP店不感兴趣，没去",
+            "nextNode": "chapter1_node57"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node57",
+    "title": "贤者是否去RP店",
+    "content": "贤者是否去：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "贤者是否去RP店",
+        "diceRequired": 2,
+        "outcomes": [
+          {
+            "optionText": "贤者去了",
+            "match": 1,
+            "resultText": "贤者去了RP店",
+            "nextNode": "chapter1_node58"
+          },
+          {
+            "optionText": "贤者没去",
+            "match": 2,
+            "resultText": "贤者对RP店不感兴趣，没去",
+            "nextNode": "chapter1_node58"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node58",
+    "title": "龙骑是否去RP店",
+    "content": "龙骑是否去：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "龙骑是否去RP店",
+        "diceRequired": 2,
+        "outcomes": [
+          {
+            "optionText": "龙骑去了！拉着忍者一起",
+            "match": 1,
+            "resultText": "对RP店特别感兴趣的龙骑拉着忍者一起去了",
+            "nextNode": "chapter1_node59"
+          },
+          {
+            "optionText": "龙骑没去",
+            "match": 2,
+            "resultText": "龙骑没去RP店",
+            "nextNode": "chapter1_node59"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node59",
+    "title": "黑魔是否去RP店",
+    "content": "黑魔是否去：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "黑魔是否去RP店",
+        "diceRequired": 2,
+        "outcomes": [
+          {
+            "optionText": "黑魔去了",
+            "match": 1,
+            "resultText": "黑魔去了RP店",
+            "nextNode": "chapter1_node60"
+          },
+          {
+            "optionText": "黑魔没去",
+            "match": 2,
+            "resultText": "黑魔对RP店不感兴趣，没去",
+            "nextNode": "chapter1_node60"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node60",
+    "title": "真心话大冒险有无惊天秘密",
+    "content": "因为打算组队团建，大家找了两个店员一起玩真心话大冒险。\n游戏中有没有人说出了什么惊天大秘密呢？\n秘密判定：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "秘密判定",
+        "diceRequired": 2,
+        "outcomes": [
+          {
+            "optionText": "有！",
+            "match": 1,
+            "resultText": "有人说出了惊天大秘密！",
+            "nextNode": "chapter1_node61"
+          },
+          {
+            "optionText": "没有，一切平静",
+            "match": 2,
+            "resultText": "大家玩得平平淡淡，没什么秘密",
+            "nextNode": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node61",
+    "title": "是谁说出了秘密",
+    "content": "是谁说出了让人惊掉下巴的事情呢？\n说秘密的人：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "说秘密的人判定",
+        "diceRequired": 4,
+        "outcomes": [
+          {
+            "optionText": "白魔",
+            "match": 1,
+            "resultText": "白魔说出了惊天大秘密！",
+            "nextNode": "chapter1_node62"
+          },
+          {
+            "optionText": "黑骑",
+            "match": 2,
+            "resultText": "黑骑说出了惊天大秘密！",
+            "nextNode": "chapter1_node62"
+          },
+          {
+            "optionText": "龙骑",
+            "match": 3,
+            "resultText": "龙骑说出了惊天大秘密！",
+            "nextNode": "chapter1_node62"
+          },
+          {
+            "optionText": "忍者",
+            "match": 4,
+            "resultText": "忍者说出了惊天大秘密！",
+            "nextNode": "chapter1_node62"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node62",
+    "title": "白魔说出了诗人的秘密",
+    "content": "白魔酒喝多了，嘴上把不住门，把诗人的秘密当众说了出来——\n原来诗人曾经脚本抢房！\n台下众人震惊了，诗人的秘密究竟有多少人知道？",
+    "type": "text",
+    "choices": [
+      {
+        "text": "继续",
+        "nextNode": "chapter1_node63"
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node63",
+    "title": "诗人的秘密如何影响众人",
+    "content": "白魔的这一记背刺，让全场气氛瞬间凝固。\n诗人脸色煞白，枪刃先生一脸复杂……\n这场真心话大冒险的后续如何发展呢？\n判定结果：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "后续走向",
+        "diceRequired": 4,
+        "outcomes": [
+          {
+            "optionText": "诗人当场翻脸",
+            "match": 1,
+            "resultText": "诗人非常愤怒，当场掀桌，团建气氛破裂",
+            "nextNode": "chapter1_node64"
+          },
+          {
+            "optionText": "诗人强装镇定",
+            "match": 2,
+            "resultText": "诗人硬撑着笑笑说这都是过去的事了",
+            "nextNode": "chapter1_node64"
+          },
+          {
+            "optionText": "枪刃帮忙圆场",
+            "match": 3,
+            "resultText": "枪刃出来帮诗人圆场，把话题带偏",
+            "nextNode": "chapter1_node64"
+          },
+          {
+            "optionText": "大家装没听见",
+            "match": 4,
+            "resultText": "现场陷入诡异的沉默，大家心照不宣",
+            "nextNode": "chapter1_node64"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node64",
+    "title": "团建后的心情",
+    "content": "不管如何，这场团建就此落下帷幕。\n这次团建之后，大家对队伍的感情有没有变化呢？\n团队凝聚力判定：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "团队凝聚力判定",
+        "diceRequired": 6,
+        "outcomes": [
+          {
+            "optionText": "凝聚力大增",
+            "match": [
+              5,
+              6
+            ],
+            "resultText": "虽然出了一点小插曲，但大家的感情更好了！",
+            "nextNode": "chapter1_node65"
+          },
+          {
+            "optionText": "凝聚力不变",
+            "match": [
+              3,
+              4
+            ],
+            "resultText": "大家对这次团建评价一般，凝聚力基本没变",
+            "nextNode": "chapter1_node65"
+          },
+          {
+            "optionText": "凝聚力下降",
+            "match": [
+              1,
+              2
+            ],
+            "resultText": "秘密泄露的阴影笼罩着队伍，大家有些不自在",
+            "nextNode": "chapter1_node65"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node65",
+    "title": "日随团建——龙骑的组织",
+    "content": "团建结束后，龙骑还不满足，提议大家一起去打日随！\n（枪刃和诗人在冷战，都不去）\n那么其他成员都有谁去了呢？（1去，2不去）",
+    "type": "text",
+    "choices": [
+      {
+        "text": "继续",
+        "nextNode": "chapter1_node66"
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node66",
+    "title": "黑骑是否参加日随",
+    "content": "黑骑是否去日随：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "黑骑是否去日随",
+        "diceRequired": 2,
+        "outcomes": [
+          {
+            "optionText": "黑骑去了",
+            "match": 1,
+            "resultText": "黑骑爽快答应了",
+            "nextNode": "chapter1_node67"
+          },
+          {
+            "optionText": "黑骑没去",
+            "match": 2,
+            "resultText": "黑骑今天没空，不去",
+            "nextNode": "chapter1_node67"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node67",
+    "title": "白魔、贤者、武士、黑魔是否参加日随",
+    "content": "白魔/贤者/武士/黑魔是否去日随（一起判定，5d2，全1代表全去）：\n骰点结果=5说明全部都去了！",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "剩余成员集体判定",
+        "diceRequired": 2,
+        "outcomes": [
+          {
+            "optionText": "全员出动！",
+            "match": 1,
+            "resultText": "好给面子！白魔贤者武士黑魔全都去了！大家一起6人组排！",
+            "nextNode": "chapter1_node68"
+          },
+          {
+            "optionText": "有人缺席",
+            "match": 2,
+            "resultText": "有几个人没来，只能凑凑人数先打",
+            "nextNode": "chapter1_node68"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node68",
+    "title": "日随六人组排——团随发生了什么",
+    "content": "六人一起组排去打讨伐大型和团随！\n这次排队中发生了什么事情呢？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "事件判定",
+        "diceRequired": 10,
+        "outcomes": [
+          {
+            "optionText": "有人表现不佳",
+            "match": 1,
+            "resultText": "有人在野队里拉了，被野人点名批评",
+            "nextNode": "chapter1_node69"
+          },
+          {
+            "optionText": "与野人发生冲突",
+            "match": 2,
+            "resultText": "有人和野队队友发生了冲突，气氛一度剑拔弩张",
+            "nextNode": "chapter1_node69"
+          },
+          {
+            "optionText": "有人9002了",
+            "match": 3,
+            "resultText": "有人掉线了！服务器把他踢出去了",
+            "nextNode": "chapter1_node69"
+          },
+          {
+            "optionText": "服务器爆了",
+            "match": 4,
+            "resultText": "哈哈，你服务器爆喽！全员强制下线",
+            "nextNode": "chapter1_node69"
+          },
+          {
+            "optionText": "有两人关系变好",
+            "match": [
+              5,
+              6
+            ],
+            "resultText": "不愧是国一黑骑，就连打日随都是机制铁人！黑骑和武士互相欣赏，关系变好了",
+            "nextNode": "chapter1_node69"
+          },
+          {
+            "optionText": "什么事都没有",
+            "match": [
+              7,
+              10
+            ],
+            "resultText": "大家打得风平浪静，什么事都没发生",
+            "nextNode": "chapter1_node69"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node69",
+    "title": "黑骑与武士的关系变化",
+    "content": "黑骑和武士在团随中互相欣赏，强者之间会互相吸引！\n他们的关系变得有多好呢？（0-100，数字越高越亲密）\n武士对黑骑的好感：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "武士对黑骑好感判定",
+        "diceRequired": 100,
+        "outcomes": [
+          {
+            "optionText": "仅是觉得对方是可靠的队友（1-30）",
+            "match": [
+              1,
+              30
+            ],
+            "resultText": "武士觉得黑骑是个可以依赖的队友，仅此而已",
+            "nextNode": "chapter1_node70"
+          },
+          {
+            "optionText": "开始欣赏黑骑（31-70）",
+            "match": [
+              31,
+              70
+            ],
+            "resultText": "武士对黑骑颇为欣赏，希望能和他多交流",
+            "nextNode": "chapter1_node70"
+          },
+          {
+            "optionText": "非常喜欢（71-100）",
+            "match": [
+              71,
+              100
+            ],
+            "resultText": "武士对黑骑产生了浓厚的好感！",
+            "nextNode": "chapter1_node70"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node70",
+    "title": "黑骑对武士的感情",
+    "content": "DK对武士：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "黑骑对武士好感判定",
+        "diceRequired": 100,
+        "outcomes": [
+          {
+            "optionText": "刮目相看（1-50）",
+            "match": [
+              1,
+              50
+            ],
+            "resultText": "黑骑对武士在团随中的表现刮目相看，觉得他是个可靠的队友",
+            "nextNode": "chapter1_node71"
+          },
+          {
+            "optionText": "颇为欣赏（51-100）",
+            "match": [
+              51,
+              100
+            ],
+            "resultText": "黑骑觉得武士是个难得一见的强力输出，有些想和他深交",
+            "nextNode": "chapter1_node71"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node71",
+    "title": "日随分组——高随低随",
+    "content": "六人团随打完，接下来该分成两个三人小队去打高随低随5678了！\n那么谁和龙骑一个队呢？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "分组判定",
+        "diceRequired": 5,
+        "outcomes": [
+          {
+            "optionText": "黑骑与龙骑同队",
+            "match": 1,
+            "resultText": "黑骑和龙骑分到了同一队",
+            "nextNode": "chapter1_node72"
+          },
+          {
+            "optionText": "白魔与龙骑同队",
+            "match": 2,
+            "resultText": "白魔和龙骑分到了同一队",
+            "nextNode": "chapter1_node72"
+          },
+          {
+            "optionText": "贤者与龙骑同队",
+            "match": 3,
+            "resultText": "贤者和龙骑分到了同一队",
+            "nextNode": "chapter1_node72"
+          },
+          {
+            "optionText": "武士与龙骑同队",
+            "match": 4,
+            "resultText": "哎呀！龙骑和武士分到一队了！",
+            "nextNode": "chapter1_node72"
+          },
+          {
+            "optionText": "黑魔与龙骑同队",
+            "match": 5,
+            "resultText": "黑魔和龙骑分到了同一队",
+            "nextNode": "chapter1_node72"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node72",
+    "title": "龙骑想要二人世界",
+    "content": "哎呀！龙骑和武士分到一队了！\n看着武士帅气的模型站在自己身边，龙骑心跳加速……\n要不要让其他四个人去另一队，和武士来个二人世界？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "要不要二人世界",
+        "diceRequired": 2,
+        "outcomes": [
+          {
+            "optionText": "来！二人世界！",
+            "match": 1,
+            "resultText": "龙骑鼓起勇气，把另外四人打发走，就要和武士二人世界！",
+            "nextNode": null
+          },
+          {
+            "optionText": "算了，好尴尬",
+            "match": 2,
+            "resultText": "龙骑想想还是太尴尬了，决定再叫一个人来缓解气氛",
+            "nextNode": "chapter1_node73"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node73",
+    "title": "再拉一个人进组",
+    "content": "好尴尬，龙骑还是决定再找一个人来，不然和武士两个人太别扭了！\n再拉谁进来？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "拉人判定",
+        "diceRequired": 4,
+        "outcomes": [
+          {
+            "optionText": "拉黑骑",
+            "match": 1,
+            "resultText": "黑骑加入了龙骑和武士的小队",
+            "nextNode": "chapter1_node74"
+          },
+          {
+            "optionText": "拉白魔",
+            "match": 2,
+            "resultText": "白魔：我们有两个奶妈，我来和你们一起吧！白魔加入了龙骑武士队",
+            "nextNode": "chapter1_node74"
+          },
+          {
+            "optionText": "拉贤者",
+            "match": 3,
+            "resultText": "贤者加入了龙骑和武士的小队",
+            "nextNode": "chapter1_node74"
+          },
+          {
+            "optionText": "拉黑魔",
+            "match": 4,
+            "resultText": "黑魔加入了龙骑和武士的小队",
+            "nextNode": "chapter1_node74"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node74",
+    "title": "龙骑队高随中发生的事",
+    "content": "龙骑这边，三人排高随时有没有发生什么有趣的事情呢？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "高随事件判定",
+        "diceRequired": 10,
+        "outcomes": [
+          {
+            "optionText": "有人表现不佳",
+            "match": 1,
+            "resultText": "有人在野队里拉了，被野人点名批评",
+            "nextNode": "chapter1_node75"
+          },
+          {
+            "optionText": "与野人发生冲突",
+            "match": 2,
+            "resultText": "有人和野队队友发生了冲突",
+            "nextNode": "chapter1_node75"
+          },
+          {
+            "optionText": "白魔9002了！",
+            "match": 3,
+            "resultText": "没想到白魔直接9002了！6.05刚开没几天，又是刚清完CD的晚上11点，排队人数4位数，除了把白魔踢了别无选择……龙骑和武士就这样意外地拥有了二人世界",
+            "nextNode": "chapter1_node75"
+          },
+          {
+            "optionText": "服务器爆了",
+            "match": 4,
+            "resultText": "哈哈，你服务器爆喽！全员强制下线",
+            "nextNode": "chapter1_node75"
+          },
+          {
+            "optionText": "有两人关系变好",
+            "match": [
+              5,
+              6
+            ],
+            "resultText": "同队的两人关系变好了",
+            "nextNode": "chapter1_node75"
+          },
+          {
+            "optionText": "什么事都没有",
+            "match": [
+              7,
+              10
+            ],
+            "resultText": "大家打得风平浪静，什么事都没发生",
+            "nextNode": "chapter1_node75"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node75",
+    "title": "龙骑对武士的心动",
+    "content": "白魔9002，龙骑和武士意外拥有了二人世界。\n在等待补位奶妈的时候，龙骑悄悄用余光打量身边的武士，对方穿着鲜红的90校服，以备战的姿势挂机，看上去格外英俊潇洒。\n龙骑要不要把自己的心意告诉武士？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "龙骑的抉择",
+        "diceRequired": 10,
+        "outcomes": [
+          {
+            "optionText": "鼓起勇气表白！（10）",
+            "match": 10,
+            "resultText": "龙骑深吸一口气，鼓起了全部的勇气……",
+            "nextNode": "chapter1_node76"
+          },
+          {
+            "optionText": "还是算了……（1-9）",
+            "match": [
+              1,
+              9
+            ],
+            "resultText": "龙骑最终还是把话咽了回去，默默低下头，心想下次吧……",
+            "nextNode": "chapter1_node76"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node76",
+    "title": "龙骑队日随结束",
+    "content": "日随就这样结束了。\n今天发生了那么多事，队里的关系也更加错综复杂……\n固定队的故事还在继续。",
+    "type": "text",
+    "choices": [
+      {
+        "text": "继续",
+        "nextNode": "chapter1_node77"
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node77",
+    "title": "第二天——P2S开荒",
+    "content": "第二天，固定队相约一起开荒P2S！\n组队时有没有发生什么状况呢？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "开荒前状况判定",
+        "diceRequired": 10,
+        "outcomes": [
+          {
+            "optionText": "有人迟到了",
+            "match": 1,
+            "resultText": "有人迟到了，大家在副本门口苦等……",
+            "nextNode": "chapter1_node78"
+          },
+          {
+            "optionText": "有人咕了",
+            "match": 2,
+            "resultText": "有人临时放鸽子，大家需要临时找人顶替",
+            "nextNode": "chapter1_node78"
+          },
+          {
+            "optionText": "有人刚吃了封印",
+            "match": 3,
+            "resultText": "有人刚吃了封印！临时上班前还去打了日随……",
+            "nextNode": "chapter1_node78"
+          },
+          {
+            "optionText": "有人还没看攻略",
+            "match": 4,
+            "resultText": "有人承认自己还没看P2S攻略，全队沉默",
+            "nextNode": "chapter1_node78"
+          },
+          {
+            "optionText": "有人出了意外",
+            "match": 5,
+            "resultText": "有人临时出了意外，今天的开荒时间要压缩",
+            "nextNode": "chapter1_node78"
+          },
+          {
+            "optionText": "一切正常！",
+            "match": [
+              6,
+              10
+            ],
+            "resultText": "一切正常！大家准时到齐，精神满满地进本！",
+            "nextNode": "chapter1_node78"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node78",
+    "title": "忍者刚吃了封印！",
+    "content": "忍者刚吃了封印……\n临固定队开荒还去打了冬瓜堡腿，给自己整了个封印！\n有没有人站在道德高地上质问忍者呢？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "质问判定",
+        "diceRequired": 100,
+        "outcomes": [
+          {
+            "optionText": "龙骑跳出来质问（<50）",
+            "match": [
+              1,
+              49
+            ],
+            "resultText": "龙骑作为队长非常生气，直接跳出来质问忍者：临开荒了你去打个主随干嘛！",
+            "nextNode": "chapter1_node79"
+          },
+          {
+            "optionText": "没人说话（>=50）",
+            "match": [
+              50,
+              100
+            ],
+            "resultText": "大家面面相觑，没人开口，气氛略显尴尬",
+            "nextNode": "chapter1_node79"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node79",
+    "title": "忍者的反应",
+    "content": "龙骑和枪刃、诗人跳出来一唱一和，质问忍者怎么临开荒了还去打主随。\n忍者怎么回应呢？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "忍者反应判定",
+        "diceRequired": 10,
+        "outcomes": [
+          {
+            "optionText": "诚心认错（1-6）",
+            "match": [
+              1,
+              6
+            ],
+            "resultText": "忍者连声道歉，说下次绝对不会了",
+            "nextNode": "chapter1_node80"
+          },
+          {
+            "optionText": "认错但不满（7-9）",
+            "match": [
+              7,
+              9
+            ],
+            "resultText": "忍者认了错，但觉得龙骑不替自己说话，心里有些不满",
+            "nextNode": "chapter1_node80"
+          },
+          {
+            "optionText": "我输出最高等我一会怎么了！（10）",
+            "match": 10,
+            "resultText": "忍者大言不惭：我输出最高，等我一会怎么了！全队震惊",
+            "nextNode": "chapter1_node80"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node80",
+    "title": "龙骑的反应",
+    "content": "忍者的回答让全场目瞪口呆……\n龙骑怎么处理这个情况？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "龙骑反应判定",
+        "diceRequired": 10,
+        "outcomes": [
+          {
+            "optionText": "这CP当不下去了（1）",
+            "match": 1,
+            "resultText": "龙骑气到发抖，觉得这CP没法处了",
+            "nextNode": "chapter1_node81"
+          },
+          {
+            "optionText": "非常生气但忍了（2-9）",
+            "match": [
+              2,
+              9
+            ],
+            "resultText": "龙骑被气到了，但身为队长只能强压火气，说了句下不为例",
+            "nextNode": "chapter1_node81"
+          },
+          {
+            "optionText": "你说的太对了！（10）",
+            "match": 10,
+            "resultText": "龙骑破功大笑：你说得对，谁让你打这么高呢！",
+            "nextNode": "chapter1_node81"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node81",
+    "title": "有人出来当和事佬吗",
+    "content": "矛盾一触即发，关键时刻有人来当和事佬吗？\n（不满值越高，越不想出来劝）\n枪刃出来劝架了！诗人也出来了！黑魔也不想看大家吵架……\n三人合力劝架，大家总算勉强消了气。",
+    "type": "text",
+    "choices": [
+      {
+        "text": "继续开荒",
+        "nextNode": "chapter1_node82"
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node82",
+    "title": "P2S开荒——进本！",
+    "content": "矛盾暂时平息，大家终于进入了P2S！\n第一次尝试，大家看攻略研究第一个大机制：黑炎分摊。\n各人对黑炎机制的理解程度判定（>110为掌握）：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "黑炎理解判定",
+        "diceRequired": 100,
+        "outcomes": [
+          {
+            "optionText": "全员掌握！",
+            "match": [
+              80,
+              100
+            ],
+            "resultText": "大家都看懂了黑炎机制，信心满满！",
+            "nextNode": "chapter1_node83"
+          },
+          {
+            "optionText": "大部分掌握",
+            "match": [
+              40,
+              79
+            ],
+            "resultText": "大多数人看懂了，有1-2人还有些懵",
+            "nextNode": "chapter1_node83"
+          },
+          {
+            "optionText": "有人完全没看懂",
+            "match": [
+              1,
+              39
+            ],
+            "resultText": "有人坦白说没看懂……大家耐心讲解了一遍",
+            "nextNode": "chapter1_node83"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node83",
+    "title": "第一次黑炎挑战",
+    "content": "第一次尝试黑炎分摊机制！\n各人表现判定（>110为成功，首次基础值）：\n黑骑(100)、枪刃(77)、白魔(85)、贤者(61)、龙骑(62)、武士(74)、诗人(30)、黑魔(37)",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "首次黑炎挑战",
+        "diceRequired": 100,
+        "outcomes": [
+          {
+            "optionText": "全员完美通过！",
+            "match": [
+              90,
+              100
+            ],
+            "resultText": "全员完美通过！大家欢呼雀跃！",
+            "nextNode": "chapter1_node84"
+          },
+          {
+            "optionText": "大部分成功，小问题",
+            "match": [
+              50,
+              89
+            ],
+            "resultText": "大部分人过了，出了点小问题但没有团灭",
+            "nextNode": "chapter1_node84"
+          },
+          {
+            "optionText": "有人站错位置，团灭！",
+            "match": [
+              1,
+              49
+            ],
+            "resultText": "有人搞混了自己的点名，和别人撞在一起，全员吃炸——团灭了！",
+            "nextNode": "chapter1_node84"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node84",
+    "title": "第一次团灭——不要灰心",
+    "content": "果然一把过什么的太天真了！\n龙骑和黑魔都看错了头上的麻将点名——头上的称号遮住了下面的两点，龙骑把自己的3点名看成了1……\n屏幕一黑，大家又站回了副本起始点。",
+    "type": "text",
+    "choices": [
+      {
+        "text": "继续",
+        "nextNode": "chapter1_node85"
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node85",
+    "title": "黑骑要不要传授经验",
+    "content": "此时，黑骑就算闭着眼都能把黑炎这个机制过了……\n他有没有站出来给大家传授经验呢？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "黑骑的选择",
+        "diceRequired": 2,
+        "outcomes": [
+          {
+            "optionText": "默默不说话，再打一把",
+            "match": 1,
+            "resultText": "黑骑不是话多的人。开荒时灭一两把机制很正常，这时候跳出来指指点点太秀优越感了。他默默闭上嘴，开启了下一次倒计时",
+            "nextNode": "chapter1_node86"
+          },
+          {
+            "optionText": "简单说了一下要注意什么",
+            "match": 2,
+            "resultText": "黑骑简单说了一下黑炎机制的注意事项，大家若有所思地点了点头",
+            "nextNode": "chapter1_node86"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node86",
+    "title": "第二次黑炎挑战",
+    "content": "第二次尝试！熟练度+10，大家重整旗鼓再来！\n这次虽然黑火和点名都没出错，但是诗人却没有集火左侧的黑炎……\n黑火读条结束，直接给全员炸了一层伤害降低，两个奶妈头躺地上了。\n长痛不如短痛，大家直奔场外的火圈。",
+    "type": "text",
+    "choices": [
+      {
+        "text": "继续",
+        "nextNode": "chapter1_node87"
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node87",
+    "title": "要不要休息10分钟",
+    "content": "大家的状态如此之差，要不要休息10分钟呢？\n1 休息（黑炎熟练度不增加，下一次判定d100变为d120）\n2 休个der，这才哪到哪（黑炎熟练度增加，下一次判定d100变为d80）",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "要不要休息",
+        "diceRequired": 2,
+        "outcomes": [
+          {
+            "optionText": "休息10分钟",
+            "match": 1,
+            "resultText": "大家决定休息一会，调整一下状态",
+            "nextNode": "chapter1_node88"
+          },
+          {
+            "optionText": "趁热打铁继续！",
+            "match": 2,
+            "resultText": "龙骑压下了提议休息的想法，与其摸一会不如趁热打铁！",
+            "nextNode": "chapter1_node88"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node88",
+    "title": "第三次黑炎挑战——趁热打铁",
+    "content": "龙骑决定继续！趁热打铁，休息10分钟回来又全都忘了！\n第三次尝试，熟练度继续增加（d80判定）：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "第三次黑炎判定",
+        "diceRequired": 100,
+        "outcomes": [
+          {
+            "optionText": "全员通过！（高分）",
+            "match": [
+              70,
+              100
+            ],
+            "resultText": "这次每个人都完美地完成了黑炎分摊！大家欢声雷动！",
+            "nextNode": "chapter1_node89"
+          },
+          {
+            "optionText": "仍有失误，再来一次",
+            "match": [
+              1,
+              69
+            ],
+            "resultText": "又有人出现失误……不过大家已经越来越熟悉了",
+            "nextNode": "chapter1_node89"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node89",
+    "title": "P2S第一阶段通关了吗",
+    "content": "经过多次尝试，黑炎机制越来越熟练了！\n今天能通过P2S第一阶段吗？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "通关判定",
+        "diceRequired": 6,
+        "outcomes": [
+          {
+            "optionText": "通关了！",
+            "match": [
+              5,
+              6
+            ],
+            "resultText": "耶！第一阶段顺利通关！大家互相鼓励，士气高涨！",
+            "nextNode": "chapter1_node90"
+          },
+          {
+            "optionText": "差一点……",
+            "match": [
+              3,
+              4
+            ],
+            "resultText": "距离通关只差一点点，boss的血快见底了却还是翻车了……",
+            "nextNode": "chapter1_node90"
+          },
+          {
+            "optionText": "今天搞不定了",
+            "match": [
+              1,
+              2
+            ],
+            "resultText": "今天的状态实在太差，大家决定收工，明天再来",
+            "nextNode": "chapter1_node90"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node90",
+    "title": "今日开荒结束",
+    "content": "今天的P2S开荒时间到了。\n不管结果如何，大家都尽力了！\n今日收荒后，队员们的心情怎么样？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "心情判定",
+        "diceRequired": 3,
+        "outcomes": [
+          {
+            "optionText": "大家都很开心",
+            "match": 3,
+            "resultText": "虽然没有通关，但大家觉得很有进步，心情不错",
+            "nextNode": "chapter1_node91"
+          },
+          {
+            "optionText": "有人情绪低落",
+            "match": [
+              1,
+              2
+            ],
+            "resultText": "有人因为今天的失误心情低落，独自离线了",
+            "nextNode": "chapter1_node91"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node91",
+    "title": "收荒后——有人在线下聊天吗",
+    "content": "收荒之后，有没有人在线下继续和队友聊天呢？\n（枪刃和诗人和好了吗？冷战的两人现在怎么样了？）\n枪刃和诗人的冷战是否结束：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "枪刃诗人冷战是否结束",
+        "diceRequired": 6,
+        "outcomes": [
+          {
+            "optionText": "还在冷战",
+            "match": [
+              1,
+              3
+            ],
+            "resultText": "两人还在冷战中，谁也没有先开口……",
+            "nextNode": "chapter1_node92"
+          },
+          {
+            "optionText": "诗人主动和好了",
+            "match": [
+              4,
+              5
+            ],
+            "resultText": "诗人鼓起勇气，主动给枪刃发了消息，两人终于和解了",
+            "nextNode": "chapter1_node92"
+          },
+          {
+            "optionText": "枪刃先开口了",
+            "match": 6,
+            "resultText": "枪刃终于忍不住先开口，两人重新和好了，感情更进一步",
+            "nextNode": "chapter1_node92"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node92",
+    "title": "黑骑的考研压力",
+    "content": "P2S开荒的同时，黑骑还面临着一件大事——他要备考研究生！\n这段时间，考研压力有没有影响到他的游戏状态？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "黑骑考研状态判定",
+        "diceRequired": 6,
+        "outcomes": [
+          {
+            "optionText": "完全没影响，稳如老狗",
+            "match": [
+              5,
+              6
+            ],
+            "resultText": "黑骑依然稳如泰山，考研压力对他的游戏表现毫无影响",
+            "nextNode": "chapter1_node93"
+          },
+          {
+            "optionText": "偶尔状态差一点",
+            "match": [
+              3,
+              4
+            ],
+            "resultText": "黑骑偶尔会有些走神，但总体还算正常",
+            "nextNode": "chapter1_node93"
+          },
+          {
+            "optionText": "明显有些心不在焉",
+            "match": [
+              1,
+              2
+            ],
+            "resultText": "黑骑今天状态不太好，看上去有些心事",
+            "nextNode": "chapter1_node93"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node93",
+    "title": "有没有人关心黑骑的考研",
+    "content": "有没有人注意到黑骑在备考，并关心了他一下呢？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "关心判定",
+        "diceRequired": 4,
+        "outcomes": [
+          {
+            "optionText": "枪刃关心了",
+            "match": 1,
+            "resultText": "枪刃发了条消息问黑骑考研准备得怎么样了",
+            "nextNode": "chapter1_node94"
+          },
+          {
+            "optionText": "龙骑关心了",
+            "match": 2,
+            "resultText": "龙骑作为队长，专门找黑骑聊了聊，让他不要有压力",
+            "nextNode": "chapter1_node94"
+          },
+          {
+            "optionText": "没人提",
+            "match": [
+              3,
+              4
+            ],
+            "resultText": "大家默契地没有提这件事，各自专注于开荒",
+            "nextNode": "chapter1_node94"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node94",
+    "title": "贤者的异动——关注黑魔",
+    "content": "另一边，贤者最近总是有意无意地关注着黑魔……\n黑魔作为队里的资深舔狗，一直默默暗恋着贤者，但贤者是否察觉了呢？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "贤者是否察觉黑魔的好感",
+        "diceRequired": 6,
+        "outcomes": [
+          {
+            "optionText": "完全没察觉",
+            "match": [
+              1,
+              2
+            ],
+            "resultText": "贤者浑然不觉，依然把黑魔当普通队友",
+            "nextNode": "chapter1_node95"
+          },
+          {
+            "optionText": "有点察觉但装没看见",
+            "match": [
+              3,
+              4
+            ],
+            "resultText": "贤者好像感觉到了什么，但选择不点破",
+            "nextNode": "chapter1_node95"
+          },
+          {
+            "optionText": "察觉到了，内心有些波动",
+            "match": [
+              5,
+              6
+            ],
+            "resultText": "贤者察觉到了黑魔的心意，内心有些说不清的感觉",
+            "nextNode": "chapter1_node95"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node95",
+    "title": "黑魔的舔狗时刻",
+    "content": "黑魔每次只要贤者在线，都会主动和他说话……\n这次，黑魔又做了什么令贤者印象深刻的事情吗？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "黑魔行动判定",
+        "diceRequired": 4,
+        "outcomes": [
+          {
+            "optionText": "帮贤者做了一件事",
+            "match": 1,
+            "resultText": "黑魔主动帮贤者完成了一个麻烦的任务，贤者道了声谢",
+            "nextNode": "chapter1_node96"
+          },
+          {
+            "optionText": "送了贤者一个小礼物",
+            "match": 2,
+            "resultText": "黑魔给贤者发了一个游戏内的小道具，说是不需要的",
+            "nextNode": "chapter1_node96"
+          },
+          {
+            "optionText": "陪贤者打了很久",
+            "match": 3,
+            "resultText": "黑魔陪着贤者打了好几个小时的日随，任劳任怨",
+            "nextNode": "chapter1_node96"
+          },
+          {
+            "optionText": "什么都没做，只是刷刷存在感",
+            "match": 4,
+            "resultText": "黑魔就是在频道里说了几句话，刷了刷存在感",
+            "nextNode": "chapter1_node96"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node96",
+    "title": "贤者对黑魔的态度变化",
+    "content": "黑魔的一系列行动，有没有让贤者的态度发生变化？\n（0-100，数值越高越有好感）\n贤者对黑魔的好感度变化：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "贤者好感变化判定",
+        "diceRequired": 100,
+        "outcomes": [
+          {
+            "optionText": "好感微增（1-30）",
+            "match": [
+              1,
+              30
+            ],
+            "resultText": "贤者觉得黑魔人挺好的，但也仅限于此了",
+            "nextNode": "chapter1_node97"
+          },
+          {
+            "optionText": "开始放在心上（31-70）",
+            "match": [
+              31,
+              70
+            ],
+            "resultText": "贤者开始稍微在意黑魔了，有时候会主动找他说话",
+            "nextNode": "chapter1_node97"
+          },
+          {
+            "optionText": "心动了？（71-100）",
+            "match": [
+              71,
+              100
+            ],
+            "resultText": "贤者发现自己竟然会期待黑魔上线……这是怎么了？",
+            "nextNode": "chapter1_node97"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node97",
+    "title": "P2S继续开荒——第四次黑炎挑战",
+    "content": "又到了P2S开荒时间！\n经过上次的练习，大家对黑炎机制的掌握越来越好了。\n今天的黑炎还会出问题吗？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "今日黑炎判定",
+        "diceRequired": 6,
+        "outcomes": [
+          {
+            "optionText": "全员完美通过！",
+            "match": [
+              5,
+              6
+            ],
+            "resultText": "哇！所有人都顺利通过了黑炎！大家都进步了！",
+            "nextNode": "chapter1_node98"
+          },
+          {
+            "optionText": "通过但有小失误",
+            "match": [
+              3,
+              4
+            ],
+            "resultText": "通过了，不过有人差点走位走错，险险过关",
+            "nextNode": "chapter1_node98"
+          },
+          {
+            "optionText": "又团灭了……",
+            "match": [
+              1,
+              2
+            ],
+            "resultText": "唉，又有人出了问题，再来一次！",
+            "nextNode": "chapter1_node98"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node98",
+    "title": "P2S——波浪机制",
+    "content": "过了黑炎，接下来是P2S的另一个经典机制：波浪！\n每个人站在对应的格子里，随着节奏移动……\n大家第一次接触波浪机制时表现如何？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "波浪机制判定",
+        "diceRequired": 10,
+        "outcomes": [
+          {
+            "optionText": "全员顺利过了！",
+            "match": [
+              9,
+              10
+            ],
+            "resultText": "全员完美通过波浪！这个机制相比黑炎容易多了！",
+            "nextNode": "chapter1_node99"
+          },
+          {
+            "optionText": "大部分人过了",
+            "match": [
+              5,
+              8
+            ],
+            "resultText": "大多数人过了波浪，有1-2人差了一拍",
+            "nextNode": "chapter1_node99"
+          },
+          {
+            "optionText": "节奏乱了，团灭",
+            "match": [
+              1,
+              4
+            ],
+            "resultText": "波浪的节奏乱掉了，互相撞在一起，又是一次团灭",
+            "nextNode": "chapter1_node99"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node99",
+    "title": "今日P2S进度",
+    "content": "经过今天一下午的开荒，队伍取得了不少进展！\n今天能打穿第一阶段吗？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "今日进度判定",
+        "diceRequired": 6,
+        "outcomes": [
+          {
+            "optionText": "第一阶段通关！",
+            "match": [
+              5,
+              6
+            ],
+            "resultText": "第一阶段通关！大家欢呼雀跃，互相发了好多表情包庆祝！",
+            "nextNode": "chapter1_node100"
+          },
+          {
+            "optionText": "卡在了第一阶段末",
+            "match": [
+              3,
+              4
+            ],
+            "resultText": "打到了第一阶段最后的boss，快了，明天肯定过！",
+            "nextNode": "chapter1_node100"
+          },
+          {
+            "optionText": "还在练习机制",
+            "match": [
+              1,
+              2
+            ],
+            "resultText": "今天主要练了机制，还没打到boss，下次见",
+            "nextNode": "chapter1_node100"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node100",
+    "title": "收荒后——龙骑约武士单独玩",
+    "content": "收荒之后，龙骑鼓起了勇气，悄悄发私信约了武士单独出来玩……\n武士答应了吗？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "武士的回应",
+        "diceRequired": 6,
+        "outcomes": [
+          {
+            "optionText": "武士爽快答应了",
+            "match": [
+              5,
+              6
+            ],
+            "resultText": "武士说好啊，要去哪里？龙骑心跳加速！",
+            "nextNode": "chapter1_node101"
+          },
+          {
+            "optionText": "武士说好但要等等",
+            "match": [
+              3,
+              4
+            ],
+            "resultText": "武士说现在手头有点事，过会儿再说，龙骑耐心等待",
+            "nextNode": "chapter1_node101"
+          },
+          {
+            "optionText": "武士没有注意到消息",
+            "match": [
+              1,
+              2
+            ],
+            "resultText": "武士很久没有回复……龙骑盯着对话框发呆",
+            "nextNode": "chapter1_node101"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node101",
+    "title": "龙骑和武士单独玩了什么",
+    "content": "龙骑和武士单独约出来了！\n他们做了什么呢？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "活动内容判定",
+        "diceRequired": 4,
+        "outcomes": [
+          {
+            "optionText": "去打了日随",
+            "match": 1,
+            "resultText": "两人一起打了几个日随，武士的战斗风格让龙骑看了心旷神怡",
+            "nextNode": "chapter1_node102"
+          },
+          {
+            "optionText": "在城镇里闲逛",
+            "match": 2,
+            "resultText": "两人在城镇里悠闲地逛了一圈，聊了很多",
+            "nextNode": "chapter1_node102"
+          },
+          {
+            "optionText": "去看了游戏内的景色",
+            "match": 3,
+            "resultText": "龙骑带武士去看了一个绝美的游戏内景点，两人并肩站在高处望向远方",
+            "nextNode": "chapter1_node102"
+          },
+          {
+            "optionText": "一起种菜（雇佣玩法）",
+            "match": 4,
+            "resultText": "龙骑被武士拉着一起种地……这也太接地气了，但龙骑莫名觉得很开心",
+            "nextNode": "chapter1_node102"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node102",
+    "title": "这次约会的气氛如何",
+    "content": "这次两人单独相处，气氛如何？\n龙骑有没有感觉到一丝温度的变化……",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "气氛判定",
+        "diceRequired": 10,
+        "outcomes": [
+          {
+            "optionText": "气氛尴尬，两人说话很少",
+            "match": [
+              1,
+              3
+            ],
+            "resultText": "两人不熟，说话很少，气氛有些干燥，龙骑内心焦虑",
+            "nextNode": "chapter1_node103"
+          },
+          {
+            "optionText": "气氛还不错，聊得挺开心",
+            "match": [
+              4,
+              7
+            ],
+            "resultText": "两人聊了不少，武士偶尔还开了个玩笑，龙骑笑得很开心",
+            "nextNode": "chapter1_node103"
+          },
+          {
+            "optionText": "气氛很好，有些心动的感觉",
+            "match": [
+              8,
+              10
+            ],
+            "resultText": "气氛极好，武士说的某句话让龙骑的心跳漏了一拍……",
+            "nextNode": "chapter1_node103"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node103",
+    "title": "武士对龙骑的印象",
+    "content": "这次约会之后，武士对龙骑的印象发生了变化吗？\n武士对龙骑的好感度：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "武士好感判定",
+        "diceRequired": 100,
+        "outcomes": [
+          {
+            "optionText": "印象无明显变化（1-30）",
+            "match": [
+              1,
+              30
+            ],
+            "resultText": "武士觉得龙骑是个挺好的队长，印象大体如此",
+            "nextNode": "chapter1_node104"
+          },
+          {
+            "optionText": "觉得龙骑挺有趣的（31-70）",
+            "match": [
+              31,
+              70
+            ],
+            "resultText": "武士开始觉得龙骑这个人挺有意思的，喜欢和她说话",
+            "nextNode": "chapter1_node104"
+          },
+          {
+            "optionText": "有些在意了（71-100）",
+            "match": [
+              71,
+              100
+            ],
+            "resultText": "武士发现自己最近总是想起龙骑说的话……这是怎么了？",
+            "nextNode": "chapter1_node104"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node104",
+    "title": "诗人的烦恼",
+    "content": "另一边，诗人这阵子有些心神不宁……\n白魔在团建时说出的那件事，已经有多少人知道了？\n诗人焦虑地等待着，枪刃有没有问起这件事呢？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "枪刃是否问起",
+        "diceRequired": 6,
+        "outcomes": [
+          {
+            "optionText": "枪刃完全没提",
+            "match": [
+              5,
+              6
+            ],
+            "resultText": "枪刃一字未提，仿佛什么都没发生，诗人松了口气……但也不知该如何是好",
+            "nextNode": "chapter1_node105"
+          },
+          {
+            "optionText": "枪刃含糊地提了一句",
+            "match": [
+              3,
+              4
+            ],
+            "resultText": "枪刃随口说了一句「那件事……没关系的」，然后换了话题",
+            "nextNode": "chapter1_node105"
+          },
+          {
+            "optionText": "枪刃认真地问了诗人",
+            "match": [
+              1,
+              2
+            ],
+            "resultText": "枪刃认真地问了诗人那件事的来龙去脉，两人进行了一次深入的谈话",
+            "nextNode": "chapter1_node105"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node105",
+    "title": "诗人和枪刃的感情走向",
+    "content": "经历了冷战、团建风波和P2S开荒，诗人和枪刃的关系现在如何了？\n（0-100，数字越大越亲密）\n诗人对枪刃的感情：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "诗人对枪刃好感判定",
+        "diceRequired": 100,
+        "outcomes": [
+          {
+            "optionText": "裂痕还在（1-30）",
+            "match": [
+              1,
+              30
+            ],
+            "resultText": "那次冷战留下的裂痕还没有完全愈合，两人之间有些隔阂",
+            "nextNode": "chapter1_node106"
+          },
+          {
+            "optionText": "慢慢好转（31-70）",
+            "match": [
+              31,
+              70
+            ],
+            "resultText": "两人的关系在慢慢好转，偶尔会一起说说笑笑",
+            "nextNode": "chapter1_node106"
+          },
+          {
+            "optionText": "比以前更亲密了（71-100）",
+            "match": [
+              71,
+              100
+            ],
+            "resultText": "经历了风波之后，两人的感情反而更深了，枪刃更加珍视诗人",
+            "nextNode": "chapter1_node106"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node106",
+    "title": "本周的故事到这里告一段落",
+    "content": "这一周，队里发生了太多事情——\n装备分配的博弈、RP店团建的插曲、白魔泄露的秘密、日随中萌生的情愫、P2S黑炎机制的反复磨练……\n每个人都在这个固定队里，悄悄发生着自己的故事。\n下周的故事，又将如何发展呢？",
+    "type": "text",
+    "choices": [
+      {
+        "text": "继续……",
+        "nextNode": "chapter1_node107"
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node107",
+    "title": "P2S终于通关了！",
+    "content": "经过数天的磨练，这一天终于到来——\n全体八人整整齐齐地站在P2S副本门口，今天，要过本！\n今天的状态如何？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "开荒状态判定",
+        "diceRequired": 6,
+        "outcomes": [
+          {
+            "optionText": "状态极佳！",
+            "match": [
+              5,
+              6
+            ],
+            "resultText": "今天大家的状态出奇地好，一进门就感觉今天要过！",
+            "nextNode": "chapter1_node108"
+          },
+          {
+            "optionText": "状态一般",
+            "match": [
+              3,
+              4
+            ],
+            "resultText": "大家有点紧张，但也有些兴奋，摩拳擦掌",
+            "nextNode": "chapter1_node108"
+          },
+          {
+            "optionText": "有人状态不好",
+            "match": [
+              1,
+              2
+            ],
+            "resultText": "有人今天明显有些心不在焉，让龙骑有些担心",
+            "nextNode": "chapter1_node108"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node108",
+    "title": "P2S黑炎机制——今日最终挑战",
+    "content": "进本！黑炎来了！这次所有人都已经练习了很多遍……\n今日黑炎机制能否完美通过？\n（全员熟练度大幅提升，高分段才能保证全员通过）",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "终极黑炎判定",
+        "diceRequired": 10,
+        "outcomes": [
+          {
+            "optionText": "完美通过！全员零失误！",
+            "match": [
+              8,
+              10
+            ],
+            "resultText": "完美！所有人都站到了正确位置，黑炎机制完美解决！全队欢呼！",
+            "nextNode": "chapter1_node109"
+          },
+          {
+            "optionText": "通过了，但有险情",
+            "match": [
+              4,
+              7
+            ],
+            "resultText": "通过了！不过有人险险走到了错误位置，好在最终没出问题，大家捏了把汗",
+            "nextNode": "chapter1_node109"
+          },
+          {
+            "optionText": "又出问题了……",
+            "match": [
+              1,
+              3
+            ],
+            "resultText": "唉，又有人出了失误，不过没关系！拍拍尘土再来一次！",
+            "nextNode": "chapter1_node109"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node109",
+    "title": "P2S通关！",
+    "content": "经历了无数次团灭、无数次重来……\nBOSS倒下的那一刻，通关的音乐响起！\n八个人同时在频道里爆发出一声欢呼——\n「通关了！！！！」",
+    "type": "text",
+    "choices": [
+      {
+        "text": "庆祝！",
+        "nextNode": "chapter1_node110"
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node110",
+    "title": "通关后的第一反应",
+    "content": "P2S通关！大家第一时间都是什么反应呢？\n谁最激动？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "最激动的人判定",
+        "diceRequired": 8,
+        "outcomes": [
+          {
+            "optionText": "黑骑最激动",
+            "match": 1,
+            "resultText": "一向沉稳的黑骑也忍不住在频道里打了好多感叹号，难得的激动时刻！",
+            "nextNode": "chapter1_node111"
+          },
+          {
+            "optionText": "枪刃最激动",
+            "match": 2,
+            "resultText": "枪刃在语音里喊了出来，听起来真的很兴奋！",
+            "nextNode": "chapter1_node111"
+          },
+          {
+            "optionText": "白魔最激动",
+            "match": 3,
+            "resultText": "白魔在频道里打了一长串感叹号，声音都激动地变调了！",
+            "nextNode": "chapter1_node111"
+          },
+          {
+            "optionText": "贤者最激动",
+            "match": 4,
+            "resultText": "贤者平时不怎么表达情绪，这次却难得地连发好几条消息庆祝！",
+            "nextNode": "chapter1_node111"
+          },
+          {
+            "optionText": "龙骑最激动",
+            "match": 5,
+            "resultText": "龙骑作为队长，第一时间发出了一长段庆祝语，把大家的感动一网打尽！",
+            "nextNode": "chapter1_node111"
+          },
+          {
+            "optionText": "忍者最激动",
+            "match": 6,
+            "resultText": "忍者在语音里大喊了一声，声音响彻整个语音频道！",
+            "nextNode": "chapter1_node111"
+          },
+          {
+            "optionText": "诗人最激动",
+            "match": 7,
+            "resultText": "诗人在群里疯狂发了一堆表情包，嗨得不行！",
+            "nextNode": "chapter1_node111"
+          },
+          {
+            "optionText": "黑魔最激动",
+            "match": 8,
+            "resultText": "黑魔激动得语无伦次，连贤者都被他逗笑了！",
+            "nextNode": "chapter1_node111"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node111",
+    "title": "通关后——装备掉落了什么",
+    "content": "通关之后，boss掉落了宝箱！\n大家最期待的装备出来了吗？\n装备掉落判定：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "装备掉落判定",
+        "diceRequired": 6,
+        "outcomes": [
+          {
+            "optionText": "掉了很多好东西！",
+            "match": [
+              5,
+              6
+            ],
+            "resultText": "这波掉落非常好！大家该拿的都拿到了，皆大欢喜！",
+            "nextNode": "chapter1_node112"
+          },
+          {
+            "optionText": "掉落一般",
+            "match": [
+              3,
+              4
+            ],
+            "resultText": "掉落还行，有人拿到了想要的，有人没有，不过通关就够开心了！",
+            "nextNode": "chapter1_node112"
+          },
+          {
+            "optionText": "全是没人要的……",
+            "match": [
+              1,
+              2
+            ],
+            "resultText": "这波掉落有点惨，全是没人要的东西，大家哭笑不得",
+            "nextNode": "chapter1_node112"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node112",
+    "title": "通关庆祝——有没有一起庆祝",
+    "content": "P2S通关是大喜事！有没有人组织大家一起庆祝呢？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "庆祝方式判定",
+        "diceRequired": 4,
+        "outcomes": [
+          {
+            "optionText": "去打了庆功日随",
+            "match": 1,
+            "resultText": "大家决定去打几个庆功日随，顺势消化一下通关的喜悦",
+            "nextNode": "chapter1_node113"
+          },
+          {
+            "optionText": "去RP店二次庆祝",
+            "match": 2,
+            "resultText": "有人提议去RP店再次团建庆祝！",
+            "nextNode": "chapter1_node113"
+          },
+          {
+            "optionText": "各自散去，群里聊了很久",
+            "match": 3,
+            "resultText": "大家在群里聊了很久，分享通关截图和趣事，聊到深夜",
+            "nextNode": "chapter1_node113"
+          },
+          {
+            "optionText": "龙骑发了大红包！",
+            "match": 4,
+            "resultText": "龙骑作为队长，在群里发了一波大红包庆祝通关！",
+            "nextNode": "chapter1_node113"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node113",
+    "title": "黑魔通关后的心情",
+    "content": "通关了，开心是开心……\n但黑魔此刻心里还有另一种情绪——\n贤者好像在通关时感谢了他一句？还是他听错了？\n贤者有没有专门感谢黑魔：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "贤者感谢判定",
+        "diceRequired": 4,
+        "outcomes": [
+          {
+            "optionText": "贤者专门感谢了黑魔",
+            "match": [
+              3,
+              4
+            ],
+            "resultText": "贤者在私信里单独发消息谢谢黑魔这段时间的陪伴，黑魔心跳漏了一拍",
+            "nextNode": "chapter1_node114"
+          },
+          {
+            "optionText": "贤者没有专门说",
+            "match": [
+              1,
+              2
+            ],
+            "resultText": "贤者就是在群里一起说了谢谢大家，黑魔盯着屏幕看了很久那两个字",
+            "nextNode": "chapter1_node114"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node114",
+    "title": "黑魔要不要表白",
+    "content": "黑魔鼓捣着手机，犹豫了很久……\n要不要趁着通关的喜悦，向贤者表白？\n（1-9：算了，时机不对；10：鼓起勇气！）",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "黑魔的抉择",
+        "diceRequired": 10,
+        "outcomes": [
+          {
+            "optionText": "鼓起勇气表白！（10）",
+            "match": 10,
+            "resultText": "黑魔深吸一口气，打下了那几个字……发送！",
+            "nextNode": "chapter1_node115"
+          },
+          {
+            "optionText": "还是算了……（1-9）",
+            "match": [
+              1,
+              9
+            ],
+            "resultText": "黑魔把写好的消息又删掉了，算了，今天先这样吧……",
+            "nextNode": "chapter1_node115"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node115",
+    "title": "贤者的回应",
+    "content": "黑魔终于鼓起勇气，发出了那条消息……\n贤者的回应：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "贤者回应判定",
+        "diceRequired": 6,
+        "outcomes": [
+          {
+            "optionText": "贤者接受了！",
+            "match": [
+              5,
+              6
+            ],
+            "resultText": "贤者沉默了一会儿，然后回复说：「我也是……」黑魔激动得差点摔手机！",
+            "nextNode": "chapter1_node116"
+          },
+          {
+            "optionText": "贤者说：让我想想",
+            "match": [
+              3,
+              4
+            ],
+            "resultText": "贤者说：「你这个人啊……让我想想。」黑魔把手机放下，心跳如鼓",
+            "nextNode": "chapter1_node116"
+          },
+          {
+            "optionText": "贤者委婉拒绝了",
+            "match": [
+              1,
+              2
+            ],
+            "resultText": "贤者说：「我们现在还是队友……」黑魔看着屏幕上的字，心里空了一块",
+            "nextNode": "chapter1_node116"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node116",
+    "title": "枪刃的秘密",
+    "content": "另一边，枪刃似乎一直藏着一个秘密……\n诗人有没有发现枪刃的异样？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "诗人的观察",
+        "diceRequired": 6,
+        "outcomes": [
+          {
+            "optionText": "诗人完全没察觉",
+            "match": [
+              1,
+              2
+            ],
+            "resultText": "诗人沉浸在通关的喜悦里，完全没有注意到枪刃的异样",
+            "nextNode": "chapter1_node117"
+          },
+          {
+            "optionText": "诗人感觉有些不对",
+            "match": [
+              3,
+              4
+            ],
+            "resultText": "诗人隐约感觉枪刃最近有些心事，但不确定",
+            "nextNode": "chapter1_node117"
+          },
+          {
+            "optionText": "诗人直接问了枪刃",
+            "match": [
+              5,
+              6
+            ],
+            "resultText": "诗人直接问枪刃：「你最近是不是有什么事？」枪刃沉默了一秒",
+            "nextNode": "chapter1_node117"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node117",
+    "title": "枪刃的秘密是什么",
+    "content": "枪刃究竟藏着什么秘密呢？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "秘密内容判定",
+        "diceRequired": 5,
+        "outcomes": [
+          {
+            "optionText": "工作出了变故",
+            "match": 1,
+            "resultText": "枪刃的工作最近出了些麻烦，他一直没说，不想让大家担心",
+            "nextNode": "chapter1_node118"
+          },
+          {
+            "optionText": "现实里认识队里某人",
+            "match": 2,
+            "resultText": "枪刃其实在现实中认识队里的某个人，但一直没说出来……",
+            "nextNode": "chapter1_node118"
+          },
+          {
+            "optionText": "对诗人有更深的感情",
+            "match": 3,
+            "resultText": "枪刃对诗人的感情比表面上深得多，他一直在纠结要不要说出来",
+            "nextNode": "chapter1_node118"
+          },
+          {
+            "optionText": "其实是一个很厉害的主播",
+            "match": 4,
+            "resultText": "枪刃其实是个小有名气的直播主！一直没有透露，担心被特殊对待",
+            "nextNode": "chapter1_node118"
+          },
+          {
+            "optionText": "没有秘密，只是在想事情",
+            "match": 5,
+            "resultText": "枪刃说：「没什么，只是在想事情，不要在意。」诗人不太相信，但没有追问",
+            "nextNode": "chapter1_node118"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node118",
+    "title": "P2S通关后的第二周——新的开始",
+    "content": "P2S通关之后，固定队进入了新的轨道。\n这一周，队里有没有发生新的状况？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "新状况判定",
+        "diceRequired": 6,
+        "outcomes": [
+          {
+            "optionText": "有人想退队了",
+            "match": 1,
+            "resultText": "有人透露出想退队的想法，队伍气氛一时凝重……",
+            "nextNode": "chapter1_node119"
+          },
+          {
+            "optionText": "有人想换职业",
+            "match": 2,
+            "resultText": "有人说想换个职业，觉得现在的职业打得不顺手",
+            "nextNode": "chapter1_node119"
+          },
+          {
+            "optionText": "有两人现实里见面了",
+            "match": 3,
+            "resultText": "队里有两个人竟然在现实中见了面！",
+            "nextNode": "chapter1_node119"
+          },
+          {
+            "optionText": "新的矛盾萌芽",
+            "match": 4,
+            "resultText": "因为一件小事，队里出现了新的摩擦……",
+            "nextNode": "chapter1_node119"
+          },
+          {
+            "optionText": "新成员要加入？",
+            "match": 5,
+            "resultText": "有人提议要找个新成员加入固定队，大家意见不一",
+            "nextNode": "chapter1_node119"
+          },
+          {
+            "optionText": "一切平静，开始刷P2S",
+            "match": 6,
+            "resultText": "一切平静，大家开始每周规律地刷P2S攒装备",
+            "nextNode": "chapter1_node119"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node119",
+    "title": "谁想退队了",
+    "content": "有人透露出了想退队的想法……\n是谁呢？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "退队人选判定",
+        "diceRequired": 8,
+        "outcomes": [
+          {
+            "optionText": "黑骑（考研压力太大）",
+            "match": 1,
+            "resultText": "黑骑说考研压力越来越大，觉得自己占着位置对大家不公平，想退队",
+            "nextNode": "chapter1_node120"
+          },
+          {
+            "optionText": "枪刃（有别的固定队邀请）",
+            "match": 2,
+            "resultText": "枪刃收到了另一个战力更强的固定队邀请，有些动摇",
+            "nextNode": "chapter1_node120"
+          },
+          {
+            "optionText": "白魔（最近很忙）",
+            "match": 3,
+            "resultText": "白魔说最近现实里很忙，可能无法保证上线时间，想让位给更合适的人",
+            "nextNode": "chapter1_node120"
+          },
+          {
+            "optionText": "贤者（没说理由）",
+            "match": 4,
+            "resultText": "贤者突然说想退队，没有说具体理由，让大家很费解",
+            "nextNode": "chapter1_node120"
+          },
+          {
+            "optionText": "忍者（和队友产生矛盾）",
+            "match": 5,
+            "resultText": "忍者和某个队友之间积累的矛盾爆发了，说想退队",
+            "nextNode": "chapter1_node120"
+          },
+          {
+            "optionText": "诗人（心情不好）",
+            "match": 6,
+            "resultText": "诗人因为心情问题说了句想退队，也许只是说说",
+            "nextNode": "chapter1_node120"
+          },
+          {
+            "optionText": "黑魔（表白失败）",
+            "match": 7,
+            "resultText": "黑魔表白失败后，觉得留在队里太尴尬，想着是不是退队算了",
+            "nextNode": "chapter1_node120"
+          },
+          {
+            "optionText": "龙骑（其实是试探大家）",
+            "match": 8,
+            "resultText": "龙骑突然说想退队……其实她只是在测试大家对她的重视程度",
+            "nextNode": "chapter1_node120"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node120",
+    "title": "大家的反应",
+    "content": "听到有人想退队，大家的反应如何？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "队员反应判定",
+        "diceRequired": 4,
+        "outcomes": [
+          {
+            "optionText": "大家极力挽留",
+            "match": [
+              3,
+              4
+            ],
+            "resultText": "大家纷纷发消息挽留，说队里不能少了你！气氛很温暖",
+            "nextNode": "chapter1_node121"
+          },
+          {
+            "optionText": "大家沉默了一会儿",
+            "match": [
+              1,
+              2
+            ],
+            "resultText": "频道里沉默了很久，然后龙骑打出一句：「先别急着决定，想清楚了再说」",
+            "nextNode": "chapter1_node121"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node121",
+    "title": "最终决定——留还是退？",
+    "content": "经过队友的挽留和自己的思考，那个人最终决定了……",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "最终决定判定",
+        "diceRequired": 6,
+        "outcomes": [
+          {
+            "optionText": "决定留下来了！",
+            "match": [
+              4,
+              6
+            ],
+            "resultText": "「算了，还是继续吧。你们这些人……」那人留了下来，队伍松了口气",
+            "nextNode": "chapter1_node122"
+          },
+          {
+            "optionText": "还在犹豫中",
+            "match": [
+              2,
+              3
+            ],
+            "resultText": "那人说再考虑几天，大家默默等待着结果",
+            "nextNode": "chapter1_node122"
+          },
+          {
+            "optionText": "真的退队了……",
+            "match": 1,
+            "resultText": "那人最终还是退队了，固定队需要找新成员……这是队伍里第一次有人离开",
+            "nextNode": "chapter1_node122"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node122",
+    "title": "P2S清CD周——第二周的开荒",
+    "content": "P2S通关后，第二周的清CD如期到来。\n龙骑约好时间，大家准时上线，信心满满地进本。\n今天的状态如何？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "开荒状态判定（d2）",
+        "diceRequired": 2,
+        "outcomes": [
+          {
+            "optionText": "状态不对，先休息一下",
+            "match": 1,
+            "resultText": "龙骑察觉到大家状态不佳，提议大家休息十分钟——洗把脸，上撤晶，买爆发药，调整好了再继续。",
+            "nextNode": "chapter1_node123"
+          },
+          {
+            "optionText": "状态满满，直接冲！",
+            "match": 2,
+            "resultText": "大家状态不错，直接开冲！",
+            "nextNode": "chapter1_node123"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node123",
+    "title": "第二周清CD——一层竟然卡关了",
+    "content": "明明已经通关过了……怎么第二周的一层反而卡住了？\n这把诗人和龙骑的判定没过，团灭。\n又一次，又一次，又一次……\n第五把：全队骰点，>110才能通过。",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "第五把骰点",
+        "diceRequired": 120,
+        "outcomes": [
+          {
+            "optionText": "诗人和龙骑未过（一层未清）",
+            "match": [
+              1,
+              60
+            ],
+            "resultText": "诗人66分，龙骑87分，均未过线……过本第二周，清CD一层五把没过。过于真实，引起不适。",
+            "nextNode": "chapter1_node124"
+          },
+          {
+            "optionText": "勉强过了",
+            "match": [
+              61,
+              120
+            ],
+            "resultText": "这把终于把一层清掉了！虽然不算漂亮，但先过再说！",
+            "nextNode": "chapter1_node124"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node124",
+    "title": "第六把——武士爆发200分！",
+    "content": "第六把，武士状态大爆发，骰出了200分的满分！\n在武士的带动下，全队终于把一层清掉了！\n此时已经过去了一个多小时，离下班还有两小时——\n大家决定立刻冲向P2S！",
+    "type": "text",
+    "choices": [
+      {
+        "text": "冲向P2S！",
+        "nextNode": "chapter1_node125"
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node125",
+    "title": "P2S二层——贤者和黑魔",
+    "content": "进P2S！二层开始了。\n在这段加练时间里，有没有什么特殊的事发生？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "加练特殊事件判定（d10）",
+        "diceRequired": 10,
+        "outcomes": [
+          {
+            "optionText": "有人和野人发生了冲突",
+            "match": 1,
+            "resultText": "有人在副本里遇到了奇怪的野人，爆发了一场小冲突",
+            "nextNode": "chapter1_node126"
+          },
+          {
+            "optionText": "服务器崩了！",
+            "match": 2,
+            "resultText": "哈哈，你服务器爆喽！全队被迫下线，等待维护……",
+            "nextNode": "chapter1_node126"
+          },
+          {
+            "optionText": "遇到了不想遇到的人",
+            "match": 3,
+            "resultText": "有人在副本里遇到了不想见到的熟人，气氛有些尴尬",
+            "nextNode": "chapter1_node126"
+          },
+          {
+            "optionText": "直接见到P3了！",
+            "match": 4,
+            "resultText": "过程极度顺利，居然直接见到P3了！",
+            "nextNode": "chapter1_node126"
+          },
+          {
+            "optionText": "发生了打本无关的意外",
+            "match": 5,
+            "resultText": "打本途中，有人突然有事需要暂时离开，或者发生了一些场外插曲",
+            "nextNode": "chapter1_node126"
+          },
+          {
+            "optionText": "有两人关系变好了！（6-8）",
+            "match": [
+              6,
+              8
+            ],
+            "resultText": "加练途中，队里有两个人之间的气氛悄悄发生了变化——关系变好了！",
+            "nextNode": "chapter1_node126"
+          },
+          {
+            "optionText": "什么都没发生（9-10）",
+            "match": [
+              9,
+              10
+            ],
+            "resultText": "加练过程平静，大家各自安心打本，没什么特别的事",
+            "nextNode": "chapter1_node126"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node126",
+    "title": "是贤者和黑魔！",
+    "content": "骰点揭晓——关系变好的，居然是贤者和黑魔！\n上次两人一起陪练，今天继续同组加练……\n他们两个人的关系变好了多少？\n（1=只是客套，100=已经深深爱上了）",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "关系变化骰点",
+        "diceRequired": 100,
+        "outcomes": [
+          {
+            "optionText": "黑魔对贤者好感大涨（保底20）",
+            "match": [
+              64,
+              100
+            ],
+            "resultText": "黑魔对贤者的好感骰出了84分！非常暧昧的数字——这究竟是真感情，还是很深的友情？",
+            "nextNode": "chapter1_node127"
+          },
+          {
+            "optionText": "贤者对黑魔好感偏低",
+            "match": [
+              1,
+              63
+            ],
+            "resultText": "贤者对黑魔只有15分……贤者似乎对感情的事一贯迟钝。",
+            "nextNode": "chapter1_node127"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node127",
+    "title": "黑魔为什么喜欢上贤者了？",
+    "content": "黑魔对贤者的好感骰出了84分……\n但黑魔这个人，本来就非常喜欢赤魔风格的人。\n那他到底是真的喜欢贤者，还是把贤者当成了赤魔的替代品？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "黑魔喜欢原因判定（d5）",
+        "diceRequired": 5,
+        "outcomes": [
+          {
+            "optionText": "贤者意外地很关照他",
+            "match": 1,
+            "resultText": "贤者明明嘴上不饶人，但在关键时刻总是默默照顾着黑魔，这让黑魔很感动",
+            "nextNode": "chapter1_node128"
+          },
+          {
+            "optionText": "被骂了，喜欢被骂（其一）",
+            "match": 2,
+            "resultText": "贤者语气很冲地骂了黑魔一顿，黑魔反而有点害羞……这是什么怪癖！",
+            "nextNode": "chapter1_node128"
+          },
+          {
+            "optionText": "被骂了，喜欢被骂（其二）",
+            "match": 3,
+            "resultText": "贤者骂人的样子让黑魔觉得莫名熟悉——就是这种感觉！",
+            "nextNode": "chapter1_node128"
+          },
+          {
+            "optionText": "被骂了，贤者骂人像赤魔（其一）",
+            "match": 4,
+            "resultText": "被贤者骂了，黑魔整个人愣住——贤者骂人的语气，和赤魔一模一样！",
+            "nextNode": "chapter1_node128"
+          },
+          {
+            "optionText": "被骂了，贤者骂人像赤魔（其二）",
+            "match": 5,
+            "resultText": "今天黑炎机制走神，贤者救了他之后当场开骂：「你但凡输出和机制能整明白一样，我们都不至于今天灭成那样。」——这个语气、这个表情，简直和赤魔一模一样！黑魔的心脏猛地跳了一下。",
+            "nextNode": "chapter1_node128"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node128",
+    "title": "贤者骂人那一刻",
+    "content": "事情是这样的——\n黑炎麻将的时候，黑魔走神，没看清自己头上的点名。\n贤者敏锐地发现了，一个营救把黑魔拉了过来。\n然后，贤者难得在语音里出言讥讽：\n「你但凡输出和机制能整明白一样，我们都不至于今天灭成那样。」\n白魔觉得贤者说得太过分了……\n而黑魔呢？",
+    "type": "text",
+    "choices": [
+      {
+        "text": "黑魔的反应……",
+        "nextNode": "chapter1_node129"
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node129",
+    "title": "黑魔：这种似曾相识的辱骂……",
+    "content": "贤者骂人的样子……\n和赤魔一模一样！！！\n黑魔感觉心脏被什么东西直接击中了。\n白魔在频道里担心地叫了一声——「贤者，你说话……」\n而黑魔却在频道里打出了一句：\n「……没事，继续打。」\n他的耳朵已经红了。",
+    "type": "text",
+    "choices": [
+      {
+        "text": "（黑魔已经没救了）",
+        "nextNode": "chapter1_node130"
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node130",
+    "title": "今天加练的成果",
+    "content": "感情线暂且不提——今天的加练，技术上有没有进步？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "加练成果判定（d5）",
+        "diceRequired": 5,
+        "outcomes": [
+          {
+            "optionText": "还在玩黑炎（1-2）",
+            "match": [
+              1,
+              2
+            ],
+            "resultText": "今天加练还是卡在黑炎，反复练习，但熟练度稳步提升",
+            "nextNode": "chapter1_node131"
+          },
+          {
+            "optionText": "过黑炎了！（3-4）",
+            "match": [
+              3,
+              4
+            ],
+            "resultText": "终于过黑炎了！贤者熟练度+5，黑魔额外获得好感加成。虽然没能见到P2……但可喜可贺！",
+            "nextNode": "chapter1_node131"
+          },
+          {
+            "optionText": "见到P2了！（5）",
+            "match": 5,
+            "resultText": "超出预期！今天不但过了黑炎，还见到了P2！全队士气大振！",
+            "nextNode": "chapter1_node131"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node131",
+    "title": "下班了……大家今天的状态",
+    "content": "加练结束，大家陆续下线。\n今天是疲惫的一天——五把没过一层，又反复磨黑炎……\n不过队里也发生了一些微妙的变化。\n有没有人在下线前说了什么特别的话？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "下线前发言判定（d4）",
+        "diceRequired": 4,
+        "outcomes": [
+          {
+            "optionText": "龙骑总结今日，打气",
+            "match": 1,
+            "resultText": "龙骑说：「今天虽然有点难，但大家都很努力，明天继续！」",
+            "nextNode": "chapter1_node132"
+          },
+          {
+            "optionText": "贤者难得说了一句鼓励",
+            "match": 2,
+            "resultText": "贤者在频道里打出：「今天比上次好了一些。」寥寥几个字，但大家都知道他不善于表扬，这已经很难得了",
+            "nextNode": "chapter1_node132"
+          },
+          {
+            "optionText": "黑魔发了奇怪的消息",
+            "match": 3,
+            "resultText": "黑魔在私聊里给贤者发了一句：「……谢谢你今天帮我。」然后立刻下线。贤者盯着屏幕看了一会儿，回了一个「嗯」",
+            "nextNode": "chapter1_node132"
+          },
+          {
+            "optionText": "武士和龙骑又约好了单独练习",
+            "match": 4,
+            "resultText": "武士说：「龙骑，要不要找个时间单独练练那个走位？」龙骑答：「好啊。」——两人已经有了默契",
+            "nextNode": "chapter1_node132"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node132",
+    "title": "本周加练总结",
+    "content": "这一周，大家的实力数值悄悄提升了：\n\n白魔：89\n贤者：66\n武士：87\n黑魔：54\n\n贤者的数值有所提升，但在队里依然是偏低的水平——\n这是因为贤者其实每次加练都很认真，只是……\n他有时候会在黑魔走神的时候，多看他一眼。\n也许只是习惯，也许是别的什么。",
+    "type": "text",
+    "choices": [
+      {
+        "text": "继续……",
+        "nextNode": "chapter1_node133"
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node133",
+    "title": "白魔的小发现",
+    "content": "白魔是个心思细腻的人。\n她发现贤者今天骂黑魔的语气，和平时有些不一样——\n平时贤者说话虽然直接，但今天那句话……似乎带了点什么情绪在里面？\n白魔要不要私下问问贤者？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "白魔的选择（d2）",
+        "diceRequired": 2,
+        "outcomes": [
+          {
+            "optionText": "悄悄记在心里，没有问",
+            "match": 1,
+            "resultText": "白魔决定先观察一段时间，毕竟这种事不好直接插嘴",
+            "nextNode": "chapter1_node134"
+          },
+          {
+            "optionText": "私下问了贤者",
+            "match": 2,
+            "resultText": "白魔私下问贤者：「你今天……好像对黑魔有点不一样？」贤者沉默了一秒：「你想太多了。」",
+            "nextNode": "chapter1_node134"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node134",
+    "title": "黑魔的日记（不存在的）",
+    "content": "黑魔下线之后，坐在椅子上发了很久的呆。\n他想起了赤魔的样子，又想起了今天贤者骂他时的语气……\n他们明明是完全不同的两个人——\n贤者是赤魔风格的奶妈，一个现实里素未谋面的游戏玩家。\n但那一刻，心跳真的加速了。\n黑魔决定……",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "黑魔的内心挣扎（d4）",
+        "diceRequired": 4,
+        "outcomes": [
+          {
+            "optionText": "告诉自己这只是错觉",
+            "match": [
+              1,
+              2
+            ],
+            "resultText": "「不行，这不一样……贤者不是赤魔，不能乱想。」黑魔把这个念头压下去，去洗澡了",
+            "nextNode": "chapter1_node135"
+          },
+          {
+            "optionText": "开始研究贤者的动态",
+            "match": 3,
+            "resultText": "黑魔去翻了翻贤者发过的帖子和动态，看着看着，忘了时间……",
+            "nextNode": "chapter1_node135"
+          },
+          {
+            "optionText": "鼓起勇气加了贤者好友",
+            "match": 4,
+            "resultText": "黑魔鼓起勇气，在游戏里申请加了贤者好友——虽然以前就是队友，但这感觉不一样了",
+            "nextNode": "chapter1_node135"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node135",
+    "title": "这一周，每个人都在悄悄改变",
+    "content": "P2S第二周，固定队的每个人都在经历着自己的故事——\n\n黑骑在备考，每天上线前先背两个小时单词；\n枪刃有个秘密，但还没有人知道；\n白魔在悄悄观察着队里的每对关系；\n贤者依然嘴硬，但有时候会先在频道里等到黑魔上线；\n龙骑和武士之间有了更多默契；\n忍者最近话少了一些；\n诗人还是一如既往地活跃；\n黑魔的心跳还没有平复。\n\n这一周，又会发生什么呢？",
+    "type": "text",
+    "choices": [
+      {
+        "text": "继续……",
+        "nextNode": "chapter1_node136"
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node136",
+    "title": "第三周的故事——新的骰点",
+    "content": "第三周来临，队里迎来了新一轮的开荒。\nP3S的门口，大家整装待发。\n这周队里的事，从哪里开始说起呢？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "本周开幕事件（d6）",
+        "diceRequired": 6,
+        "outcomes": [
+          {
+            "optionText": "黑骑说要暂时减少上线",
+            "match": 1,
+            "resultText": "黑骑说考研复习加紧了，接下来可能要减少上线频率，请大家谅解",
+            "nextNode": "chapter1_node137"
+          },
+          {
+            "optionText": "有人在现实里买了游戏周边",
+            "match": 2,
+            "resultText": "有人在群里晒出了买的FF14周边，引发大家的围观和讨论",
+            "nextNode": "chapter1_node137"
+          },
+          {
+            "optionText": "贤者主动约了黑魔加练",
+            "match": 3,
+            "resultText": "贤者主动私信黑魔：「今天有空吗，一起练练那段走位。」黑魔盯着消息看了很久",
+            "nextNode": "chapter1_node137"
+          },
+          {
+            "optionText": "诗人带了朋友来旁观加练",
+            "match": 4,
+            "resultText": "诗人说自己的一个朋友也想看看固定队的开荒，今天会在旁边旁观……大家瞬间紧张了起来",
+            "nextNode": "chapter1_node137"
+          },
+          {
+            "optionText": "武士带来了新情报",
+            "match": 5,
+            "resultText": "武士分享了一份最新的P3S攻略，大家开始认真研究起来",
+            "nextNode": "chapter1_node137"
+          },
+          {
+            "optionText": "龙骑宣布了一个重要消息",
+            "match": 6,
+            "resultText": "龙骑在群里发了一条消息，看起来有些重要的事情要宣布……",
+            "nextNode": "chapter1_node137"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node137",
+    "title": "P3S开荒——小鸟阶段扯线",
+    "content": "进入P3S！小鸟阶段的扯线机制来了——\n熟练度+10，>115才能成功通过。\n第二把小鸟扯线，全队骰点：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "小鸟扯线骰点（d100+基础值）",
+        "diceRequired": 100,
+        "outcomes": [
+          {
+            "optionText": "白魔/诗人/黑魔扯线失败！",
+            "match": [
+              1,
+              50
+            ],
+            "resultText": "白魔108、诗人107、黑魔89——三人均未过115阈值！三人当场倒下！\n贤者115，刚好卡线通过……",
+            "nextNode": "chapter1_node138"
+          },
+          {
+            "optionText": "小鸟扯线全员通过！",
+            "match": [
+              51,
+              100
+            ],
+            "resultText": "全队扯线顺利！小鸟阶段完美过渡！",
+            "nextNode": "chapter1_node138"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node138",
+    "title": "贤者的救场——三段LB！",
+    "content": "白魔、诗人、黑魔三人全部倒下！\n马上就要进入下一机制了，没有时间犹豫——\n贤者毫不迟疑，直接开出了三段LB，将三人全部拉了起来！\n但这样一来，开了LB的贤者……",
+    "type": "text",
+    "choices": [
+      {
+        "text": "贤者能躲开第二次3穿1吗？",
+        "nextNode": "chapter1_node139"
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node139",
+    "title": "贤者能躲开3穿1吗？",
+    "content": "开完LB的贤者，还能躲开接下来的3穿1吗？\n（1-4：躲不开；5：超能力躲开）",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "贤者闪避判定（d5）",
+        "diceRequired": 5,
+        "outcomes": [
+          {
+            "optionText": "躲不开了！（1-4）",
+            "match": [
+              1,
+              4
+            ],
+            "resultText": "贤者根本躲不开第二次3穿1了！千钧一发之际——",
+            "nextNode": "chapter1_node140"
+          },
+          {
+            "optionText": "靠超能力躲开了！（5）",
+            "match": 5,
+            "resultText": "不知道是什么超能力，贤者居然躲开了！全队沸腾！",
+            "nextNode": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node140",
+    "title": "黑骑的黑盾！",
+    "content": "在看到LB条闪烁的一刹那，黑骑就意识到——贤者绝对躲不开第二次3穿1了！\n接下来的死刑是开活死吃，黑骑还有没有余力给贤者上一个黑盾？\n（>150才会给）",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "黑骑黑盾判定（100+d100）",
+        "diceRequired": 100,
+        "outcomes": [
+          {
+            "optionText": "黑骑反应神速！（>150）",
+            "match": [
+              51,
+              100
+            ],
+            "resultText": "黑骑骰出178！瞬间判断，直接把一个黑盾套在了贤者头上。\n多亏了黑骑的反应，贤者顶着AOE竟然活了下来！",
+            "nextNode": "chapter1_node141"
+          },
+          {
+            "optionText": "黑骑没来得及（≤150）",
+            "match": [
+              1,
+              50
+            ],
+            "resultText": "可惜黑骑没来得及，贤者被3穿1击倒——全灭！只能重来",
+            "nextNode": "chapter1_node141"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node141",
+    "title": "双T与D3引导——火龙卷！",
+    "content": "难关一道道过去……接下来是双T和D3的引导机制——火龙卷！\n诗人需要将火龙卷引导到最北侧，这是一个精度极高的走位。\n诗人的引导判定（>110才能成功）：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "诗人引导判定（48+d100）",
+        "diceRequired": 100,
+        "outcomes": [
+          {
+            "optionText": "诗人引导成功！（>110）",
+            "match": [
+              63,
+              100
+            ],
+            "resultText": "诗人成功将火龙卷引导到了最北侧！漂亮！",
+            "nextNode": null
+          },
+          {
+            "optionText": "诗人引导失败……（≤110）",
+            "match": [
+              1,
+              62
+            ],
+            "resultText": "诗人跑得稍微远了那么一丁点……火龙卷没点到诗人，而是打到了人群最靠外的那个人。\nBoom……一切重头再来了！",
+            "nextNode": "chapter1_node142"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node142",
+    "title": "又灭了……但大家不气馁",
+    "content": "引导失败，全灭。\n大家的状态还好吗？要继续打吗？\n（1：趁热打铁；2：歇逼喽）",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "继续还是休息？（d2）",
+        "diceRequired": 2,
+        "outcomes": [
+          {
+            "optionText": "趁热打铁！继续！",
+            "match": 1,
+            "resultText": "大家觉得难得状态都不错，决定再试几把！",
+            "nextNode": "chapter1_node143"
+          },
+          {
+            "optionText": "今天够了，收工",
+            "match": 2,
+            "resultText": "大家决定今天先到这里，留着体力明天继续",
+            "nextNode": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node143",
+    "title": "趁热打铁——今天还能再见到火龙卷吗？",
+    "content": "大家决定继续！但离下班也没多久了——\n今天还有机会再见到火龙卷吗？\n（1-5：很快又见到了；6-10：折腾了6把没见到，下班了）",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "今日剩余尝试（d10）",
+        "diceRequired": 10,
+        "outcomes": [
+          {
+            "optionText": "打了几把又见到了！（1-5）",
+            "match": [
+              1,
+              5
+            ],
+            "resultText": "很快又推进到了火龙卷阶段！大家继续练习引导走位……",
+            "nextNode": "chapter1_node144"
+          },
+          {
+            "optionText": "6把没见到，下班了（6-10）",
+            "match": [
+              6,
+              10
+            ],
+            "resultText": "骰出10！再打了6把，1把灭于黑炎，3把灭于灵泉，还有2把灭于稀奇古怪的原因……下班了！\n但所有人都获得了：黑炎熟练度+10，灵泉熟练度+30！",
+            "nextNode": "chapter1_node144"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node144",
+    "title": "今日P3S熟练度总结",
+    "content": "今天P3S开荒结束，各位的熟练度记录如下：\n\n黑骑：死刑15，黑炎25，小鸟50，灵泉20，分摊10\n枪刃：死刑15，黑炎25，小鸟50，灵泉20，分摊10\n白魔：黑炎35，小鸟50，灵泉20，分摊10\n贤者：黑炎35，小鸟50，灵泉20，分摊10\n龙骑：黑炎25，小鸟50，灵泉20，分摊10\n武士：黑炎35，小鸟50，灵泉20，分摊10\n诗人：黑炎25，小鸟50，灵泉20，分摊10，引导10\n黑魔：黑炎35，小鸟50，灵泉20，分摊10\n\n今天的进度很不错——小鸟阶段已经打通，下次直接从灵泉和火龙卷开始练！",
+    "type": "text",
+    "choices": [
+      {
+        "text": "继续……",
+        "nextNode": "chapter1_node145"
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node145",
+    "title": "今天最亮眼的表现——诗人的绝地反杀",
+    "content": "今天最让人印象深刻的，是那次DPS Check——\n白魔、诗人、黑魔三人死亡，输出严重削减。\n但诗人从地上爬起来之后，把爆发药往嘴里一塞，顶着最大的黑头……\n打出了全队最高的输出！总计402分，卡着狂暴读条的最后一秒过了！\n诗人，今天燃起来了！",
+    "type": "text",
+    "choices": [
+      {
+        "text": "（为诗人鼓掌！）",
+        "nextNode": "chapter1_node146"
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node146",
+    "title": "今天最让人感动的——黑骑的黑盾",
+    "content": "今天还有一幕让人印象深刻——\n黑骑在一刹那间判断出贤者开完LB一定躲不开3穿1，\n瞬间给贤者套上了黑盾。\n那一刻，贤者顶着AOE活了下来。\n所有人都没想到黑骑会有这样的反应速度。\n贤者有没有专门感谢黑骑？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "贤者感谢判定（d2）",
+        "diceRequired": 2,
+        "outcomes": [
+          {
+            "optionText": "贤者专门道谢了",
+            "match": 2,
+            "resultText": "贤者在频道里说了一句：「黑骑，刚才谢了。」言简意赅，但大家都明白这对贤者来说已经很不容易了",
+            "nextNode": "chapter1_node147"
+          },
+          {
+            "optionText": "贤者没说话，但记在心里了",
+            "match": 1,
+            "resultText": "贤者什么都没说，但他在心里记下了——黑骑，靠得住。",
+            "nextNode": "chapter1_node147"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node147",
+    "title": "下班后——忍者的私信",
+    "content": "今天打本结束后，忍者悄悄给龙骑发了一条私信。\n内容是什么？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "忍者的私信内容（d4）",
+        "diceRequired": 4,
+        "outcomes": [
+          {
+            "optionText": "问龙骑要不要一起加练",
+            "match": 1,
+            "resultText": "忍者说：「我今晚还有时间，你要加练吗？」龙骑看了看时间，回了一个「好啊」",
+            "nextNode": "chapter1_node148"
+          },
+          {
+            "optionText": "说有些个人的事想聊聊",
+            "match": 2,
+            "resultText": "忍者说：「最近有点烦，能聊聊吗？」龙骑不禁有些担心，立刻回复了",
+            "nextNode": "chapter1_node148"
+          },
+          {
+            "optionText": "发了个搞笑截图",
+            "match": 3,
+            "resultText": "忍者发来一张今天打本时的搞笑截图，配文：「你看这个」。龙骑看了笑出了声",
+            "nextNode": "chapter1_node148"
+          },
+          {
+            "optionText": "说想学龙骑那套连段",
+            "match": 4,
+            "resultText": "忍者说：「我想学你那套连段，能教教我吗？」龙骑有些意外，但很爽快地答应了",
+            "nextNode": "chapter1_node148"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node148",
+    "title": "黑骑的备考进度",
+    "content": "另一边，黑骑今天打本的状态其实一直不太好。\n他在考研，最近压力越来越大。\n黑骑今天的学习情况如何？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "黑骑今日学习判定（d4）",
+        "diceRequired": 4,
+        "outcomes": [
+          {
+            "optionText": "今天状态好，学了很多",
+            "match": [
+              3,
+              4
+            ],
+            "resultText": "黑骑今天很高效，下线后又背了一个半小时的单词，感觉对自己满意",
+            "nextNode": "chapter1_node149"
+          },
+          {
+            "optionText": "学习效率一般",
+            "match": 2,
+            "resultText": "黑骑今天效率不高，看了一会儿书又想起了今天打本的细节，心思有些飘",
+            "nextNode": "chapter1_node149"
+          },
+          {
+            "optionText": "完全没心思学习",
+            "match": 1,
+            "resultText": "黑骑下线后坐在桌前发了很久的呆，考研的事压得他有些喘不过气",
+            "nextNode": "chapter1_node149"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node149",
+    "title": "黑骑有没有跟队友说过考研的压力",
+    "content": "黑骑其实从来没跟队友说过自己在备考。\n有没有人知道这件事？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "队友知情程度（d4）",
+        "diceRequired": 4,
+        "outcomes": [
+          {
+            "optionText": "没人知道",
+            "match": [
+              1,
+              2
+            ],
+            "resultText": "没有人知道黑骑在备考——他从来不说，也不想让队友担心",
+            "nextNode": "chapter1_node150"
+          },
+          {
+            "optionText": "龙骑隐约知道一点",
+            "match": 3,
+            "resultText": "龙骑隐约知道黑骑最近在备考，但没有多问，只是偶尔会少说几句让他多休息",
+            "nextNode": "chapter1_node150"
+          },
+          {
+            "optionText": "白魔知道，帮他保密",
+            "match": 4,
+            "resultText": "白魔知道这件事，是黑骑无意间说漏嘴的。白魔没有到处说，只是偶尔在打本后提醒他早点休息",
+            "nextNode": "chapter1_node150"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node150",
+    "title": "今天的故事告一段落",
+    "content": "P3S小鸟阶段打通了——\n诗人绝地反杀，黑骑神速黑盾，诗人引导失败……\n有人意气风发，有人暗藏心事。\n这个固定队，就这样一边开荒，一边悄悄地，彼此靠近了一点点。",
+    "type": "text",
+    "choices": [
+      {
+        "text": "继续……",
+        "nextNode": "chapter1_node151"
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node151",
+    "title": "本周总结——各角色状态速览",
+    "content": "本周结束，大家各自的状态如何？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "本周状态骰点（d8，选一人聚焦）",
+        "diceRequired": 8,
+        "outcomes": [
+          {
+            "optionText": "聚焦：黑骑",
+            "match": 1,
+            "resultText": "黑骑：独自扛着考研压力，打本时越来越高效，但下线后都是漫长的孤独夜晚",
+            "nextNode": "chapter1_node152"
+          },
+          {
+            "optionText": "聚焦：枪刃",
+            "match": 2,
+            "resultText": "枪刃：藏着一个秘密，每次打本时都有些心不在焉……",
+            "nextNode": "chapter1_node152"
+          },
+          {
+            "optionText": "聚焦：白魔",
+            "match": 3,
+            "resultText": "白魔：像一个温柔的观察者，悄悄关注着队里每一个人的情绪变化",
+            "nextNode": "chapter1_node152"
+          },
+          {
+            "optionText": "聚焦：贤者",
+            "match": 4,
+            "resultText": "贤者：嘴上从不说好话，但每次打本都是最后一个下线的人",
+            "nextNode": "chapter1_node152"
+          },
+          {
+            "optionText": "聚焦：龙骑",
+            "match": 5,
+            "resultText": "龙骑：作为队长，把所有人的状态都放在心上——但有没有人关心过龙骑自己呢？",
+            "nextNode": "chapter1_node152"
+          },
+          {
+            "optionText": "聚焦：武士",
+            "match": 6,
+            "resultText": "武士：沉默寡言但极为可靠，今天那个200分的爆发，全队都记住了",
+            "nextNode": "chapter1_node152"
+          },
+          {
+            "optionText": "聚焦：诗人",
+            "match": 7,
+            "resultText": "诗人：今天绝地反杀之后，整个人都燃了——「原来我真的可以！」",
+            "nextNode": "chapter1_node152"
+          },
+          {
+            "optionText": "聚焦：黑魔",
+            "match": 8,
+            "resultText": "黑魔：心里装着那道骂声，却笑着打完了今天所有的本……",
+            "nextNode": "chapter1_node152"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node152",
+    "title": "火龙卷失败后的沉默",
+    "content": "枪刃这一把出了失误，导致火龙卷全灭……\n频道里陷入了令人毛骨悚然的沉默。\n大家都没有说话。\n这时，有人首先打破了沉默——",
+    "type": "text",
+    "choices": [
+      {
+        "text": "谁打破了沉默？",
+        "nextNode": "chapter1_node153"
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node153",
+    "title": "黑骑的安慰",
+    "content": "是黑骑。\n他没有质问枪刃的失误，而是转头对一旁面如土色的诗人说：\n「你今天表现得很不错，辛苦你了。」\n这句话有些生硬，但来自一向不苟言笑的国一黑骑，已经非常难得了。\n诗人的反应：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "诗人反应判定（d5）",
+        "diceRequired": 5,
+        "outcomes": [
+          {
+            "optionText": "感动，不再emo了（1-2）",
+            "match": [
+              1,
+              2
+            ],
+            "resultText": "诗人想起之前被黑骑要求加练的场景，想起自己一次次被当成短板……而现在，来自国一的认可让心里涌起了一股暖流。固定队的压力，变成了前进的动力！\n【诗人骰点从d100升级为d120！】",
+            "nextNode": "chapter1_node154"
+          },
+          {
+            "optionText": "破防了，开始大哭（3-4）",
+            "match": [
+              3,
+              4
+            ],
+            "resultText": "诗人没想到黑骑会这么说，直接破防了……在语音里抽泣起来，大家顿时不知所措",
+            "nextNode": "chapter1_node154"
+          },
+          {
+            "optionText": "太生硬了，没被鼓励到（5）",
+            "match": 5,
+            "resultText": "「……谢谢。」诗人礼貌地回应，但心里想的是：这个股哥说话真的好奇怪",
+            "nextNode": "chapter1_node154"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node154",
+    "title": "诗人对黑骑的好感",
+    "content": "经历了这件事，诗人对黑骑的好感产生了变化。\n（1=完全无感，100=深深爱上了，保底20）",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "诗人对黑骑好感判定（20+d80）",
+        "diceRequired": 80,
+        "outcomes": [
+          {
+            "optionText": "好感35左右——有些改观",
+            "match": [
+              1,
+              40
+            ],
+            "resultText": "诗人骰出35分。「原来股哥也不全是莫得感情的打本机器嘛……」诗人对黑骑的刻板印象改观了，仅此而已。",
+            "nextNode": "chapter1_node155"
+          },
+          {
+            "optionText": "好感60+——印象大幅改变",
+            "match": [
+              41,
+              80
+            ],
+            "resultText": "好感大涨！诗人发现黑骑其实是个很细心的人，只是不善于表达，心里对他的评价悄悄提高了很多",
+            "nextNode": "chapter1_node155"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node155",
+    "title": "调整好状态，继续冲！",
+    "content": "大家调整好了状态，准备再打几把。\n前面花了太长时间，现在灭了一把火龙卷……\n剩下只够再打4把了。\n这4把中能再次见到火龙卷吗？\n（1-3：打了几把就又见到了；4-5：4把都灭了，今天摸了）",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "今日剩余尝试（d5）",
+        "diceRequired": 5,
+        "outcomes": [
+          {
+            "optionText": "打了几把又见到了（1-3）",
+            "match": [
+              1,
+              3
+            ],
+            "resultText": "又推进到了火龙卷阶段！今天最后一次机会来了！",
+            "nextNode": "chapter1_node156"
+          },
+          {
+            "optionText": "4把都灭了，今天摸了（4-5）",
+            "match": [
+              4,
+              5
+            ],
+            "resultText": "4把全灭，没能再见到火龙卷……今天就这样了。但大家获得了：黑炎+10，灵泉+20",
+            "nextNode": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node156",
+    "title": "今天最后一次火龙卷！",
+    "content": "灭了一把黑炎、两把灵泉之后，终于又见到了火龙卷！\n这是今天最后一次机会——\n诗人的引导能成功吗？\n（>110成功，诗人引导基础值提升至58）",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "诗人引导判定（58+d100）",
+        "diceRequired": 100,
+        "outcomes": [
+          {
+            "optionText": "诗人成功引导！（>110）",
+            "match": [
+              53,
+              100
+            ],
+            "resultText": "诗人成功了！火龙卷被引导到了正确位置！全队欢呼！\n【诗人引导熟练度+10】",
+            "nextNode": "chapter1_node157"
+          },
+          {
+            "optionText": "诗人引导再次失败……",
+            "match": [
+              1,
+              52
+            ],
+            "resultText": "又差了那么一点点……火龙卷再次打偏，今天的开荒就此结束",
+            "nextNode": "chapter1_node157"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node157",
+    "title": "今日最新熟练度",
+    "content": "今天开荒结束，最新熟练度如下：\n\n黑骑：死刑18，黑炎38，小鸟35，灵泉35，分摊5，分散50\n枪刃：死刑18，黑炎38，小鸟35，灵泉35，分摊5，分散50\n白魔：黑炎43，小鸟35，灵泉35，分摊5，分散50\n贤者：黑炎43，小鸟35，灵泉35，分摊5，分散50\n龙骑：黑炎38，小鸟35，灵泉35，分摊5，分散50\n武士：黑炎43，小鸟35，灵泉35，分摊5，分散50\n诗人：黑炎38，小鸟35，灵泉35，分摊5，分散50，引导15\n黑魔：黑炎43，小鸟35，灵泉35，分摊5，分散50\n\n今天大家也获得了火龙卷相关熟练度：分散+10，死刑+10，诗人引导+10",
+    "type": "text",
+    "choices": [
+      {
+        "text": "继续……",
+        "nextNode": "chapter1_node158"
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node158",
+    "title": "枪刃失误后的那段沉默",
+    "content": "打完本，枪刃一直没有说话。\n那次失误……他自己也清楚是自己的问题。\n有没有人去主动找枪刃说话？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "有无人主动找枪刃（d4）",
+        "diceRequired": 4,
+        "outcomes": [
+          {
+            "optionText": "没有人专门找他",
+            "match": 1,
+            "resultText": "大家心照不宣，没有去特别提这件事。枪刃默默下了线",
+            "nextNode": "chapter1_node159"
+          },
+          {
+            "optionText": "诗人私信了枪刃",
+            "match": 2,
+            "resultText": "诗人给枪刃发消息说：「没事的，大家都会失误，不要在意！」枪刃回了一个「嗯」",
+            "nextNode": "chapter1_node159"
+          },
+          {
+            "optionText": "龙骑找枪刃说了几句",
+            "match": 3,
+            "resultText": "龙骑私下找枪刃聊了几句，枪刃解释说今天有点分心，龙骑说：「没关系，下次注意就好。」",
+            "nextNode": "chapter1_node159"
+          },
+          {
+            "optionText": "黑骑又找了枪刃",
+            "match": 4,
+            "resultText": "黑骑找到枪刃，直接说：「下次那个走位记得练一下。」枪刃苦笑：「好。」——这就是黑骑式的安慰",
+            "nextNode": "chapter1_node159"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node159",
+    "title": "枪刃的秘密——越来越藏不住了",
+    "content": "枪刃其实最近一直心不在焉，不只是今天。\n是什么事情在困扰他？\n今天，有没有人察觉到他的异样？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "察觉枪刃异样（d4）",
+        "diceRequired": 4,
+        "outcomes": [
+          {
+            "optionText": "没人察觉",
+            "match": 1,
+            "resultText": "大家都沉浸在自己的事情里，没有注意到枪刃的状态",
+            "nextNode": "chapter1_node160"
+          },
+          {
+            "optionText": "诗人觉得有点不对劲",
+            "match": 2,
+            "resultText": "诗人打本的时候隐隐感觉枪刃今天不太对，但没有多想",
+            "nextNode": "chapter1_node160"
+          },
+          {
+            "optionText": "白魔注意到了",
+            "match": 3,
+            "resultText": "白魔发现枪刃最近说话变少了很多，她记下了这件事",
+            "nextNode": "chapter1_node160"
+          },
+          {
+            "optionText": "龙骑直接问了他",
+            "match": 4,
+            "resultText": "龙骑直接问：「枪刃，你最近是不是有什么事？」枪刃沉默了一秒说：「没事，就是有点累。」龙骑没信，但没有继续追问",
+            "nextNode": "chapter1_node160"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node160",
+    "title": "枪刃秘密的真相",
+    "content": "枪刃这段时间心不在焉，到底是因为什么？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "秘密真相（d5）",
+        "diceRequired": 5,
+        "outcomes": [
+          {
+            "optionText": "工作上遇到了麻烦",
+            "match": 1,
+            "resultText": "枪刃的工作最近出了变故，他一直瞒着大家，不想因为现实的事影响固定队的开荒",
+            "nextNode": "chapter1_node161"
+          },
+          {
+            "optionText": "在现实里认识队里的某个人",
+            "match": 2,
+            "resultText": "枪刃意外发现自己在现实生活中认识队里的某个人……这让他不知道怎么相处",
+            "nextNode": "chapter1_node161"
+          },
+          {
+            "optionText": "对诗人产生了感情",
+            "match": 3,
+            "resultText": "枪刃发现自己对诗人的感情不像普通的友情——这个认知让他最近很困扰",
+            "nextNode": "chapter1_node161"
+          },
+          {
+            "optionText": "收到了别的固定队的邀请",
+            "match": 4,
+            "resultText": "有一个战力更强的固定队向枪刃发出了邀请，他在犹豫要不要离队……",
+            "nextNode": "chapter1_node161"
+          },
+          {
+            "optionText": "只是最近生活状态不佳",
+            "match": 5,
+            "resultText": "枪刃其实只是最近睡眠不好，生活状态有些混乱，并没有特别的大事",
+            "nextNode": "chapter1_node161"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node161",
+    "title": "今天打本之后——武士和龙骑的约定",
+    "content": "下线之后，武士主动私信了龙骑：\n「上次说好要一起练那段走位的，最近有空吗？」\n龙骑的回应：",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "龙骑的回应（d3）",
+        "diceRequired": 3,
+        "outcomes": [
+          {
+            "optionText": "「有空，什么时候？」",
+            "match": 1,
+            "resultText": "龙骑很爽快地答应了，两人约好了时间",
+            "nextNode": "chapter1_node162"
+          },
+          {
+            "optionText": "「最近有点事，下次吧」",
+            "match": 2,
+            "resultText": "龙骑说最近有点事，下次再约，武士回了个「好」，没有追问",
+            "nextNode": "chapter1_node162"
+          },
+          {
+            "optionText": "「不如现在？」",
+            "match": 3,
+            "resultText": "龙骑直接说「不如现在」，武士愣了一下，然后说「好啊」，两人当天晚上就在游戏里练了一会儿",
+            "nextNode": "chapter1_node162"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node162",
+    "title": "武士对龙骑的感情",
+    "content": "武士和龙骑在一起练习的时候，武士的内心在想什么？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "武士的内心（d4）",
+        "diceRequired": 4,
+        "outcomes": [
+          {
+            "optionText": "纯粹是为了提升技术",
+            "match": 1,
+            "resultText": "武士就是单纯想练技术，没有别的想法",
+            "nextNode": "chapter1_node163"
+          },
+          {
+            "optionText": "觉得龙骑这个人很有意思",
+            "match": 2,
+            "resultText": "武士发现和龙骑在一起打本比想象的有趣，他开始注意龙骑这个人",
+            "nextNode": "chapter1_node163"
+          },
+          {
+            "optionText": "对龙骑有些特别的感觉",
+            "match": 3,
+            "resultText": "武士说不清那是什么，但龙骑的某些反应总是会让他多想一会儿",
+            "nextNode": "chapter1_node163"
+          },
+          {
+            "optionText": "已经喜欢上龙骑了",
+            "match": 4,
+            "resultText": "武士知道自己喜欢龙骑——但在固定队里，他不知道该怎么办",
+            "nextNode": "chapter1_node163"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node163",
+    "title": "这一天结束了",
+    "content": "今天的P3S开荒，就到这里。\n每个人都带着各自的心事下了线。\n枪刃藏着秘密，黑骑扛着压力，诗人找到了新的动力，武士和龙骑约好了单独练习……\n而黑魔，还在想着贤者骂他的那句话。",
+    "type": "text",
+    "choices": [
+      {
+        "text": "继续……",
+        "nextNode": "chapter1_node164"
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node164",
+    "title": "第四周——P3S继续推进",
+    "content": "时间来到了第四周。\nP3S的进度：灵泉、火龙卷、分散已经有了一定熟练度，今天要推进到更后面的机制了。\n今天开荒前，队里有没有发生什么事？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "开荒前事件（d6）",
+        "diceRequired": 6,
+        "outcomes": [
+          {
+            "optionText": "无事发生，直接开冲",
+            "match": [
+              1,
+              2
+            ],
+            "resultText": "大家准时集合，没有废话，直接进本",
+            "nextNode": "chapter1_node165"
+          },
+          {
+            "optionText": "有人迟到了",
+            "match": 3,
+            "resultText": "有人今天迟到了十几分钟，其他人在副本门口等着……",
+            "nextNode": "chapter1_node165"
+          },
+          {
+            "optionText": "贤者今天心情特别好",
+            "match": 4,
+            "resultText": "贤者今天进本前难得主动说了一句「状态不错，今天应该能过」，大家都惊了",
+            "nextNode": "chapter1_node165"
+          },
+          {
+            "optionText": "黑魔给贤者发了消息",
+            "match": 5,
+            "resultText": "黑魔在进本前给贤者发了一条消息：「今天一起好好打。」贤者回了「嗯」，黑魔盯着那个字看了很久",
+            "nextNode": "chapter1_node165"
+          },
+          {
+            "optionText": "有人带了新攻略",
+            "match": 6,
+            "resultText": "有人带来了一份新的P3S分散走位攻略，大家提前研究了一会儿",
+            "nextNode": "chapter1_node165"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node165",
+    "title": "P3S进一步推进——分散机制",
+    "content": "进本！今天的目标是攻克分散机制。\n分散是P3S后期最考验走位的机制之一。\n今天的分散练习，大家能顺利通过吗？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "分散机制判定（d6）",
+        "diceRequired": 6,
+        "outcomes": [
+          {
+            "optionText": "顺利通过！",
+            "match": [
+              5,
+              6
+            ],
+            "resultText": "全员走位准确，分散完美通过！大家都松了一口气",
+            "nextNode": "chapter1_node166"
+          },
+          {
+            "optionText": "卡了几把，最终过了",
+            "match": [
+              3,
+              4
+            ],
+            "resultText": "卡了几把，有几次险险出了问题，但最终还是通过了",
+            "nextNode": "chapter1_node166"
+          },
+          {
+            "optionText": "今天分散始终过不去……",
+            "match": [
+              1,
+              2
+            ],
+            "resultText": "今天的分散反复出问题，有人走位总是出一丁点偏差……大家有些沮丧",
+            "nextNode": "chapter1_node166"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chapter1_node166",
+    "title": "分散之后——今天的进度",
+    "content": "今天的P3S推进如何？",
+    "type": "dice",
+    "choices": [
+      {
+        "text": "今日进度（d4）",
+        "diceRequired": 4,
+        "outcomes": [
+          {
+            "optionText": "看到了P3S后期机制",
+            "match": [
+              3,
+              4
+            ],
+            "resultText": "今天推进到了P3S后期，大家第一次见到了最终阶段的机制！虽然立刻全灭了……但看到了就是胜利！",
+            "nextNode": null
+          },
+          {
+            "optionText": "卡在分散，没有新进展",
+            "match": [
+              1,
+              2
+            ],
+            "resultText": "今天的开荒卡在了分散这里，没能推进到新阶段——但每一次都在积累熟练度",
+            "nextNode": null
+          }
+        ]
+      }
+    ]
+  }
+]

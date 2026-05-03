@@ -1,0 +1,210 @@
+.page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #121212;
+}
+
+.scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px 0 40px;
+}
+
+.content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+// ─── 历史条目（仅内容，无 roll 信息） ─────────────────────────────────────────
+.historyItem {
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #2a2a2a;
+  opacity: 0.6;
+}
+
+// ─── 节点正文 ─────────────────────────────────────────────────────────────────
+.nodeContent {
+  white-space: pre-wrap;
+  line-height: 1.9;
+  color: #e0e0e0;
+  font-size: 18px;
+}
+
+// ─── 当前节点 ─────────────────────────────────────────────────────────────────
+.currentNode {
+  margin-bottom: 24px;
+}
+
+/** 最新历史节点：完整 roll 标签，格式：d100 = 67 ： 大佬水平 */
+.rollLabel {
+  margin-top: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #f5a623;
+}
+
+/** 旧历史节点：仅显示 resultText，如"大佬水平" */
+.resultText {
+  margin-top: 8px;
+  font-size: 18px;
+  color: #ffcc80;
+}
+
+// ─── 判定表 ──────────────────────────────────────────────────────────────────
+.diceTable {
+  margin: 24px 0;
+  border: 2px solid #3a3a3a;
+  border-radius: 8px;
+  background: #1a1a1a;
+  overflow: hidden;
+}
+
+.diceTableTitle {
+  padding: 12px 16px;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  border-bottom: 2px solid #3a3a3a;
+  color: #e0e0e0;
+}
+
+.diceRow {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  border-bottom: 1px solid #2a2a2a;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  gap: 12px;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:not(.diceRowDisabled):hover {
+    background: rgba(78, 205, 196, 0.08);
+  }
+}
+
+.diceRowDisabled {
+  cursor: default;
+  opacity: 0.4;
+}
+
+.diceRange {
+  flex-shrink: 0;
+  width: 64px;
+  font-weight: 700;
+  color: #ff9800;
+  font-size: 16px;
+}
+
+.diceOption {
+  flex: 1;
+  font-size: 16px;
+  color: #ccc;
+}
+
+.diceClickHint {
+  font-size: 12px;
+  color: #555;
+}
+
+.diceUnavailable {
+  font-size: 12px;
+  color: #555;
+}
+
+// ─── 投骰按钮 ─────────────────────────────────────────────────────────────────
+.rollWrap {
+  display: flex;
+  justify-content: center;
+  margin: 16px 0;
+}
+
+.rollBtn {
+  padding: 12px 32px;
+  background: #f5a623;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: #e09610;
+  }
+
+  &:active {
+    background: #c07d0a;
+  }
+}
+
+// ─── 结束画面 ─────────────────────────────────────────────────────────────────
+.finishWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 60px 0;
+}
+
+.finishIcon {
+  font-size: 48px;
+}
+
+.finishText {
+  font-size: 22px;
+  color: #4ecdc4;
+  font-weight: 600;
+}
+
+.backBtnInner {
+  margin-top: 8px;
+  padding: 10px 28px;
+  background: transparent;
+  border: 1px solid #4ecdc4;
+  border-radius: 20px;
+  color: #4ecdc4;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(78, 205, 196, 0.1);
+  }
+}
+
+// ─── 加载 / 错误状态 ─────────────────────────────────────────────────────────
+.statusWrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: #888;
+  font-size: 18px;
+}
+
+.loadingSpinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #2a2a2a;
+  border-top-color: #4ecdc4;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.errorIcon {
+  font-size: 40px;
+}

@@ -1,52 +1,53 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styles from './index.module.scss';
+import { useAuth } from '../../App';
 
-/**
- * 用户信息类型定义
- */
-export interface User {
-  name: string;
-  id?: number;
-  avatar?: string;
-  email?: string;
+// ─── 首页 Header（含搜索框） ──────────────────────────────────────────────────
+export interface HomeHeaderProps {
+  searchValue: string;
+  onSearchChange: (val: string) => void;
 }
 
-/**
- * Header 组件属性类型定义
- */
-export interface HeaderProps {
-  /** 用户信息对象 */
-  user?: User;
-  /** 是否登录 */
-  isLoggedIn: boolean;
-  /** 登录按钮点击事件 */
-  onLoginClick?: () => void;
-  /** 登录成功回调 */
-  onLoginSuccess?: () => void;
-}
+export const HomeHeader: React.FC<HomeHeaderProps> = ({ searchValue, onSearchChange }) => {
+  const { isLoggedIn, user, openLoginModal, handleLogout } = useAuth();
 
-/**
- * 顶部导航栏组件
- * @description 仅展示用户信息或登录按钮
- */
-const Header: React.FC<HeaderProps> = ({
-  user,
-  isLoggedIn,
-  onLoginClick = () => {},
-}) => {
+  const handleInput = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => onSearchChange(e.target.value),
+    [onSearchChange],
+  );
+
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        {/* 用户信息区域 */}
+        {/* Logo / 标题 */}
+        <div className={styles.logo}>狒批故事馆</div>
+
+        {/* 搜索框 */}
+        <div className={styles.searchWrap}>
+          <span className={styles.searchIcon}>🔍</span>
+          <input
+            className={styles.searchInput}
+            type="text"
+            placeholder="搜索剧本名称、标签…"
+            value={searchValue}
+            onChange={handleInput}
+          />
+          {searchValue && (
+            <button className={styles.searchClear} onClick={() => onSearchChange('')}>
+              ×
+            </button>
+          )}
+        </div>
+
+        {/* 用户区域 */}
         <div className={styles.user}>
           {isLoggedIn ? (
             <div className={styles.userInfo}>
-              <span className={styles.userName}>{user?.name || '用户'}</span>
+              <span className={styles.userName}>{user?.username || '用户'}</span>
+              <button className={styles.logoutBtn} onClick={handleLogout}>退出</button>
             </div>
           ) : (
-            <button className={styles.loginBtn} onClick={onLoginClick}>
-              登录
-            </button>
+            <button className={styles.loginBtn} onClick={openLoginModal}>登录</button>
           )}
         </div>
       </div>
@@ -54,4 +55,40 @@ const Header: React.FC<HeaderProps> = ({
   );
 };
 
-export default Header;
+// ─── 游戏页 Header（含返回按钮） ─────────────────────────────────────────────
+export interface GameHeaderProps {
+  scriptTitle?: string;
+  onBack: () => void;
+}
+
+export const GameHeader: React.FC<GameHeaderProps> = ({ scriptTitle, onBack }) => {
+  const { isLoggedIn, user, openLoginModal } = useAuth();
+
+  return (
+    <header className={styles.header}>
+      <div className={styles.container}>
+        {/* 返回按钮 */}
+        <button className={styles.backBtn} onClick={onBack}>
+          ← 返回首页
+        </button>
+
+        {/* 剧本标题 */}
+        {scriptTitle && <div className={styles.scriptTitle}>{scriptTitle}</div>}
+
+        {/* 用户区域 */}
+        <div className={styles.user}>
+          {isLoggedIn ? (
+            <div className={styles.userInfo}>
+              <span className={styles.userName}>{user?.username || '用户'}</span>
+            </div>
+          ) : (
+            <button className={styles.loginBtn} onClick={openLoginModal}>登录</button>
+          )}
+        </div>
+      </div>
+    </header>
+  );
+};
+
+// 默认导出首页版（向后兼容，避免破坏其他潜在引用）
+export default HomeHeader;

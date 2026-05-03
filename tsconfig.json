@@ -25,8 +25,7 @@
       "@/*": ["./src/*"]
     },
     "typeRoots": [
-      "node_modules/@types",
-      "src"
+      "node_modules/@types"
     ],
     "useDefineForClassFields": true,
     "declaration": true,
