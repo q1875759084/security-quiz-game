@@ -96,3 +96,43 @@ location /api/ {
 - `proxy_pass` **有末尾路径（含仅 `/`）**：用 proxy_pass 路径替换 location 匹配前缀，`/api/scripts` → 后端收到 `/scripts`
 
 后端 `app.use('/api', routes)` 是**前缀匹配**（不是添加前缀），需要收到完整的 `/api/xxx` 才能路由到正确处理函数，因此 Nginx 不能剥掉 `/api` 前缀。
+
+---
+
+## 用户模块
+
+### logout 完整链路
+
+**日期**：2026-05-03
+
+退出登录涉及两层 Token 的清理，逻辑如下：
+
+```
+前端 authService.logout()
+  │
+  ├─ 1. axios.post('/user/logout')  ← 前端主动发起，目的是清除后端 Cookie
+  │       │
+  │       └─ 浏览器构造 HTTP Request，自动携带当前域名下的 Cookie
+  │
+  ├─ 2. 后端收到请求
+  │       │
+  │       └─ res.clearCookie('refresh_token', { path: '/api/user/refresh' })
+  │            实质：在 Response 头写入：
+  │            Set-Cookie: refresh_token=; Path=/api/user/refresh; Max-Age=0; HttpOnly
+  │
+  ├─ 3. 浏览器收到 Response
+  │       │
+  │       ├─ 浏览器层（JS 不可见）：
+  │       │    解析 Set-Cookie 头，Max-Age=0 → Cookie 立即过期 → 从存储中清除
+  │       │
+  │       └─ JS 层（axios）：拿到 { code: 200, data: null }，前端无需感知内容
+  │
+  └─ 4. finally: clearToken()  ← 清除本地 localStorage 中的 accessToken
+```
+
+**关键设计点**：
+
+- `clearCookie` 本质是发送 `Max-Age=0` 的 Set-Cookie，HTTP 协议没有"删除 Cookie"的原语
+- Cookie 由**浏览器托管**，JS 拿到 Response 之前浏览器已处理 Set-Cookie，JS 无法感知也无法直接操作 HttpOnly Cookie，这正是 HttpOnly 防 XSS 的原理
+- `finally` 保证无论后端接口成功还是失败（网络异常），本地 accessToken 都会被清除，用户一定能退出
+- 退出后 RefreshToken Cookie 被清除，即使 accessToken 未过期也无法续期，下次打开需要重新登录
