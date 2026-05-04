@@ -1,7 +1,9 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { GameHeader } from '../../components/Header';
 import { useScriptNode } from '../../hooks/useScripts';
 import type { ScriptNode, Outcome, ScriptMeta } from '../../types/script'; // ScriptMeta 供 GamePageProps 使用
+import { getRecord, saveRecord } from '../../api/records';
+import type { HistoryItem as RecordHistoryItem } from '../../api/records';
 import styles from './index.module.scss';
 
 interface GamePageProps {
@@ -167,12 +169,63 @@ const GamePage: React.FC<GamePageProps> = ({ scriptId, scriptMeta, onBack }) => 
   const [history, setHistory] = useState<HistoryEntry[]>([]);
   const [isFinished, setIsFinished] = useState(false);
 
-  // 进入游戏：加载入口节点
+  // 用 ref 同步持有最新 history，供 saveRecord 调用时读取（避免闭包过时值问题）
+  const historyRef = useRef<HistoryEntry[]>([]);
+
+  // ─── 存档：将本地 HistoryEntry[] 转换为后端 RecordHistoryItem[] ────────────
+  const toRecordHistory = useCallback((entries: HistoryEntry[]): RecordHistoryItem[] =>
+    entries.map((e) => ({
+      nodeId: e.node.id,
+      content: e.node.content,
+      resultText: e.resultText,
+      rollLabel: e.rollLabel,
+      timestamp: new Date().toISOString(),
+    }))
+  , []);
+
+  // ─── 触发存档（fire-and-forget，不阻塞游戏流程） ──────────────────────────
+  const triggerSave = useCallback((nodeId: string, status: 1 | 2 = 1) => {
+    saveRecord({
+      scriptId,
+      currentNodeId: nodeId,
+      history: toRecordHistory(historyRef.current),
+      status,
+    }).catch((err) => {
+      // 存档失败静默处理，不影响游戏体验
+      console.warn('[存档] 自动保存失败：', err);
+    });
+  }, [scriptId, toRecordHistory]);
+
+  // 进入游戏：优先读取存档，有存档则恢复进度，否则从入口节点开始
   useEffect(() => {
-    if (scriptMeta.entryNodeId) {
-      loadNode(scriptMeta.entryNodeId);
-    }
-  }, [scriptMeta.entryNodeId, loadNode]);
+    const initGame = async () => {
+      try {
+        const res = await getRecord(scriptId);
+        if (res.data) {
+          // 有存档：恢复历史记录，跳转到上次保存的节点
+          const savedHistory: HistoryEntry[] = res.data.history.map((item) => ({
+            node: { id: item.nodeId, content: item.content, title: '', type: 'dice', choices: [] },
+            optionText: '',
+            resultText: item.resultText,
+            rollLabel: item.rollLabel,
+          }));
+          setHistory(savedHistory);
+          historyRef.current = savedHistory;
+          loadNode(res.data.currentNodeId);
+        } else if (scriptMeta.entryNodeId) {
+          // 无存档：从入口节点开始
+          loadNode(scriptMeta.entryNodeId);
+        }
+      } catch {
+        // 读档失败降级：从入口节点开始，不影响游戏
+        if (scriptMeta.entryNodeId) {
+          loadNode(scriptMeta.entryNodeId);
+        }
+      }
+    };
+    initGame();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [scriptId]);
 
   // 节点加载完成后，预请求所有 nextNode（深度为 1）
   useEffect(() => {
@@ -185,17 +238,25 @@ const GamePage: React.FC<GamePageProps> = ({ scriptId, scriptMeta, onBack }) => 
   const advance = useCallback((outcome: Outcome, rollLabel: string) => {
     if (!currentNode) return;
 
-    // 当前节点连同 roll 结果一起存入历史
-    setHistory((prev) => [...prev, { node: currentNode, optionText: outcome.optionText, resultText: outcome.resultText, rollLabel }]);
+    const newEntry = { node: currentNode, optionText: outcome.optionText, resultText: outcome.resultText, rollLabel };
+    const newHistory = [...historyRef.current, newEntry];
+
+    // 同步更新 ref（供 triggerSave 读取）和 state（供渲染）
+    historyRef.current = newHistory;
+    setHistory(newHistory);
 
     const next = outcome.nextNode;
     if (!next) {
       setIsFinished(true);
+      // 剧情结束，存档状态改为已完成
+      triggerSave(currentNode.id, 2);
       return;
     }
 
+    // 每次选择后自动存档（进行中）
+    triggerSave(next, 1);
     loadNode(next);
-  }, [currentNode, loadNode]);
+  }, [currentNode, loadNode, triggerSave]);
 
   // 投骰子后立即跳转
   const handleDiceRoll = useCallback((outcome: Outcome, diceResult: number) => {
