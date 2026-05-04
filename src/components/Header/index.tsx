@@ -9,12 +9,15 @@ export interface HomeHeaderProps {
 }
 
 export const HomeHeader: React.FC<HomeHeaderProps> = ({ searchValue, onSearchChange }) => {
-  const { isLoggedIn, user, openLoginModal, handleLogout } = useAuth();
+  const { isLoggedIn, user, openLoginModal, handleLogout, isMicroApp } = useAuth();
 
   const handleInput = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => onSearchChange(e.target.value),
     [onSearchChange],
   );
+
+  // 微前端环境下主应用提供全局导航，子应用不渲染独立 Header
+  if (isMicroApp) return null;
 
   return (
     <header className={styles.header}>

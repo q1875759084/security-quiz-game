@@ -5,6 +5,7 @@ import type { ScriptMeta } from './types/script';
 import LoginModal from './components/LoginModal';
 import HomePage from './pages/Home';
 import GamePage from './pages/Game';
+import { useEnv } from './hooks/useEnv';
 
 // ─── 全局样式 ───────────────────────────────────────────────────────────────
 const GlobalStyle = () => (
@@ -26,6 +27,10 @@ export interface AuthContextValue {
   isLoggedIn: boolean;
   user: UserInfo | null;
   isAuthLoading: boolean;
+  /** 是否作为微前端子应用运行（主应用会提供自己的导航，子应用隐藏独立 Header） */
+  isMicroApp: boolean;
+  /** 是否为移动端设备 */
+  isMobile: boolean;
   openLoginModal: () => void;
   handleLoginSuccess: (userInfo: UserInfo) => void;
   handleLogout: () => void;
@@ -35,6 +40,8 @@ export const AuthContext = createContext<AuthContextValue>({
   isLoggedIn: false,
   user: null,
   isAuthLoading: true,
+  isMicroApp: false,
+  isMobile: false,
   openLoginModal: () => {},
   handleLoginSuccess: () => {},
   handleLogout: () => {},
@@ -67,6 +74,7 @@ function useHashRouter(): [Route, (path: Route) => void] {
 
 // ─── App ─────────────────────────────────────────────────────────────────────
 function App() {
+  const { isMicroApp, isMobile } = useEnv();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState<UserInfo | null>(null);
   const [isAuthLoading, setIsAuthLoading] = useState(true);
@@ -111,7 +119,7 @@ function App() {
   const scriptId = isGamePage ? path.replace('/game/', '') : null;
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, user, isAuthLoading, openLoginModal, handleLoginSuccess, handleLogout }}>
+    <AuthContext.Provider value={{ isLoggedIn, user, isAuthLoading, isMicroApp, isMobile, openLoginModal, handleLoginSuccess, handleLogout }}>
       <GlobalStyle />
       {isGamePage && scriptId && currentScriptMeta ? (
         <GamePage
