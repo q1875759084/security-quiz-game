@@ -24,14 +24,6 @@ interface HistoryEntry {
 
 // ─── 工具函数 ─────────────────────────────────────────────────────────────────
 
-/**
- * 判断 outcome 的 nextNode 是否有效（非 null / 空）
- * null 表示剧情分支尚未填充，不可跳转
- */
-function isValidNextNode(nextNode: string | null): boolean {
-  return !!nextNode;
-}
-
 /** 判定范围文本 */
 function getRangeText(match: number | [number, number]): string {
   if (typeof match === 'number') return String(match);
@@ -61,7 +53,7 @@ function extractTableTitle(content: string): string {
  * null 分支不计入范围，实际骰子上限 = 有效 outcomes 中 match 的最大值
  */
 function getEffectiveDiceMax(outcomes: Outcome[]): number {
-  const validOutcomes = outcomes.filter((o) => isValidNextNode(o.nextNode));
+  const validOutcomes = outcomes.filter((o) => !!o.nextNode);
   if (validOutcomes.length === 0) return 1;
   let max = 0;
   for (const o of validOutcomes) {
@@ -119,7 +111,7 @@ const CurrentNode: React.FC<CurrentNodeProps> = ({
   const handleDiceRoll = useCallback(() => {
     if (!choice) return;
     // 只在有效 outcomes 的实际 match 范围内投骰，null 分支不参与
-    const validOutcomes = choice.outcomes.filter((o) => isValidNextNode(o.nextNode));
+    const validOutcomes = choice.outcomes.filter((o) => !!o.nextNode);
     const result = rollDice(validOutcomes);
     const matched = matchOutcome(result, validOutcomes) ?? validOutcomes[0];
     onDiceRoll(matched, result);
@@ -135,7 +127,7 @@ const CurrentNode: React.FC<CurrentNodeProps> = ({
           <div className={styles.diceTable}>
             <div className={styles.diceTableTitle}>{extractTableTitle(node.content)}</div>
             {choice.outcomes.map((outcome, idx) => {
-              const valid = isValidNextNode(outcome.nextNode);
+              const valid = !!outcome.nextNode;
               return (
                 <div
                   key={idx}
