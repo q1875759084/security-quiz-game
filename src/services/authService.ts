@@ -1,4 +1,5 @@
-import { login, register, getProfile, LoginParams, RegisterParams } from '../api/user';
+import { login, register, getProfile } from '../api/user';
+import type { LoginParams, RegisterParams } from '../api/user';
 import { setAccessToken, getAccessToken, clearToken } from '../utils/token';
 import request from '../utils/request';
 
@@ -49,7 +50,14 @@ export const authService = {
     return newAccessToken;
   },
 
-  logout(): void {
-    clearToken();
+  async logout(): Promise<void> {
+    try {
+      // 通知后端清除 HttpOnly Cookie 中的 RefreshToken
+      await request.post('/user/logout');
+    } catch {
+      // 后端退出失败不阻塞本地清理（网络异常时也要能退出）
+    } finally {
+      clearToken();
+    }
   },
 };

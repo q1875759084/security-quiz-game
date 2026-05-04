@@ -108,8 +108,8 @@ function App() {
     setUser(userInfo);
   }, []);
 
-  const handleLogout = useCallback(() => {
-    authService.logout();
+  const handleLogout = useCallback(async () => {
+    await authService.logout();
     setIsLoggedIn(false);
     setUser(null);
   }, []);
