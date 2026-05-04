@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { GameHeader } from '../../components/Header';
 import { useScriptNode } from '../../hooks/useScripts';
 import type { ScriptNode, Outcome, ScriptMeta } from '../../types/script'; // ScriptMeta 供 GamePageProps 使用
@@ -167,8 +167,6 @@ const GamePage: React.FC<GamePageProps> = ({ scriptId, scriptMeta, onBack }) => 
   const [history, setHistory] = useState<HistoryEntry[]>([]);
   const [isFinished, setIsFinished] = useState(false);
 
-  const scrollRef = useRef<HTMLDivElement>(null);
-
   // 进入游戏：加载入口节点
   useEffect(() => {
     if (scriptMeta.entryNodeId) {
@@ -182,13 +180,6 @@ const GamePage: React.FC<GamePageProps> = ({ scriptId, scriptMeta, onBack }) => 
       prefetchNextNodes(currentNode);
     }
   }, [currentNode, prefetchNextNodes]);
-
-  // 自动滚动到底部
-  useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-    }
-  }, [history, currentNode]);
 
   /** 投骰/选择后立即跳转，无需二次确认 */
   const advance = useCallback((outcome: Outcome, rollLabel: string) => {
@@ -250,7 +241,7 @@ const GamePage: React.FC<GamePageProps> = ({ scriptId, scriptMeta, onBack }) => 
     <div className={styles.page}>
       <GameHeader scriptTitle={scriptMeta.title} onBack={onBack} />
 
-      <div ref={scrollRef} className={styles.scroll}>
+      <div className={styles.scroll}>
         <div className={styles.content}>
           {/* 历史记录：最新条目显示 rollLabel，其余只显示 resultText */}
           {history.map((entry, idx) => (
