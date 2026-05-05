@@ -4,32 +4,39 @@ import { getScripts, getNode } from '../api/scripts';
 
 // ─── 剧本列表 Hook ────────────────────────────────────────────────────────────
 // keyword 传给后端，由后端 SQL LIKE 过滤，前端不做二次过滤。
-// 防抖 300ms：避免用户每输入一个字符就发一次请求。
+// 防抖 300ms：减少请求频率。
+// AbortController：取消上一次未完成的请求，防止竞态（弱网下旧请求后返回覆盖新结果）。
 export function useScriptList(searchKeyword: string) {
   const [scripts, setScripts] = useState<ScriptMeta[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // 用 ref 存放防抖 timer，避免 timer id 变化触发额外渲染
+  // 用 ref 存放防抖 timer 和当前请求的 AbortController
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const abortRef = useRef<AbortController | null>(null);
 
   useEffect(() => {
-    // 清除上一次未触发的防抖
-    if (timerRef.current) {
-      clearTimeout(timerRef.current);
-    }
+    // 1. 清除上一次未触发的防抖
+    if (timerRef.current) clearTimeout(timerRef.current);
+
+    // 2. 取消上一次已发出但未完成的请求，防止竞态
+    if (abortRef.current) abortRef.current.abort();
 
     setIsLoading(true);
     setError(null);
 
     timerRef.current = setTimeout(() => {
+      const controller = new AbortController();
+      abortRef.current = controller;
       const keyword = searchKeyword.trim() || undefined;
 
-      getScripts({ keyword })
+      getScripts({ keyword }, controller.signal)
         .then((res) => {
           setScripts(res.data ?? []);
         })
-        .catch(() => {
+        .catch((err: unknown) => {
+          // AbortError 是主动取消，不是真正的错误，忽略即可
+          if (err instanceof Error && err.name === 'AbortError') return;
           setError('剧本列表加载失败，请稍后重试');
         })
         .finally(() => {
@@ -37,11 +44,10 @@ export function useScriptList(searchKeyword: string) {
         });
     }, 300);
 
-    // 组件卸载时清除未触发的防抖
     return () => {
-      if (timerRef.current) {
-        clearTimeout(timerRef.current);
-      }
+      // 组件卸载时同时清除防抖和取消进行中的请求
+      if (timerRef.current) clearTimeout(timerRef.current);
+      if (abortRef.current) abortRef.current.abort();
     };
   }, [searchKeyword]);
 

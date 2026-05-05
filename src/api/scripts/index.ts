@@ -15,9 +15,10 @@ export interface GetScriptsResponse {
  * GET /api/scripts?keyword=xxx
  * 无需鉴权，仅返回 status=1（上架）的剧本。
  * keyword 不传或为空时返回全量，后端按标题 SQL LIKE 过滤。
+ * signal：用于 AbortController 取消请求，防止搜索竞态
  */
-export const getScripts = async (params?: GetScriptsParams): Promise<GetScriptsResponse> => {
-  const response = await request.get('/scripts', { params });
+export const getScripts = async (params?: GetScriptsParams, signal?: AbortSignal): Promise<GetScriptsResponse> => {
+  const response = await request.get('/scripts', { params, signal });
   return response;
 };
 
