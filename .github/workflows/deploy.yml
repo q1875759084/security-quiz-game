@@ -36,7 +36,6 @@ jobs:
         with:
           node-version: '20'
 
-      # 安装依赖
       - name: 安装依赖
         run: npm install
 
@@ -83,6 +82,17 @@ jobs:
           docker tag security-quiz-game:${{ steps.meta.outputs.IMAGE_TAG }} ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.IMAGE_TAG }}
           docker push ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.IMAGE_TAG }}
 
+      # compose 文件在仓库里，需要先传到服务器
+      # 使用 scp-action 传输，与 ssh-action 同一个作者，配置格式一致
+      - name: 上传 Compose 文件到服务器
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          source: "docker-compose.yml,docker-compose.dev.yml"
+          target: "~/"
+
       - name: 部署到测试环境（8080 端口）
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -92,13 +102,11 @@ jobs:
           script_stop: true
           script: |
             docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.IMAGE_TAG }}
-            docker stop security-quiz-game-dev || true
-            docker rm security-quiz-game-dev || true
-            docker run -d \
-              --name security-quiz-game-dev \
-              --restart always \
-              -p 8080:80 \
-              ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.IMAGE_TAG }}
+            DOCKER_HUB_USERNAME=${{ secrets.DOCKER_HUB_USERNAME }} \
+            FRONTEND_TAG=${{ steps.meta.outputs.IMAGE_TAG }} \
+            CORS_ORIGIN=${{ secrets.CORS_ORIGIN }} \
+            JWT_SECRET=${{ secrets.JWT_SECRET }} \
+            docker compose -f ~/docker-compose.yml -f ~/docker-compose.dev.yml up -d frontend
 
   # ==================== CD：生产环境部署 ====================
   # 触发条件：push 了 v*.*.* 格式的 tag（如 v1.0.0）
@@ -144,7 +152,16 @@ jobs:
           docker push ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.SHA_TAG }}
           docker push ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:latest
 
-      - name: 部署到云服务器（生产）
+      - name: 上传 Compose 文件到服务器
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          source: "docker-compose.yml,docker-compose.prod.yml"
+          target: "~/"
+
+      - name: 部署到生产环境（80 端口）
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -153,10 +170,8 @@ jobs:
           script_stop: true
           script: |
             docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.VERSION_TAG }}
-            docker stop security-quiz-game || true
-            docker rm security-quiz-game || true
-            docker run -d \
-              --name security-quiz-game \
-              --restart always \
-              -p 80:80 \
-              ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.VERSION_TAG }}
+            DOCKER_HUB_USERNAME=${{ secrets.DOCKER_HUB_USERNAME }} \
+            FRONTEND_TAG=${{ steps.meta.outputs.VERSION_TAG }} \
+            CORS_ORIGIN=${{ secrets.CORS_ORIGIN }} \
+            JWT_SECRET=${{ secrets.JWT_SECRET }} \
+            docker compose -f ~/docker-compose.yml -f ~/docker-compose.prod.yml up -d frontend
