@@ -6,7 +6,7 @@ import { redirectToLogin } from './redirect';
  * 全局Axios实例配置
  */
 const service: AxiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || '/api', // 接口基础地址
+  baseURL: '/api', // 固化为 /api：本地由 devServer proxy 转发，服务器由 Nginx 转发，两端行为一致
   timeout: 10000, // 超时时间10秒
   headers: {
     'Content-Type': 'application/json;charset=utf-8'
@@ -34,7 +34,7 @@ const refreshTokenRequest = async (): Promise<{ accessToken: string }> => {
   try {
     // 直接用axios原生实例，不使用封装后的service，避免触发拦截器
     const res = await axios.post(
-      `${import.meta.env.VITE_API_BASE_URL || '/api'}/user/refresh`, // 后端刷新Token接口
+      '/api/user/refresh', // 后端刷新Token接口
       {}, // RefreshToken通过Cookie自动携带
       { 
         timeout: 5000,

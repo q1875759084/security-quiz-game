@@ -1,3 +1,9 @@
 node_modules/
 dist/
 *.tsbuildinfo
+
+# 敏感环境配置兜底：本地若误创建含真实密钥的文件，防止提交到 git
+# .env.development 不在此列，该文件只含本地行为配置，应提交 git 供团队共享
+.env.production
+.env.staging
+.env.local

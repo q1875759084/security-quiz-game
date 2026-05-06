@@ -1,25 +1,11 @@
 import { login, register, getProfile } from '../api/user';
-import type { LoginParams, RegisterParams } from '../api/user';
+// UserInfo / LoginResponse / RegisterResponse 统一从 api 层导出，避免重复定义
+import type { LoginParams, RegisterParams, UserInfo, LoginResponse, RegisterResponse } from '../api/user';
 import { setAccessToken, getAccessToken, clearToken } from '../utils/token';
 import request from '../utils/request';
 
-export interface UserInfo {
-  id: number;
-  username: string;
-  nickname?: string;
-  email?: string;
-  phone?: string;
-}
-
-export interface LoginResponse {
-  accessToken: string;
-  userInfo: UserInfo;
-}
-
-export interface RegisterResponse {
-  accessToken: string;
-  userInfo: UserInfo;
-}
+// 重新导出供上层使用，外部代码可从 authService 直接引用类型，无需感知 api 层
+export type { UserInfo, LoginResponse, RegisterResponse };
 
 export const authService = {
   async login(params: LoginParams): Promise<LoginResponse> {
@@ -43,12 +29,8 @@ export const authService = {
     return response.data.userInfo;
   },
 
-  async refreshToken(): Promise<string> {
-    const response = await request.post('/user/refresh');
-    const newAccessToken = response.data.accessToken;
-    setAccessToken(newAccessToken);
-    return newAccessToken;
-  },
+  // refreshToken 由 request.ts 响应拦截器内部的 refreshTokenRequest 统一处理，
+  // authService 不重复实现，避免两套刷新逻辑并存造成混淆
 
   async logout(): Promise<void> {
     try {

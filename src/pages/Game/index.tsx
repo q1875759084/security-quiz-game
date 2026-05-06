@@ -22,6 +22,8 @@ interface HistoryEntry {
   resultText: string;
   /** 完整 roll 标签，格式如 "d100 = 67 ： 大佬水平"，仅最新节点显示 */
   rollLabel: string;
+  /** 选择发生时刻的时间戳（ISO 字符串），存档时原样传给后端，反映真实操作时序 */
+  timestamp: string;
 }
 
 // ─── 工具函数 ─────────────────────────────────────────────────────────────────
@@ -173,13 +175,14 @@ const GamePage: React.FC<GamePageProps> = ({ scriptId, scriptMeta, onBack }) => 
   const historyRef = useRef<HistoryEntry[]>([]);
 
   // ─── 存档：将本地 HistoryEntry[] 转换为后端 RecordHistoryItem[] ────────────
+  // timestamp 直接取 entry 上记录的选择时刻，而非存档时刻
   const toRecordHistory = useCallback((entries: HistoryEntry[]): RecordHistoryItem[] =>
     entries.map((e) => ({
       nodeId: e.node.id,
       content: e.node.content,
       resultText: e.resultText,
       rollLabel: e.rollLabel,
-      timestamp: new Date().toISOString(),
+      timestamp: e.timestamp,
     }))
   , []);
 
@@ -208,6 +211,7 @@ const GamePage: React.FC<GamePageProps> = ({ scriptId, scriptMeta, onBack }) => 
             optionText: '',
             resultText: item.resultText,
             rollLabel: item.rollLabel,
+            timestamp: item.timestamp,
           }));
           setHistory(savedHistory);
           historyRef.current = savedHistory;
@@ -238,7 +242,7 @@ const GamePage: React.FC<GamePageProps> = ({ scriptId, scriptMeta, onBack }) => 
   const advance = useCallback((outcome: Outcome, rollLabel: string) => {
     if (!currentNode) return;
 
-    const newEntry = { node: currentNode, optionText: outcome.optionText, resultText: outcome.resultText, rollLabel };
+    const newEntry = { node: currentNode, optionText: outcome.optionText, resultText: outcome.resultText, rollLabel, timestamp: new Date().toISOString() };
     const newHistory = [...historyRef.current, newEntry];
 
     // 同步更新 ref（供 triggerSave 读取）和 state（供渲染）
@@ -306,7 +310,7 @@ const GamePage: React.FC<GamePageProps> = ({ scriptId, scriptMeta, onBack }) => 
         <div className={styles.content}>
           {/* 历史记录：最新条目显示 rollLabel，其余只显示 resultText */}
           {history.map((entry, idx) => (
-            <HistoryItem key={idx} entry={entry} isLatest={idx === history.length - 1} />
+            <HistoryItem key={entry.node.id} entry={entry} isLatest={idx === history.length - 1} />
           ))}
 
           {/* 当前节点 / 结束 */}
