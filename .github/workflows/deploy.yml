@@ -1,36 +1,35 @@
 name: CI/CD 自动部署
 
 # 触发条件说明：
-#   push 任意分支/tag → 只触发 CI（客观校验，代码能不能跑）
-#   workflow_dispatch  → 手动触发，才执行 CD 到测试环境（主观判断，这个版本该不该上）
-#   push tag v*.*.*   → CI + 自动 CD 到生产环境（打 tag = 显式声明发布）
+#   push 任意分支   → 触发 CI（尽早发现问题）
+#   workflow_dispatch → 手动触发，执行 CD 到测试环境
+#   push tag v*.*.* → CI + CD 到生产环境
 #
-# 核心原则：CD 不应该随每次 push 自动触发
-#   一个需求可能 push 十几次，不可能每次都重新部署测试环境
-#   测试环境部署 = 开发者主动决定"这个版本可以给 QA 看了"
+# 镜像管理策略（核心）：
+#   一次构建原则：测试和生产使用同一个镜像产物，只有 tag 不同
+#   - 测试：构建镜像，推 sha tag，部署到测试环境验证
+#   - 生产：不重新构建，给已有的 sha 镜像追加语义版本 tag，部署到生产
+#   这样保证"测试通过的"和"上线的"是同一个二进制产物
 on:
   push:
     branches:
       - '**'
     tags:
       - 'v*.*.*'
-  # 手动触发：开发者在 GitHub Actions 页面选择分支后点击 Run workflow
-  # 触发后执行 deploy-dev job，部署到测试环境
   workflow_dispatch:
 
 jobs:
   # ==================== CI：代码校验 ====================
-  # 任意分支 push 都跑，目的是尽早发现问题
-  # 失败时 deploy-prod job 不会启动（因为 needs: ci）
+  # push 分支和 push tag 都触发，workflow_dispatch 时不自动触发
+  # deploy-prod 通过 needs: ci 强制依赖，保证生产发布前必须通过校验
   ci:
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout 代码
         uses: actions/checkout@v4
 
-      # 显式指定 Node 版本，与 Dockerfile 的 node:20-alpine 保持一致
-      # node-version：防止 runner 预装版本漂移
       - name: 设置 Node 版本
         uses: actions/setup-node@v4
         with:
@@ -39,26 +38,16 @@ jobs:
       - name: 安装依赖
         run: npm install
 
-      # lint 校验：检查代码规范和潜在问题
-      # 比 build 更早发现问题（未使用变量、规范违反等）
       - name: Lint 校验
         run: npm run lint
 
-      # build 校验：编译级验证，确保代码能正常构建
-      # lint 发现规范问题，build 发现编译错误，职责不同
       - name: 构建校验
         run: npm run build
 
   # ==================== CD：测试环境部署 ====================
-  # 触发条件：workflow_dispatch（开发者手动触发）
-  # 和生产环境共用同一台云服务器，用端口区分：
-  #   测试环境：http://ip:8080
-  #   生产环境：http://ip:80
-  # 没有灰度、回滚等保障机制，出问题直接重新触发部署修复版本即可
-  #
-  # 注意：workflow_dispatch 触发时 ci job 不会自动先跑
-  #   needs: ci 只在同一次触发事件内有效
-  #   手动触发前应确认对应分支的 CI 已通过
+  # 触发：workflow_dispatch（开发者主动决定"这个版本可以给 QA 看了"）
+  # 镜像：构建 + 推 sha tag（sha 不可变，精确对应这次 commit）
+  # 不推 latest：latest 语义模糊，多环境场景下容易引发混乱
   deploy-dev:
     if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
@@ -67,75 +56,24 @@ jobs:
       - name: Checkout 代码
         uses: actions/checkout@v4
 
+      # CI 校验（workflow_dispatch 不触发 ci job，在此补充）
+      - name: 设置 Node 版本
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 安装依赖
+        run: npm install
+
+      - name: Lint 校验
+        run: npm run lint
+
+      - name: 构建校验
+        run: npm run build
+
       - name: 生成镜像标签
         id: meta
-        run: echo "IMAGE_TAG=${{ github.sha }}" >> $GITHUB_OUTPUT
-
-      - name: 构建 Docker 镜像
-        run: docker build -t security-quiz-game:${{ steps.meta.outputs.IMAGE_TAG }} .
-
-      - name: 登录 Docker Hub
-        run: echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
-
-      - name: 推送镜像到 Docker Hub
-        run: |
-          docker tag security-quiz-game:${{ steps.meta.outputs.IMAGE_TAG }} ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.IMAGE_TAG }}
-          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.IMAGE_TAG }}
-
-      # compose 文件在仓库里，需要先传到服务器
-      # 使用 scp-action 传输，与 ssh-action 同一个作者，配置格式一致
-      - name: 上传 Compose 文件到服务器
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SERVER_SSH_KEY }}
-          source: "docker-compose.yml,docker-compose.dev.yml"
-          target: "~/"
-
-      - name: 部署到测试环境（8080 端口）
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SERVER_SSH_KEY }}
-          script_stop: true
-          script: |
-            docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.IMAGE_TAG }}
-            DOCKER_HUB_USERNAME=${{ secrets.DOCKER_HUB_USERNAME }} \
-            FRONTEND_TAG=${{ steps.meta.outputs.IMAGE_TAG }} \
-            CORS_ORIGIN=${{ secrets.CORS_ORIGIN }} \
-            JWT_SECRET=${{ secrets.JWT_SECRET }} \
-            docker compose -f ~/docker-compose.yml -f ~/docker-compose.dev.yml up -d frontend
-
-  # ==================== CD：生产环境部署 ====================
-  # 触发条件：push 了 v*.*.* 格式的 tag（如 v1.0.0）
-  # 两个前提：
-  #   1. needs: ci → ci job 必须成功（tag 发布前也要校验代码）
-  #   2. if 条件  → 只有 v*.*.* 格式的 tag 才执行
-  #
-  # 为什么打 tag = 发布生产：
-  #   tag 是人工打的，代表「我确认这个版本可以上生产」
-  #   比直接 push main 多了一道人工确认的门槛
-  #   ${{ github.ref_name }} 在 tag 触发时 = tag 名称（如 v1.0.0）
-  deploy-prod:
-    needs: ci
-    if: startsWith(github.ref, 'refs/tags/v')
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout 代码
-        uses: actions/checkout@v4
-
-      # tag 名称即版本号（如 v1.0.0），同时打三个 tag：
-      #   version tag（v1.0.0）：语义清晰，人工可读，生产发布标准用法
-      #   sha tag：精确对应 commit，回滚时用
-      #   latest：永远指向最新生产版本
-      - name: 生成镜像标签
-        id: meta
-        run: |
-          echo "VERSION_TAG=${{ github.ref_name }}" >> $GITHUB_OUTPUT
-          echo "SHA_TAG=${{ github.sha }}" >> $GITHUB_OUTPUT
+        run: echo "SHA_TAG=${{ github.sha }}" >> $GITHUB_OUTPUT
 
       - name: 构建 Docker 镜像
         run: docker build -t security-quiz-game:${{ steps.meta.outputs.SHA_TAG }} .
@@ -143,35 +81,59 @@ jobs:
       - name: 登录 Docker Hub
         run: echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
 
-      - name: 推送镜像到 Docker Hub
+      - name: 推送镜像到 Docker Hub（sha tag）
         run: |
-          docker tag security-quiz-game:${{ steps.meta.outputs.SHA_TAG }} ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.VERSION_TAG }}
           docker tag security-quiz-game:${{ steps.meta.outputs.SHA_TAG }} ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.SHA_TAG }}
-          docker tag security-quiz-game:${{ steps.meta.outputs.SHA_TAG }} ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:latest
-          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.VERSION_TAG }}
           docker push ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.SHA_TAG }}
-          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:latest
 
-      - name: 上传 Compose 文件到服务器
-        uses: appleboy/scp-action@v0.1.7
+      - name: 触发 infra 仓库部署前端（测试环境）
+        uses: peter-evans/repository-dispatch@v3
         with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SERVER_SSH_KEY }}
-          source: "docker-compose.yml,docker-compose.prod.yml"
-          target: "~/"
+          token: ${{ secrets.INFRA_DEPLOY_TOKEN }}
+          repository: ${{ github.repository_owner }}/infra
+          event-type: deploy-frontend
+          client-payload: |
+            {
+              "image_tag": "${{ steps.meta.outputs.SHA_TAG }}",
+              "environment": "dev"
+            }
 
-      - name: 部署到生产环境（80 端口）
-        uses: appleboy/ssh-action@v1.0.3
+  # ==================== CD：生产环境部署 ====================
+  # 触发：push tag v*.*.*（人工打 tag = 确认测试通过可以发布）
+  # 镜像：不重新构建，给测试阶段的 sha 镜像追加语义版本 tag
+  #   docker buildx imagetools create 是纯 manifest 操作，不重新构建
+  #   保证生产部署的镜像和测试验证的镜像是同一个产物
+  deploy-prod:
+    needs: ci
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 生成镜像标签
+        id: meta
+        run: |
+          echo "VERSION_TAG=${{ github.ref_name }}" >> $GITHUB_OUTPUT
+          echo "SHA_TAG=${{ github.sha }}" >> $GITHUB_OUTPUT
+
+      - name: 登录 Docker Hub
+        run: echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
+
+      # 不重新构建，给已有的 sha 镜像追加语义版本 tag
+      # 前提：测试环境部署时已推送过 sha tag 的镜像
+      - name: 给 sha 镜像追加语义版本 tag
+        run: |
+          docker buildx imagetools create \
+            --tag ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.VERSION_TAG }} \
+            ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.SHA_TAG }}
+
+      - name: 触发 infra 仓库部署前端（生产环境）
+        uses: peter-evans/repository-dispatch@v3
         with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SERVER_SSH_KEY }}
-          script_stop: true
-          script: |
-            docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.VERSION_TAG }}
-            DOCKER_HUB_USERNAME=${{ secrets.DOCKER_HUB_USERNAME }} \
-            FRONTEND_TAG=${{ steps.meta.outputs.VERSION_TAG }} \
-            CORS_ORIGIN=${{ secrets.CORS_ORIGIN }} \
-            JWT_SECRET=${{ secrets.JWT_SECRET }} \
-            docker compose -f ~/docker-compose.yml -f ~/docker-compose.prod.yml up -d frontend
+          token: ${{ secrets.INFRA_DEPLOY_TOKEN }}
+          repository: ${{ github.repository_owner }}/infra
+          event-type: deploy-frontend
+          client-payload: |
+            {
+              "image_tag": "${{ steps.meta.outputs.VERSION_TAG }}",
+              "environment": "prod"
+            }
