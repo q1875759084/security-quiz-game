@@ -1,27 +1,42 @@
 name: CI/CD 自动部署
 
-# 触发条件说明：
-#   push 任意分支   → 触发 CI（尽早发现问题）
-#   workflow_dispatch → 手动触发，执行 CD 到测试环境
-#   push tag v*.*.* → CI + CD 到生产环境
+# ============================================================
+# 触发条件设计（Promotion-based Deployment 晋级式部署）
 #
-# 镜像管理策略（核心）：
-#   一次构建原则：测试和生产使用同一个镜像产物，只有 tag 不同
-#   - 测试：构建镜像，推 sha tag，部署到测试环境验证
-#   - 生产：不重新构建，给已有的 sha 镜像追加语义版本 tag，部署到生产
-#   这样保证"测试通过的"和"上线的"是同一个二进制产物
+# push 分支  → 只触发 CI（lint + build）
+#              职责：代码质量卡点，尽早发现问题
+#
+# workflow_dispatch（手动触发）→ 根据 event 参数分两种模式：
+#   event = deploy-dev   → 构建镜像、推 sha tag、部署测试环境
+#   event = deploy-prod  → 不重新构建，给 sha 镜像追加 tag、部署生产
+#
+# 为什么不用 push tag 触发 CD？
+#   - tag 一旦 push 无法撤回，会立即触发生产部署，没有人工卡点
+#   - push tag 和 CD 是两件事：tag 是"版本归档"，CD 是"部署决策"
+#   - 大厂实践：打 tag 只是版本记录，部署必须人工或审批触发
+# ============================================================
 on:
   push:
     branches:
       - '**'
-    tags:
-      - 'v*.*.*'
   workflow_dispatch:
+    inputs:
+      event:
+        description: '选择操作类型'
+        required: true
+        type: choice
+        options:
+          - deploy-dev
+          - deploy-prod
+      tag:
+        description: '生产部署时填写，对应测试验证过的 tag，如 v1.0.0'
+        required: false
+        default: ''
 
 jobs:
   # ==================== CI：代码校验 ====================
-  # push 分支和 push tag 都触发，workflow_dispatch 时不自动触发
-  # deploy-prod 通过 needs: ci 强制依赖，保证生产发布前必须通过校验
+  # 触发：push 任意分支
+  # 职责：尽早发现代码问题，与部署完全解耦
   ci:
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
@@ -45,18 +60,22 @@ jobs:
         run: npm run build
 
   # ==================== CD：测试环境部署 ====================
-  # 触发：workflow_dispatch（开发者主动决定"这个版本可以给 QA 看了"）
-  # 镜像：构建 + 推 sha tag（sha 不可变，精确对应这次 commit）
-  # 不推 latest：latest 语义模糊，多环境场景下容易引发混乱
+  # 触发：workflow_dispatch + event = deploy-dev
+  # 职责：构建镜像（sha tag），部署到测试环境，供 QA 验证
+  #
+  # 镜像 tag 策略：
+  #   使用 git sha（40位 commit hash）作为 tag
+  #   sha 不可变，精确对应这次 commit，可完整追溯
   deploy-dev:
-    if: github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'workflow_dispatch' && inputs.event == 'deploy-dev'
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout 代码
         uses: actions/checkout@v4
 
-      # CI 校验（workflow_dispatch 不触发 ci job，在此补充）
+      # deploy-dev 是手动触发，ci job 不会运行，在此补充 CI 校验
+      # 保证部署到测试环境前，代码已通过质量卡点
       - name: 设置 Node 版本
         uses: actions/setup-node@v4
         with:
@@ -71,7 +90,7 @@ jobs:
       - name: 构建校验
         run: npm run build
 
-      - name: 生成镜像标签
+      - name: 生成 sha 镜像标签
         id: meta
         run: echo "SHA_TAG=${{ github.sha }}" >> $GITHUB_OUTPUT
 
@@ -81,7 +100,7 @@ jobs:
       - name: 登录 Docker Hub
         run: echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
 
-      - name: 推送镜像到 Docker Hub（sha tag）
+      - name: 推送镜像（sha tag）
         run: |
           docker tag security-quiz-game:${{ steps.meta.outputs.SHA_TAG }} ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.SHA_TAG }}
           docker push ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.SHA_TAG }}
@@ -99,27 +118,49 @@ jobs:
             }
 
   # ==================== CD：生产环境部署 ====================
-  # 触发：push tag v*.*.*（人工打 tag = 确认测试通过可以发布）
-  # 镜像：不重新构建，给测试阶段的 sha 镜像追加语义版本 tag
-  #   docker buildx imagetools create 是纯 manifest 操作，不重新构建
-  #   保证生产部署的镜像和测试验证的镜像是同一个产物
+  # 触发：workflow_dispatch + event = deploy-prod + 填写 tag
+  #
+  # 一次构建原则（核心）：
+  #   不重新构建镜像，只给测试阶段已验证的 sha 镜像追加语义版本 tag
+  #   docker buildx imagetools create 是纯 manifest 操作，不产生新镜像层
+  #   保证"测试通过的"和"上线的"是同一个二进制产物，消除环境差异风险
+  #
+  # 操作流程：
+  #   1. deploy-dev 推送了 sha-abc123 镜像到测试环境
+  #   2. QA 验证通过
+  #   3. 开发者执行：git tag -a v1.0.0 -m 'release' && git push origin v1.0.0
+  #      （此操作仅是版本归档，不触发任何 Actions）
+  #   4. 手动 run workflow → event=deploy-prod，tag=v1.0.0
+  #   5. 本 job 给 sha-abc123 镜像追加 v1.0.0 tag，部署生产
   deploy-prod:
-    needs: ci
-    if: startsWith(github.ref, 'refs/tags/v')
+    if: github.event_name == 'workflow_dispatch' && inputs.event == 'deploy-prod'
     runs-on: ubuntu-latest
 
     steps:
+      - name: 校验 tag 参数不能为空
+        run: |
+          if [ -z "${{ inputs.tag }}" ]; then
+            echo "❌ 生产部署必须填写 tag 参数，如 v1.0.0"
+            exit 1
+          fi
+
+      - name: Checkout 代码（用于获取 tag 对应的 sha）
+        uses: actions/checkout@v4
+        with:
+          # 检出指定 tag，使得 github.sha 对应该 tag 的 commit
+          ref: ${{ inputs.tag }}
+
       - name: 生成镜像标签
         id: meta
         run: |
-          echo "VERSION_TAG=${{ github.ref_name }}" >> $GITHUB_OUTPUT
+          echo "VERSION_TAG=${{ inputs.tag }}" >> $GITHUB_OUTPUT
           echo "SHA_TAG=${{ github.sha }}" >> $GITHUB_OUTPUT
 
       - name: 登录 Docker Hub
         run: echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
 
-      # 不重新构建，给已有的 sha 镜像追加语义版本 tag
-      # 前提：测试环境部署时已推送过 sha tag 的镜像
+      # 不重新构建，给 sha 镜像追加语义版本 tag
+      # 前提：该 sha 对应的镜像已在 deploy-dev 阶段推送到 Docker Hub
       - name: 给 sha 镜像追加语义版本 tag
         run: |
           docker buildx imagetools create \
