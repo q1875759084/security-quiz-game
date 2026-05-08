@@ -41,10 +41,10 @@ jobs:
 
     steps:
       - name: Checkout 代码
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5  # v4
 
       - name: 设置 Node 版本
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020  # v4
         with:
           node-version: '20'
 
@@ -70,14 +70,17 @@ jobs:
 
     steps:
       - name: Checkout 代码
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5  # v4
 
       - name: 生成 sha 镜像标签
         id: meta
         run: echo "SHA_TAG=${{ github.sha }}" >> $GITHUB_OUTPUT
 
       - name: 构建 Docker 镜像
-        run: docker build -t security-quiz-game:${{ steps.meta.outputs.SHA_TAG }} .
+        run: |
+          docker build \
+            --build-arg DEPLOY_ENV=ci \
+            -t security-quiz-game:${{ steps.meta.outputs.SHA_TAG }} .
 
       - name: 登录 Docker Hub
         run: echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
@@ -88,7 +91,7 @@ jobs:
           docker push ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.SHA_TAG }}
 
       - name: 触发 infra 仓库部署前端（测试环境）
-        uses: peter-evans/repository-dispatch@v3
+        uses: peter-evans/repository-dispatch@ff45666b9427631e3450c54a1bcbee4d9ff4d7c0  # v3
         with:
           token: ${{ secrets.INFRA_DEPLOY_TOKEN }}
           repository: ${{ github.repository_owner }}/infra
@@ -120,7 +123,7 @@ jobs:
           fi
 
       - name: Checkout 代码（用于获取 tag 对应的 sha）
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5  # v4
         with:
           # 检出指定 tag，使得 github.sha 对应该 tag 的 commit
           ref: ${{ inputs.tag }}
@@ -143,7 +146,7 @@ jobs:
             ${{ secrets.DOCKER_HUB_USERNAME }}/security-quiz-game:${{ steps.meta.outputs.SHA_TAG }}
 
       - name: 触发 infra 仓库部署前端（生产环境）
-        uses: peter-evans/repository-dispatch@v3
+        uses: peter-evans/repository-dispatch@ff45666b9427631e3450c54a1bcbee4d9ff4d7c0  # v3
         with:
           token: ${{ secrets.INFRA_DEPLOY_TOKEN }}
           repository: ${{ github.repository_owner }}/infra

@@ -8,6 +8,11 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install
 
+# 声明构建参数：由 docker build --build-arg 传入，不硬编码在镜像里（保证无状态）
+# DEPLOY_ENV 供 webpack 构建时区分 CI 和本地环境
+ARG DEPLOY_ENV
+ENV DEPLOY_ENV=$DEPLOY_ENV
+
 # 再复制源码并构建
 COPY . .
 RUN npm run build
