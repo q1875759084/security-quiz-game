@@ -74,9 +74,7 @@ jobs:
 
       - name: 生成 sha 镜像标签
         id: meta
-        # 取 git sha 前8位加 sha- 前缀，格式：sha-c5f05906
-        # 短 hash 足够唯一（概率碰撞极低），同时保持可读性
-        run: echo "SHA_TAG=sha-$(echo ${{ github.sha }} | cut -c1-8)" >> $GITHUB_OUTPUT
+        run: echo "SHA_TAG=${{ github.sha }}" >> $GITHUB_OUTPUT
 
       - name: 构建 Docker 镜像
         run: |
